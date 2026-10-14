@@ -127,9 +127,13 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .job h3 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 23px; letter-spacing: .05em; text-transform: uppercase; }
 .job p { margin: 6px 0 0; color: var(--muted); }
 
-/* follow */
-.follow { text-align: left; }
-.follow .cta { justify-content: flex-start; margin-top: 22px; }
+/* news: the latest posts, newest first, each with its date */
+.posts { display: flex; flex-direction: column; gap: 0; margin-top: 22px; }
+.post { min-width: 0; padding-block: 18px; border-top: 1px solid var(--line); }
+.post:first-child { border-top: 0; padding-top: 4px; }
+.post time { display: block; font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--lamp); font-variant-numeric: tabular-nums; }
+.post h3 { margin: 4px 0 0; font-family: var(--font-display); font-weight: 700; font-size: 23px; letter-spacing: .05em; text-transform: uppercase; }
+.post p { max-width: 62ch; margin: 6px 0 0; color: var(--muted); }
 
 footer { padding-block: 26px 34px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 20px; }
 footer p { margin: 0; }
@@ -182,6 +186,14 @@ footer p { margin: 0; }
         <div class="job"><h3>Do the deals</h3><p>Offer a fee to the club and a wage to the player. Every refusal tells you why.</p></div>
         <div class="job"><h3>Balance the books</h3><p>Wages, gate money, the club shop and the bar. A well-run club can pay its way at every level.</p></div>
         <div class="job"><h3>Follow the world</h3><p>128 nations, leagues abroad, cup runs, summer tournaments and award nights all season long.</p></div>
+      </div>
+    </section>
+
+    <section class="sec" aria-labelledby="news-h">
+      <p class="label">News</p>
+      <h2 id="news-h">How it's going</h2>
+      <div class="posts">
+        <article class="post"><time datetime="2026-10-14">14 October 2026</time><h3>Where the game stands</h3><p>Matchnight already plays season after season: pick any club in the four English divisions, then chase promotion, cup runs and European nights while 128 nations play on around you. The latest builds brought young players who grow into their talent (one in ten never quite makes it), free agents who find new clubs, and a quicker way to play through the weeks. Next on the list are an easier way around the game&#x27;s screens and the first match sounds and music.</p></article>
       </div>
     </section>
   </main>
