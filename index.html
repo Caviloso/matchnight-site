@@ -151,6 +151,20 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
   .shots li { flex: 1 1 0; }
 }
 
+/* the title theme: a quiet button that plays only when tapped, with the time left and a thin progress line */
+.theme { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 18px; }
+.theme-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 16px;
+  border: 1px solid rgba(255, 204, 26, .45); border-radius: 6px; background: var(--stand); color: var(--chalk); cursor: pointer;
+  font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: .08em; text-transform: uppercase; }
+.theme-btn:hover { border-color: var(--lamp); }
+.theme-ico { flex: none; width: 15px; height: 15px; fill: var(--lamp); }
+.theme-ico .i-stop, .theme-btn[data-on] .i-play { display: none; }
+.theme-btn[data-on] .i-stop { display: inline; }
+.theme-time { font-family: var(--font-body); font-weight: 400; font-size: 14px; letter-spacing: 0; text-transform: none; color: var(--muted); font-variant-numeric: tabular-nums; }
+.theme-btn::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: var(--lamp); transform: scaleX(var(--p, 0)); transform-origin: left; }
+.theme-note { font-size: 14px; color: var(--muted); }
+footer .credit { flex-basis: 100%; }
+
 /* the new art: crests, trophy plates and icons, drawn as they will look in the game */
 .art-h { margin: 28px 0 0; font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
 .art-crests, .art-plates, .art-icons { display: grid; align-items: center; justify-items: center; margin-top: 12px; }
@@ -241,6 +255,26 @@ footer a { display: inline-block; padding-block: 14px; margin-block: -14px; }
       <p class="label">In the game</p>
       <h2 id="shots-h">How it plays today</h2>
       <p>Screens from the game as it is now, in its new look, on a phone. Tap one to see it bigger.</p>
+      <div class="theme">
+        <button type="button" class="theme-btn" id="theme-btn"><svg class="theme-ico" viewBox="0 0 16 16" aria-hidden="true"><path class="i-play" d="M4.5 2.6v10.8L13.6 8z"/><rect class="i-stop" x="3.5" y="3.5" width="9" height="9" rx="1.2"/></svg><span class="theme-label">Hear the theme</span><span class="theme-time">1:14</span></button>
+        <span class="theme-note">The music from the title screen</span>
+        <audio id="theme" src="audio/title-theme.mp3" preload="none"></audio>
+      </div>
+      <script>
+      (() => { // plays only when tapped; a second tap stops it
+        const b = document.getElementById('theme-btn'), a = document.getElementById('theme');
+        const label = b.querySelector('.theme-label'), time = b.querySelector('.theme-time'), full = time.textContent;
+        const mmss = s => Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+        const show = on => { b.toggleAttribute('data-on', on); label.textContent = on ? 'Stop the theme' : 'Hear the theme';
+          if (!on) { time.textContent = full; b.style.setProperty('--p', 0); } };
+        b.addEventListener('click', () => {
+          if (a.paused) { show(true); a.play().catch(() => show(false)); } else { a.pause(); a.currentTime = 0; show(false); }
+        });
+        a.addEventListener('ended', () => { a.currentTime = 0; show(false); });
+        a.addEventListener('timeupdate', () => { if (a.paused || !a.duration) return;
+          time.textContent = mmss(a.duration - a.currentTime); b.style.setProperty('--p', a.currentTime / a.duration); });
+      })();
+      </script>
       <ul class="shots" tabindex="0" aria-label="Screenshots of the game">
         <li><a href="shots/match.webp"><img src="shots/match.webp" width="600" height="1298" loading="lazy" decoding="async" alt="The live match on a phone: GOAL! over the pitch as the away side go 1-0 up after 11 minutes."></a><span>A goal on match night</span></li>
         <li><a href="shots/home.webp"><img src="shots/home.webp" width="600" height="1298" loading="lazy" decoding="async" alt="The Home screen: the next match, at home to Manchester Wanderers, with both sides compared in attack, midfield and defence."></a><span>Your next match at a glance</span></li>
@@ -292,6 +326,7 @@ footer a { display: inline-block; padding-block: 14px; margin-block: -14px; }
   <footer>
     <p>© 2026 Kevin Logist. All rights reserved. · <a href="https://www.instagram.com/matchnightgame/">Instagram</a></p>
     <p>This site uses no cookies and no tracking.</p>
+    <p class="credit">Music made with ElevenLabs</p>
   </footer>
 </div>
 </div>
