@@ -151,7 +151,8 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
   .shots li { flex: 1 1 0; }
 }
 
-/* the title theme: a quiet button that plays only when tapped, with the time left and a thin progress line */
+/* the title theme: a quiet button with the time left and a thin progress line; it starts by itself where the browser
+   allows it, and while it plays off screen a floating button stops it */
 .theme { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 18px; }
 .theme-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 16px;
   border: 1px solid rgba(255, 204, 26, .45); border-radius: 6px; background: var(--stand); color: var(--chalk); cursor: pointer;
@@ -163,6 +164,11 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .theme-time { font-family: var(--font-body); font-weight: 400; font-size: 14px; letter-spacing: 0; text-transform: none; color: var(--muted); font-variant-numeric: tabular-nums; }
 .theme-btn::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: var(--lamp); transform: scaleX(var(--p, 0)); transform-origin: left; }
 .theme-note { font-size: 14px; color: var(--muted); }
+.theme-float { position: fixed; z-index: 10; right: max(16px, calc(env(safe-area-inset-right, 0px) + 12px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 16px; border: 1px solid var(--lamp); border-radius: 6px;
+  background: var(--stand); color: var(--chalk); box-shadow: 0 8px 24px rgba(0, 0, 0, .5); cursor: pointer;
+  font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: .08em; text-transform: uppercase; }
+.theme-float[hidden] { display: none; }
 footer .credit { flex-basis: 100%; }
 
 /* the new art: crests, trophy plates and icons, drawn as they will look in the game */
@@ -266,21 +272,36 @@ footer a { display: inline-block; padding-block: 14px; margin-block: -14px; }
       <div class="theme">
         <button type="button" class="theme-btn" id="theme-btn"><svg class="theme-ico" viewBox="0 0 16 16" aria-hidden="true"><path class="i-play" d="M4.5 2.6v10.8L13.6 8z"/><rect class="i-stop" x="3.5" y="3.5" width="9" height="9" rx="1.2"/></svg><span class="theme-label">Hear the theme</span><span class="theme-time">1:14</span></button>
         <span class="theme-note">The music from the title screen</span>
+        <button type="button" class="theme-float" id="theme-float" hidden><svg class="theme-ico" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="3.5" width="9" height="9" rx="1.2"/></svg>Stop the theme</button>
         <audio id="theme" src="audio/title-theme.mp3" preload="none"></audio>
       </div>
       <script>
-      (() => { // plays only when tapped; a second tap stops it
-        const b = document.getElementById('theme-btn'), a = document.getElementById('theme');
+      (() => { // starts once by itself, softly, where the browser allows sound when a page opens; otherwise it waits
+        // for a tap on the button. A tap on either button stops it. It never loops and never starts from a tap elsewhere.
+        const b = document.getElementById('theme-btn'), f = document.getElementById('theme-float'), a = document.getElementById('theme');
         const label = b.querySelector('.theme-label'), time = b.querySelector('.theme-time'), full = time.textContent;
         const mmss = s => Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+        let near = true, fade = 0;  // near: the button is on screen, so the floating stop button isn't needed
+        const float = () => { f.hidden = a.paused || near; };
         const show = on => { b.toggleAttribute('data-on', on); label.textContent = on ? 'Stop the theme' : 'Hear the theme';
-          if (!on) { time.textContent = full; b.style.setProperty('--p', 0); } };
+          if (!on) { time.textContent = full; b.style.setProperty('--p', 0); } float(); };
+        const stop = () => { clearInterval(fade); a.pause(); a.currentTime = 0; a.volume = 1; show(false); };
         b.addEventListener('click', () => {
-          if (a.paused) { show(true); a.play().catch(() => show(false)); } else { a.pause(); a.currentTime = 0; show(false); }
+          if (a.paused) { clearInterval(fade); a.volume = 1; show(true); a.play().catch(() => show(false)); } else stop();
         });
-        a.addEventListener('ended', () => { a.currentTime = 0; show(false); });
+        f.addEventListener('click', stop);
+        a.addEventListener('ended', () => { clearInterval(fade); a.currentTime = 0; a.volume = 1; show(false); });
         a.addEventListener('timeupdate', () => { if (a.paused || !a.duration) return;
           time.textContent = mmss(a.duration - a.currentTime); b.style.setProperty('--p', a.currentTime / a.duration); });
+        if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { near = e.isIntersecting; float(); }).observe(b);
+        // when the page opens: ask first where the browser can tell, so a page that may not play skips the download
+        const policy = navigator.getAutoplayPolicy ? navigator.getAutoplayPolicy(a) : 'allowed';
+        if (policy === 'allowed') {
+          a.volume = 0;
+          a.play().then(() => { show(true); let v = 0;  // fade in over two seconds to half volume
+            fade = setInterval(() => { v = Math.min(.5, v + .025); a.volume = v; if (v >= .5) clearInterval(fade); }, 100);
+          }).catch(() => { a.volume = 1; });
+        }
       })();
       </script>
       <ul class="shots" tabindex="0" aria-label="Screenshots of the game">
