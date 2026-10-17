@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.1.1 -->
+<!-- matchnightgame.com, site 0.1.2 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -190,6 +190,37 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .climb .top-row .div-note { color: var(--chalk); }
 @media (min-width: 960px) { .climb-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 500px); column-gap: 64px; align-items: center; } }
 
+/* Story Mode, the first section under the top: Kevin's film poster "The Fifth" (made with Canva's AI; its own
+   lettering, nothing laid over it), the copy with its line on a plate, and the first three days, drawn like the climb;
+   Thursday, the day you arrive, is lit. On a phone: poster (full width), copy, days; on a wide screen the poster takes
+   half the width and the copy and the days sit beside it, centred on it as one block */
+.story-grid { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "poster" "copy" "days"; gap: 32px; }
+.story-copy { grid-area: copy; min-width: 0; }
+.poster { grid-area: poster; width: 100%; max-width: 520px; margin: 0 auto; }
+.poster a { display: block; border-radius: 8px; }
+.poster img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--stand); box-shadow: 0 26px 60px rgba(0, 0, 0, .55); }
+.poster figcaption { margin-top: 10px; font-size: 14px; line-height: 1.35; color: var(--muted); text-align: center; }
+.story .intro { max-width: 56ch; color: var(--chalk); font-size: clamp(17px, 4.4vw, 19px); }
+.story .when { margin-top: 22px; border-color: rgba(255, 204, 26, .45); font-size: clamp(15px, 4.2vw, 17px); letter-spacing: .08em; text-wrap: balance; } /* one line on a phone */
+.days { grid-area: days; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.days li { position: relative; display: flex; flex-direction: column; min-height: 52px; padding: 10px 16px 11px 40px; background: var(--stand); border: 1px solid var(--line); border-radius: 6px; }
+.days li::before { content: ''; position: absolute; left: 11px; top: 19px; width: 10px; height: 10px; z-index: 2; border-radius: 50%; background: var(--night); border: 2px solid var(--steel); }
+.days li:not(:last-child)::after { content: ''; position: absolute; left: 15px; top: 24px; z-index: 1; width: 2px; height: calc(100% + 8px); background: var(--steel); }
+.days li:first-child::after { background: linear-gradient(var(--steel), var(--lamp)); }
+.days .now::after { background: linear-gradient(var(--lamp), var(--steel)); }
+.days .day { font-family: var(--font-display); font-weight: 700; font-size: 20px; line-height: 1.4; letter-spacing: .06em; text-transform: uppercase; }
+.days .what { color: var(--muted); font-size: 16px; }
+.days .now { background: linear-gradient(90deg, rgba(255, 204, 26, .16), rgba(255, 204, 26, .04)); border-color: rgba(255, 204, 26, .45); }
+.days .now::before { background: var(--lamp); border-color: var(--lamp); box-shadow: 0 0 10px 2px var(--glow); }
+.days .now .day { color: var(--lamp); }
+.days .now .what { color: var(--chalk); }
+@media (min-width: 960px) {
+  .story-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "poster copy" "poster days"; column-gap: 64px; }
+  .poster { max-width: none; }
+  .story-copy { align-self: end; }
+  .days { align-self: start; }
+}
+
 /* What's coming: a team sheet, numbered in the order the builds are planned; number 1 is up next */
 .coming-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; }
 .coming-copy { min-width: 0; }
@@ -350,6 +381,23 @@ footer .credit, footer .tm { flex-basis: 100%; }
       </div>
     </section>
 
+    <section class="sec story" aria-labelledby="story-h">
+      <div class="wrap story-grid">
+        <figure class="poster"><a href="shots/story-poster.webp"><img src="shots/story-poster.webp" srcset="shots/story-poster-800.webp 800w, shots/story-poster.webp 1200w" sizes="(min-width: 960px) 512px, min(100vw - 32px, 520px)" width="1200" height="1800" loading="lazy" decoding="async" alt="Film poster: a newcomer with a holdall walks down a rain-wet lane towards a floodlit football ground while the town watches from its windows; title The Fifth."></a><figcaption>Poster made with Canva&#x27;s AI.</figcaption></figure>
+        <div class="story-copy">
+          <p class="label">Story Mode</p>
+          <h2 id="story-h">Everyone in town knows why he left. Except you.</h2>
+          <p class="intro">You take over a small seaside club two days before the season. The last manager is gone, the town is lying badly, and the only person who will talk to you is the one you've been told to avoid. Your results and your choices write the story over eight seasons, and the secret gets heavier with every win.</p>
+          <p class="when">Four managers said no. You're the fifth.</p>
+        </div>
+        <ol class="days" aria-label="The first three days">
+          <li><span class="day">Wednesday</span><span class="what">The manager leaves at midnight, in the rain.</span></li>
+          <li class="now"><span class="day">Thursday</span><span class="what">You arrive. Nobody mentions it.</span></li>
+          <li><span class="day">Saturday</span><span class="what">The season starts. The derby, at home.</span></li>
+        </ol>
+      </div>
+    </section>
+
     <section class="sec job" aria-labelledby="job-h">
       <div class="wrap job-grid">
         <div class="job-copy">
@@ -411,6 +459,7 @@ footer .credit, footer .tm { flex-basis: 100%; }
           <li><span class="shirt" aria-hidden="true">6</span><div class="sheet-text"><h3>Saturday night</h3><p>A highlights show after the weekend&#x27;s matches, and live cup draws with the pundits.</p></div></li>
           <li><span class="shirt" aria-hidden="true">7</span><div class="sheet-text"><h3>The boardroom</h3><p>A board with its own personality, takeovers that can turn your club upside down, and job interviews when you go after a new club.</p></div></li>
           <li><span class="shirt" aria-hidden="true">8</span><div class="sheet-text"><h3>A new way to watch</h3><p>A 2D match view, so you can follow every move as it builds. More on this once the design is settled.</p></div></li>
+          <li><span class="shirt" aria-hidden="true">9</span><div class="sheet-text"><h3>Story Mode</h3><p>Eight seasons at a small seaside club, a manager who vanished the night before you arrived, and a town that knows why. Your results write the story, and every choice is remembered.</p></div></li>
         </ol>
       </div>
     </section>
@@ -434,7 +483,7 @@ footer .credit, footer .tm { flex-basis: 100%; }
       <div class="wrap">
         <p class="label">How it's made</p>
         <h2 id="made-h">One fan, with AI tools</h2>
-        <p class="intro">Matchnight is made by one football fan, who designs the game and plays every build. The code, the art and the game's text are written with Claude, an AI from Anthropic. The sound, the music and the commentator's voice are made with ElevenLabs. No AI runs inside the game itself: everything you see and hear is made, played and checked before it reaches you.</p>
+        <p class="intro">Matchnight is made by one football fan, who designs the game and plays every build. The code, the art and the game's text are written with Claude, an AI from Anthropic. The sound, the music and the commentator's voice are made with ElevenLabs, and the Story Mode poster with Canva's AI. No AI runs inside the game itself: everything you see and hear is made, played and checked before it reaches you.</p>
       </div>
     </section>
 
