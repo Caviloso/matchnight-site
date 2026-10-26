@@ -162,7 +162,7 @@ img { max-width: 100%; }
 h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 7.4vw, 46px); line-height: 1; letter-spacing: .01em; text-transform: uppercase; text-wrap: balance; }
 .intro { max-width: 60ch; margin: 14px 0 0; color: var(--muted); }
 
-/* the six jobs, with two more real screens beside them */
+/* the eight jobs, with two more real screens beside them; a pair of screens also sits under Why Matchnight's pillars */
 .job-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 44px; }
 .job-copy { min-width: 0; }
 .jobs { display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px 36px; margin-top: 30px; }
@@ -171,10 +171,11 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .tile-text { min-width: 0; }
 .job-tile h3 { margin: 6px 0 0; font-family: var(--font-display); font-weight: 700; font-size: 22px; line-height: 1.1; letter-spacing: .05em; text-transform: uppercase; }
 .job-tile p { margin: 6px 0 0; color: var(--muted); font-size: 16px; }
-.job-shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: min(100%, 400px); margin-inline: auto; align-items: start; }
-.job-shots figure { margin: 0; min-width: 0; }
-.job-shots figure:nth-child(2) { margin-top: 44px; }
-.job-shots figcaption { margin-top: 10px; font-size: 14px; line-height: 1.35; color: var(--muted); text-align: center; }
+.shot-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: min(100%, 400px); margin-inline: auto; align-items: start; }
+.shot-pair figure { margin: 0; min-width: 0; }
+.shot-pair figure:nth-child(2) { margin-top: 44px; }
+.shot-pair figcaption { margin-top: 10px; font-size: 14px; line-height: 1.35; color: var(--muted); text-align: center; }
+.why-shots { margin-top: 40px; }
 @media (min-width: 560px) { .jobs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 960px) { .job-grid { grid-template-columns: minmax(0, 1fr) 380px; column-gap: 64px; align-items: center; } }
 
