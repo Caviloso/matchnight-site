@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.3.1 -->
+<!-- matchnightgame.com, site 0.3.2 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -305,6 +305,12 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .post time { display: block; font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--lamp); font-variant-numeric: tabular-nums; }
 .post h3 { margin: 4px 0 0; font-family: var(--font-display); font-weight: 700; font-size: 23px; letter-spacing: .05em; text-transform: uppercase; }
 .post p { max-width: 62ch; margin: 6px 0 0; color: var(--muted); }
+/* the older posts behind Read more (site 0.3.2): the button goes once they are open, and they carry on the list */
+.more-posts > summary { margin-top: 16px; cursor: pointer; list-style: none; }
+.more-posts > summary::-webkit-details-marker { display: none; }
+.more-posts[open] > summary { display: none; }
+.more-posts .posts { margin-top: 0; }
+.more-posts .post:first-child { border-top: 1px solid var(--line); padding-top: 18px; }
 .upds { display: flex; flex-direction: column; gap: 6px; margin-top: 22px; }
 .upd { background: var(--stand); border: 1px solid var(--line); border-radius: 6px; }
 .upd summary { display: flex; align-items: center; gap: 14px; min-height: 52px; padding: 10px 16px; cursor: pointer; list-style: none; }
@@ -587,6 +593,12 @@ footer .credit, footer .tm { flex-basis: 100%; }
             <article class="post"><time datetime="2026-10-18">18 October 2026</time><h3>Every club has a memory now</h3><p>The last three builds gave Matchnight a long memory. Club records now name their holders and change hands when someone beats them, the greatest careers make the Hall of Fame, and a retiring legend gets a guard of honour in his last home game. Everything has a reputation too, from players to towns, so a famous name costs more and a hidden gem costs less. And every match now has a commentary line, with a text view if you&#x27;d rather read the match than watch it.</p></article>
             <article class="post"><time datetime="2026-10-15">15 October 2026</time><h3>The floodlights come on</h3><p>Matchnight has found its voice. A floodlit intro switches the stadium on before the title screen, music plays on the start screens, and every match has its own sounds, with a crowd that reacts to every chance and a commentator for the big moments. You can also tap any player, club or score to open its card, with full career histories, match reports and a search that finds anyone as you type.</p></article>
           </div>
+          <details class="more-posts">
+            <summary class="btn ghost">Read more</summary>
+            <div class="posts">
+            <article class="post"><time datetime="2026-10-14">14 October 2026</time><h3>Where the game stands</h3><p>Matchnight already plays season after season: pick any club in the four English divisions, then chase promotion, cup runs and European nights while 128 nations play on around you. The latest builds brought young players who grow into their talent (one in ten never quite makes it), free agents who find new clubs, and a quicker way to play through the weeks.</p></article>
+            </div>
+          </details>
         </div>
         <div class="diary-col">
           <p class="label">Updates</p>

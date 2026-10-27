@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.3.1 -->
+<!-- matchnightgame.com, site 0.3.2 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -304,6 +304,12 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .post time { display: block; font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--lamp); font-variant-numeric: tabular-nums; }
 .post h3 { margin: 4px 0 0; font-family: var(--font-display); font-weight: 700; font-size: 23px; letter-spacing: .05em; text-transform: uppercase; }
 .post p { max-width: 62ch; margin: 6px 0 0; color: var(--muted); }
+/* the older posts behind Read more (site 0.3.2): the button goes once they are open, and they carry on the list */
+.more-posts > summary { margin-top: 16px; cursor: pointer; list-style: none; }
+.more-posts > summary::-webkit-details-marker { display: none; }
+.more-posts[open] > summary { display: none; }
+.more-posts .posts { margin-top: 0; }
+.more-posts .post:first-child { border-top: 1px solid var(--line); padding-top: 18px; }
 .upds { display: flex; flex-direction: column; gap: 6px; margin-top: 22px; }
 .upd { background: var(--stand); border: 1px solid var(--line); border-radius: 6px; }
 .upd summary { display: flex; align-items: center; gap: 14px; min-height: 52px; padding: 10px 16px; cursor: pointer; list-style: none; }
