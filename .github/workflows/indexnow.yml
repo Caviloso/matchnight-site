@@ -7,7 +7,7 @@ name: Tell search engines
 on:
   push:
     branches: [main]
-    paths: ['index.html', 'updates.html', 'sitemap.xml']
+    paths: ['index.html', 'updates.html', 'news/**', 'sitemap.xml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -17,6 +17,8 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - name: Wait until the new version is live
         run: |
           want=$(sed -n 's/.*matchnightgame\.com, site \([0-9.]*\) -->.*/\1/p' index.html | head -1)
@@ -26,14 +28,27 @@ jobs:
             sleep 15
           done
           echo "Site $want did not show up within 20 minutes"; exit 1
-      - name: Send the pages to IndexNow
+      - name: Send the changed pages to IndexNow
         run: |
-          key=$(ls | sed -n 's/^\([0-9a-f]\{32\}\)\.txt$/\1/p' | head -1)
-          test -n "$key" || { echo "No IndexNow key file at the site root"; exit 1; }
-          urls=$(sed -n 's|.*<loc>\(.*\)</loc>.*|"\1"|p' sitemap.xml | paste -sd, -)
-          body="{\"host\":\"matchnightgame.com\",\"key\":\"$key\",\"keyLocation\":\"https://matchnightgame.com/$key.txt\",\"urlList\":[$urls]}"
-          echo "$body"
-          code=$(curl -sS -o reply.txt -w '%{http_code}' -X POST https://api.indexnow.org/indexnow \
-            -H 'Content-Type: application/json; charset=utf-8' -d "$body")
-          cat reply.txt; echo; echo "IndexNow answered HTTP $code"
-          case "$code" in 200|202) ;; *) exit 1;; esac
+          git show HEAD~1:sitemap.xml > previous-sitemap.xml 2>/dev/null || : > previous-sitemap.xml
+          python3 - "${{ github.event_name }}" <<'PY'
+          import json, os, re, sys, urllib.request, urllib.error
+          # the pages whose last-changed date in sitemap.xml is new or moved since the commit before; every page when
+          # run by hand from the Actions tab
+          read = lambda f: dict(re.findall(r'<loc>(.*?)</loc><lastmod>(.*?)</lastmod>', open(f).read()))
+          new, old = read('sitemap.xml'), read('previous-sitemap.xml')
+          urls = list(new) if sys.argv[1] == 'workflow_dispatch' else [u for u, d in new.items() if old.get(u) != d]
+          if not urls:
+              print('No page changed its date in sitemap.xml: nothing to send'); sys.exit(0)
+          keys = [f[:-4] for f in os.listdir('.') if re.fullmatch(r'[0-9a-f]{32}\.txt', f)]
+          assert keys, 'No IndexNow key file at the site root'
+          body = {'host': 'matchnightgame.com', 'key': keys[0], 'keyLocation': f'https://matchnightgame.com/{keys[0]}.txt', 'urlList': urls}
+          print(json.dumps(body, indent=1))
+          req = urllib.request.Request('https://api.indexnow.org/indexnow', json.dumps(body).encode(),
+                                       {'Content-Type': 'application/json; charset=utf-8'})
+          try:
+              with urllib.request.urlopen(req, timeout=60) as r:
+                  print('IndexNow answered HTTP', r.status, r.read().decode()[:500])
+          except urllib.error.HTTPError as e:
+              print('IndexNow answered HTTP', e.code, e.read().decode()[:500]); sys.exit(1)
+          PY
