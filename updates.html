@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.3.3 -->
+<!-- matchnightgame.com, site 0.3.4 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Every version · Matchnight</title>
+<title>Updates: every version · Matchnight</title>
 <meta name="description" content="Every version of Matchnight in development, newest first: what each one added, changed and fixed.">
 <meta name="theme-color" content="#0b0d11">
 <link rel="canonical" href="https://matchnightgame.com/updates.html">
@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Matchnight">
-<meta property="og:title" content="Every version · Matchnight">
+<meta property="og:title" content="Updates: every version · Matchnight">
 <meta property="og:description" content="Every version of Matchnight in development, newest first: what each one added, changed and fixed.">
 <meta property="og:url" content="https://matchnightgame.com/updates.html">
 <meta property="og:image" content="https://matchnightgame.com/share.png">
@@ -304,6 +304,19 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .post time { display: block; font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--lamp); font-variant-numeric: tabular-nums; }
 .post h3 { margin: 4px 0 0; font-family: var(--font-display); font-weight: 700; font-size: 23px; letter-spacing: .05em; text-transform: uppercase; }
 .post p { max-width: 62ch; margin: 6px 0 0; color: var(--muted); }
+.post h3 a { color: inherit; text-decoration: underline; text-decoration-color: rgba(255, 204, 26, .35); text-decoration-thickness: 2px; text-underline-offset: .18em; }
+.post h3 a:hover, .post h3 a:focus-visible { color: var(--lamp); text-decoration-color: currentColor; }
+/* a news post on its own page (site 0.3.4) */
+.news-page .post-date { margin: 14px 0 0; font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--lamp); font-variant-numeric: tabular-nums; }
+.news-page .post-text { max-width: 62ch; margin: 14px 0 0; font-size: 18px; }
+.news-page h2 { margin-top: clamp(40px, 7vw, 64px); font-size: clamp(24px, 5.6vw, 32px); }
+.news-page .cta { justify-content: flex-start; margin-top: 16px; }
+.news-list { list-style: none; max-width: 62ch; margin: 12px 0 0; padding: 0; }
+.news-list li { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 16px; padding-block: 12px; border-top: 1px solid var(--line); }
+.news-list li:first-child { border-top: 0; }
+.news-list a { color: var(--chalk); font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: .05em; text-transform: uppercase; text-decoration: underline; text-decoration-color: rgba(255, 204, 26, .35); text-decoration-thickness: 2px; text-underline-offset: .18em; }
+.news-list a:hover, .news-list a:focus-visible { color: var(--lamp); text-decoration-color: currentColor; }
+.news-list time { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
 /* the older posts behind Read more (site 0.3.2): the button goes once they are open, and they carry on the list */
 .more-posts > summary { margin-top: 16px; cursor: pointer; list-style: none; }
 .more-posts > summary::-webkit-details-marker { display: none; }

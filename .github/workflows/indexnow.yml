@@ -1,0 +1,54 @@
+# Tells Bing and the other IndexNow search engines that matchnightgame.com changed, once GitHub Pages has put the new
+# version live (site 0.3.4, Kevin's pick "Hidden helpers", 31 Oct 2026). Google doesn't take IndexNow; it reads the
+# sitemap that Search Console knows. The key file (<key>.txt at the site root) is written by build.py from
+# indexnow.json; this file lives in the repository as .github/workflows/indexnow.yml (source: the site's source
+# folder, indexnow.yml). It can also be run by hand from the repository's Actions tab.
+name: Tell search engines
+on:
+  push:
+    branches: [main]
+    paths: ['index.html', 'updates.html', 'news/**', 'sitemap.xml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Wait until the new version is live
+        run: |
+          want=$(sed -n 's/.*matchnightgame\.com, site \([0-9.]*\) -->.*/\1/p' index.html | head -1)
+          echo "Waiting for site $want on https://matchnightgame.com/"
+          for i in $(seq 1 80); do
+            if curl -fsS "https://matchnightgame.com/?check=$i" | grep -qF "site $want -->"; then echo "Site $want is live"; exit 0; fi
+            sleep 15
+          done
+          echo "Site $want did not show up within 20 minutes"; exit 1
+      - name: Send the changed pages to IndexNow
+        run: |
+          git show HEAD~1:sitemap.xml > previous-sitemap.xml 2>/dev/null || : > previous-sitemap.xml
+          python3 - "${{ github.event_name }}" <<'PY'
+          import json, os, re, sys, urllib.request, urllib.error
+          # the pages whose last-changed date in sitemap.xml is new or moved since the commit before; every page when
+          # run by hand from the Actions tab
+          read = lambda f: dict(re.findall(r'<loc>(.*?)</loc><lastmod>(.*?)</lastmod>', open(f).read()))
+          new, old = read('sitemap.xml'), read('previous-sitemap.xml')
+          urls = list(new) if sys.argv[1] == 'workflow_dispatch' else [u for u, d in new.items() if old.get(u) != d]
+          if not urls:
+              print('No page changed its date in sitemap.xml: nothing to send'); sys.exit(0)
+          keys = [f[:-4] for f in os.listdir('.') if re.fullmatch(r'[0-9a-f]{32}\.txt', f)]
+          assert keys, 'No IndexNow key file at the site root'
+          body = {'host': 'matchnightgame.com', 'key': keys[0], 'keyLocation': f'https://matchnightgame.com/{keys[0]}.txt', 'urlList': urls}
+          print(json.dumps(body, indent=1))
+          req = urllib.request.Request('https://api.indexnow.org/indexnow', json.dumps(body).encode(),
+                                       {'Content-Type': 'application/json; charset=utf-8'})
+          try:
+              with urllib.request.urlopen(req, timeout=60) as r:
+                  print('IndexNow answered HTTP', r.status, r.read().decode()[:500])
+          except urllib.error.HTTPError as e:
+              print('IndexNow answered HTTP', e.code, e.read().decode()[:500]); sys.exit(1)
+          PY
