@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.4.2 -->
+<!-- matchnightgame.com, site 0.4.3 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -64,7 +64,7 @@ body {
   font-family: var(--font-body); font-size: 17px; line-height: 1.55;
   -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
 }
-.page { overflow-x: hidden; overflow-x: clip; } /* the floodlight glow and the fanned phones are wider than a phone */
+.page { overflow-x: hidden; overflow-x: clip; } /* the floodlight glow and the pitch under the laptop are wider than a phone */
 a { color: inherit; }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
 img { max-width: 100%; }
@@ -119,22 +119,25 @@ img { max-width: 100%; }
 .claim { max-width: 22ch; margin: 22px auto 0; font-family: var(--font-display); font-weight: 800; font-size: clamp(27px, 7.4vw, 38px); line-height: 1.05; letter-spacing: .01em; color: var(--lamp); text-wrap: balance; }
 .lede { max-width: 36ch; margin: 14px auto 0; font-size: clamp(18px, 4.8vw, 21px); line-height: 1.45; text-wrap: balance; }
 
-/* the phones: three real screens fanned out, standing on the centre circle */
-.fan { position: relative; width: min(100%, 440px); aspect-ratio: 100 / 98; margin-inline: auto; }
-.fan::before { content: ''; position: absolute; z-index: 0; left: -16%; right: -16%; bottom: -10%; height: 40%; border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(31, 122, 62, .75), rgba(31, 122, 62, .32) 55%, transparent); }
-.fan::after { content: ''; position: absolute; z-index: 0; left: 8%; right: 8%; bottom: 0; height: 17%; border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, .2); border-top-color: rgba(255, 255, 255, .06); }
+/* the phone screens: a dark bezel, the bottom fading out (the match phone at the top, the four under Why Matchnight) */
 .phone { display: block; overflow: hidden; aspect-ratio: 600 / 1000; max-width: 100%; border-radius: clamp(14px, 4.4vw, 26px); border: 5px solid #23282e;
   background: var(--stand); box-shadow: 0 26px 60px rgba(0, 0, 0, .55);
   -webkit-mask-image: linear-gradient(#000 70%, transparent 99%); mask-image: linear-gradient(#000 70%, transparent 99%); }
 .phone img, .phone video { display: block; width: 100%; height: auto; }
-.fan .phone { position: absolute; z-index: 1; }
-.fan .front { z-index: 2; left: 22%; top: 0; width: 56%; }
-.fan .side { width: 44%; top: 8%; filter: brightness(.6) saturate(.85); transform-origin: 50% 100%; transition: filter .2s; }
-.fan .side:hover, .fan .side:focus-visible { filter: none; }
-.fan .l { left: 0; rotate: -7deg; }
-.fan .r { right: 0; rotate: 7deg; }
+/* since site 0.4.3 (Kevin's pick "Both"): a laptop with a PC screen from the game and the phone with the match clip standing
+   in front of it, on the same pitch; the laptop's screen in a dark bezel, its base a thin bar a little wider than it */
+.duo { position: relative; width: min(100%, 520px); aspect-ratio: 100 / 80; margin-inline: auto; }
+.duo::before { content: ''; position: absolute; z-index: 0; left: -14%; right: -14%; bottom: -8%; height: 42%; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(31, 122, 62, .75), rgba(31, 122, 62, .32) 55%, transparent); }
+.duo::after { content: ''; position: absolute; z-index: 0; left: 6%; right: 6%; bottom: 0; height: 17%; border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, .2); border-top-color: rgba(255, 255, 255, .06); }
+.laptop { position: absolute; z-index: 1; left: 2%; top: 7%; width: 84%; display: block; }
+.lid { display: block; overflow: hidden; border: clamp(5px, 1.5vw, 8px) solid #23282e; border-bottom-width: clamp(7px, 2vw, 11px);
+  border-radius: clamp(8px, 2vw, 12px) clamp(8px, 2vw, 12px) 3px 3px; background: var(--stand); box-shadow: 0 0 0 1px rgba(255, 255, 255, .06), 0 26px 60px rgba(0, 0, 0, .55); }
+.lid img { display: block; width: 100%; height: auto; }
+.laptop::after { content: ''; display: block; height: clamp(6px, 1.7vw, 10px); margin: 0 -7%; border-radius: 1px 1px 9px 9px;
+  background: linear-gradient(#444c57, #1d2126 70%); box-shadow: 0 12px 24px rgba(0, 0, 0, .5); }
+.duo .phone { position: absolute; z-index: 2; right: 0; bottom: 3%; width: 32%; border-width: 4px; border-radius: clamp(12px, 3.4vw, 20px); }
 .stage figcaption { margin-top: 16px; font-size: 14px; color: var(--muted); text-align: center; }
 
 /* the scoreboard: the game is playable now, and the latest version shows it moves */
@@ -156,7 +159,7 @@ img { max-width: 100%; }
 .btn svg { width: 18px; height: 18px; flex: none; }
 
 @media (min-width: 960px) {
-  .hero { grid-template-columns: minmax(0, 1fr) 440px; grid-template-areas: "top stage" "bottom stage"; column-gap: 64px; row-gap: 26px; text-align: left; align-items: start; }
+  .hero { grid-template-columns: minmax(0, 1fr) 520px; grid-template-areas: "top stage" "bottom stage"; column-gap: 64px; row-gap: 26px; text-align: left; align-items: start; }
   .lede { max-width: 40ch; }
   .hero::before { left: auto; right: -260px; transform: none; width: 1000px; }
   .hero-top { align-self: end; }
@@ -168,15 +171,14 @@ img { max-width: 100%; }
   .stage { align-self: center; }
 }
 
-/* the lamps switch on one by one when the page opens, and the phones settle onto the pitch */
+/* the lamps switch on one by one when the page opens, and the laptop and the phone settle onto the pitch */
 @media (prefers-reduced-motion: no-preference) {
   .logo .lamps rect { animation: lampOn .5s both; animation-delay: calc(.25s + var(--n) * 90ms); }
   .logo .halo { animation: housingGlow 1.4s .25s both; }
   .logo .bar { transform-box: fill-box; transform-origin: center; animation: barIn .7s 1.2s cubic-bezier(.2, .8, .25, 1) both; }
-  .fan .phone { animation: settle .9s cubic-bezier(.2, .8, .25, 1) both; }
-  .fan .front { animation-delay: .35s; }
-  .fan .l { animation-delay: .5s; }
-  .fan .r { animation-delay: .6s; }
+  .duo .laptop, .duo .phone { animation: settle .9s cubic-bezier(.2, .8, .25, 1) both; }
+  .duo .laptop { animation-delay: .35s; }
+  .duo .phone { animation-delay: .55s; }
 }
 @keyframes lampOn { 0% { opacity: .12; } 40% { opacity: 1; } 55% { opacity: .3; } 100% { opacity: 1; } }
 @keyframes housingGlow { from { opacity: 0; } }
@@ -228,6 +230,20 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .shots li:nth-child(even) figure { margin-top: 36px; }
 .shots figcaption { margin-top: 10px; font-size: 14px; line-height: 1.35; color: var(--muted); text-align: center; }
 @media (min-width: 760px) { .jobs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* On a PC (site 0.4.3): the game on a laptop in a section of its own, the match big across the page and three screens
+   under it, each in a thin dark frame like a monitor's; a swipe row on a phone (below) */
+.screens { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px 20px; margin-top: 34px; align-items: start; }
+.screens figure { margin: 0; min-width: 0; }
+.screen { display: block; overflow: hidden; aspect-ratio: 16 / 9; border: 4px solid #23282e; border-radius: 10px; background: var(--stand);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .06), 0 18px 44px rgba(0, 0, 0, .55); }
+.screen img { display: block; width: 100%; height: auto; }
+.screens figcaption { margin-top: 10px; font-size: 14px; line-height: 1.35; color: var(--muted); text-align: center; }
+@media (min-width: 760px) {
+  .screens { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .screens > li:first-child { grid-column: 1 / -1; }
+  .screens > li:first-child .screen { border-width: 6px; border-radius: 14px; box-shadow: 0 0 0 1px rgba(255, 255, 255, .07), 0 0 90px rgba(31, 122, 62, .22), 0 24px 60px rgba(0, 0, 0, .6); }
+  .screens > li:first-child figcaption { font-size: 15px; }
+}
 @media (min-width: 1080px) { .jobs { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
 /* Why Matchnight: three pillars with the game's icons, then the Built to last promises on a plate */
@@ -473,7 +489,7 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
 .foot-nav { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-bottom: 10px; }
 .foot-nav a { font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; color: var(--chalk); }
 .foot-nav a[aria-current] { color: var(--lamp); }
-@media (prefers-reduced-motion: reduce) { .upd summary::after, .qa summary::after, .fan .side { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .upd summary::after, .qa summary::after { transition: none; } }
 
 /* the swipe rows on a phone (see "swipe rows" above), last so they win over each list's own grid */
 @media (max-width: 759px) {
@@ -498,6 +514,8 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
   .row.shots { grid-auto-columns: calc(50% - 26px); gap: 14px; margin-top: 30px; }
   .row.shots > li { padding: 0; background: none; border: 0; }
   .row.shots li:nth-child(even) figure { margin-top: 0; }
+  .row.screens { grid-auto-columns: 88%; gap: 12px; margin-top: 26px; }
+  .row.screens > li { padding: 0; background: none; border: 0; }
   .row.sheet > li { border-top: 1px solid var(--line); grid-template-columns: 42px minmax(0, 1fr); column-gap: 12px; align-content: start; }
   .row.sheet .sheet-text { display: contents; }
   .row.sheet h3 { margin: 0; align-self: center; }
@@ -521,7 +539,8 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
         <h1 id="sub-h">Every version</h1>
         <p class="intro">Every version of Matchnight in development, newest first, back to the first prototypes of October 2026. Open one to see what it added, changed and fixed.</p>
         <div class="upds">
-            <details class="upd" open><summary><span class="uver">0.0.66.5</span><span class="umeta"><span class="uname">The Matchnight Theme and two fixes</span><time datetime="2026-11-01">1 November 2026</time><span>1 changed · 2 fixed</span></span></summary><div class="ubody"><div class="ugroup"><h4>Changed</h4><ul><li>The title screen plays the new Matchnight Theme in full, then the menu music as before.</li></ul></div><div class="ugroup"><h4>Fixed</h4><ul><li>The Saturday show no longer puts two pictures of the same kind in a row when a Monday match joins its weekend.</li><li>At Highlights, a substitution stays on the commentary bar long enough to read.</li></ul></div></div></details>
+            <details class="upd" open><summary><span class="uver">0.0.66.6</span><span class="umeta"><span class="uname">Quicker Highlights</span><time datetime="2026-11-01">1 November 2026</time><span>1 changed · 1 fixed</span></span></summary><div class="ubody"><div class="ugroup"><h4>Changed</h4><ul><li>At Highlights the game now cuts straight from one big moment to the next. There are no long dark pauses, and no commentary runs over the skipped minutes. A match at Highlights takes about a minute and a quarter.</li></ul></div><div class="ugroup"><h4>Fixed</h4><ul><li>Changes you make at half time are always read out.</li></ul></div></div></details>
+            <details class="upd"><summary><span class="uver">0.0.66.5</span><span class="umeta"><span class="uname">The Matchnight Theme and two fixes</span><time datetime="2026-11-01">1 November 2026</time><span>1 changed · 2 fixed</span></span></summary><div class="ubody"><div class="ugroup"><h4>Changed</h4><ul><li>The title screen plays the new Matchnight Theme in full, then the menu music as before.</li></ul></div><div class="ugroup"><h4>Fixed</h4><ul><li>The Saturday show no longer puts two pictures of the same kind in a row when a Monday match joins its weekend.</li><li>At Highlights, a substitution stays on the commentary bar long enough to read.</li></ul></div></div></details>
             <details class="upd"><summary><span class="uver">0.0.66.4</span><span class="umeta"><span class="uname">Restarts by the rules, calmer boards and new show pictures</span><time datetime="2026-11-01">1 November 2026</time><span>8 changed · 5 fixed</span></span></summary><div class="ubody"><div class="ugroup"><h4>Changed</h4><ul><li>Restarts follow the Laws of the Game: penalties are taken in the box and free kicks where the foul was, every kick-off starts from the centre mark with both sides in their own halves, and the ball rolls to a goal kick or corner instead of jumping there.</li><li>After a goal a quick TV-style cut lines both sides up, then the whistle and a proper kick-off; the second half starts the same way.</li><li>Highlights cut between moments: the pitch dips to dark and comes back at the next one, instead of everyone jumping to new places. The kick-off after a goal is cut away, as on TV.</li><li>Play on stops right before a final or a play-off, so you always play the big matches yourself.</li><li>Running a club costs less: your club pays four fifths of its running costs, so making a profit is easier.</li><li>Club › Finances: the shirt sponsor&#x27;s tile shows what the deal pays each week, and what it has paid so far this season.</li><li>The board is calmer after a promotion or a relegation: the season after going up it asks only to stay up, and after going down no more than a play-off place. Job interviews ask the same.</li><li>The Saturday show has new pictures: three fans pictures redrawn as a full stand, a new diving header and tap-in with everyone at real size, and the volley picture now shows more goals from a loose ball.</li></ul></div><div class="ugroup"><h4>Fixed</h4><ul><li>The Saturday show&#x27;s goal replays move again; they had held every player in the kick-off line-up.</li><li>In a kick-off&#x27;s minute, the side kicking off is no longer said to win the ball back.</li><li>At Fast, the dip to dark after a goal lasts as long as at Normal, so the line-up is never set in sight.</li><li>A player holding the ball up while a team-mate gets into place walks it, instead of standing over it.</li><li>A player who starts a move far from the ball passes it on and runs on for the return, instead of carrying it 80 metres alone.</li></ul></div></div></details>
             <details class="upd"><summary><span class="uver">0.0.66.3</span><span class="umeta"><span class="uname">Play on and screen fixes from the test-play week</span><time datetime="2026-10-27">27 October 2026</time><span>11 changed · 3 fixed</span></span></summary><div class="ubody"><div class="ugroup"><h4>Changed</h4><ul><li>Play on sits on the Continue bar on every screen, on phones, tablets and computers.</li><li>You choose what Play on stops for, from a checklist in Settings and in Play on&#x27;s summary: trophies, front pages, club records, players who want to leave, bids, injuries, cup ties, derbies and other news.</li><li>Highlights shows every goal, big chance, VAR check, red card and break at Normal speed. The quieter moments pass as one line, substitutions included. A match takes under two minutes.</li><li>The pundits&#x27; words come with their portraits in News, the match report and the match card.</li><li>Transfers › Find: a small ? by each sort, filter and column explains it, in place of a paragraph of hints.</li><li>The season review has a tile for every competition you played in, the super cups and the world&#x27;s club cups included.</li><li>The season&#x27;s comic pages: captions sit under the pictures, every picture is shown whole, and the table and the board&#x27;s verdict fit a laptop screen.</li><li>Play on&#x27;s Skip and the Continue button after a match stay pinned to the bottom of the screen.</li><li>Both newspapers have their names centred.</li><li>The Crown Shield&#x27;s trophy plate now looks like a shield.</li><li>Wherever a player&#x27;s goals count every competition, the season review, the season&#x27;s story and the awards now say &quot;in all competitions&quot;, so they never seem to clash with the Golden Boot.</li></ul></div><div class="ugroup"><h4>Fixed</h4><ul><li>The season review&#x27;s Golden Boot counts league goals, like the awards. Before, it could name a different player.</li><li>On a phone, the Continue bar keeps the next match&#x27;s name beside Play on.</li><li>A substitution on the commentary line waits its turn instead of cutting off the line before it.</li></ul></div></div></details>
             <details class="upd"><summary><span class="uver">0.0.66.2</span><span class="umeta"><span class="uname">Fixes from the test-play week</span><time datetime="2026-10-27">27 October 2026</time><span>13 fixed</span></span></summary><div class="ubody"><div class="ugroup"><h4>Fixed</h4><ul><li>Free transfers agreed for next season now follow the league&#x27;s spending rules: they are checked against next season&#x27;s wages and costs, and blocked or warned about as a signing would be.</li><li>During your play-off weeks, the clubs not playing rest but no longer get a week of training ahead of everyone else.</li><li>Squad › Team on a laptop screen: the pitch beside the squad list now scrolls with the page, so its top no longer hides under the top bar.</li><li>The main menu fits a narrow screen at every text size.</li><li>Older careers: a few names too close to real people get new ones when the save loads.</li><li>Club › Backroom: a mission about a player who has since moved names his new club.</li><li>Clubs with no league no longer build up more team gel through a season than league clubs.</li><li>A ball parried by the keeper no longer sits still in the box after a foul in the same minute.</li><li>The tactics camp&#x27;s description says what it really does.</li><li>The Saturday show&#x27;s goal replays no longer show a name tag over the scorer.</li><li>The pundits&#x27; posts in Home › News show their portraits.</li><li>The two pundits before a match no longer open with the same line as before the last one.</li><li>Small wording fix on the Board page.</li></ul></div></div></details>
