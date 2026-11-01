@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.4.0 -->
+<!-- matchnightgame.com, site 0.4.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -308,6 +308,7 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .bench p { margin: 0; color: var(--muted); max-width: 44ch; }
 .bench .bench-h { font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .2em; text-transform: uppercase; color: var(--chalk); }
 .bench .when { color: var(--chalk); font-size: 15px; letter-spacing: .08em; }
+.bench .later { color: var(--chalk); }  /* Kevin's tease of the match modes (site 0.4.1) */
 .sheet { list-style: none; margin: 0; padding: 0; min-width: 0; background: var(--stand); border: 1px solid var(--line); border-radius: 10px; }
 .sheet li { display: grid; grid-template-columns: 42px minmax(0, 1fr); column-gap: 16px; padding: 18px clamp(14px, 3vw, 22px); border-top: 1px solid var(--line); }
 .sheet li:first-child { border-top: 0; }
@@ -455,7 +456,7 @@ body:has(#theme-float:not([hidden])) { padding-bottom: 76px; }  /* the page's en
 .clip-btn::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: var(--lamp); transform: scaleX(var(--p, 0)); transform-origin: left; }
 .clip-words { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .clip-label { font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: .08em; text-transform: uppercase; }
-.clip-song { font-size: 14px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.clip-song { font-size: 14px; line-height: 1.3; color: var(--muted); overflow-wrap: anywhere; }
 .clip-time { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .clip-soon { border-style: dashed; border-color: var(--steel); color: var(--muted); font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: .08em; text-transform: uppercase; }
 .clip-soon .theme-ico { fill: var(--steel); }
@@ -542,7 +543,7 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
           })();
           </script>
       <div class="hero-bottom">
-        <a class="board" href="updates.html"><span class="board-live"><i class="led" aria-hidden="true"></i>In testing now</span><span class="board-ver">Latest version <b>0.0.66.3</b> Play on and screen fixes from the test-play week · 27 October 2026</span></a>
+        <a class="board" href="updates.html"><span class="board-live"><i class="led" aria-hidden="true"></i>In testing now</span><span class="board-ver">Latest version <b>0.0.66.4</b> Restarts by the rules, calmer boards and new show pictures · 1 November 2026</span></a>
         <p class="plans">Planned for PC on Steam and for Android first, with iOS and consoles after that.</p>
         <p class="when">First playable demo: expected Q2&nbsp;2027</p>
         <div class="cta">
@@ -725,6 +726,7 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
         </div>
         <div class="bench">
           <p class="bench-h">On the bench</p>
+          <p class="later">Coming later: call the shots from the touchline, take the big kicks yourself, and in time play whole matches.</p>
           <p>After that: more depth, then getting Matchnight ready for PC and Android, with a full PC layout, plus Steam Deck, cloud saves and achievements on Steam.</p>
           <p class="when">First playable demo: expected Q2&nbsp;2027</p>
         </div>

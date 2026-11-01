@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.4.0 -->
+<!-- matchnightgame.com, site 0.4.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -308,6 +308,7 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .bench p { margin: 0; color: var(--muted); max-width: 44ch; }
 .bench .bench-h { font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .2em; text-transform: uppercase; color: var(--chalk); }
 .bench .when { color: var(--chalk); font-size: 15px; letter-spacing: .08em; }
+.bench .later { color: var(--chalk); }  /* Kevin's tease of the match modes (site 0.4.1) */
 .sheet { list-style: none; margin: 0; padding: 0; min-width: 0; background: var(--stand); border: 1px solid var(--line); border-radius: 10px; }
 .sheet li { display: grid; grid-template-columns: 42px minmax(0, 1fr); column-gap: 16px; padding: 18px clamp(14px, 3vw, 22px); border-top: 1px solid var(--line); }
 .sheet li:first-child { border-top: 0; }
@@ -455,7 +456,7 @@ body:has(#theme-float:not([hidden])) { padding-bottom: 76px; }  /* the page's en
 .clip-btn::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: var(--lamp); transform: scaleX(var(--p, 0)); transform-origin: left; }
 .clip-words { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .clip-label { font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: .08em; text-transform: uppercase; }
-.clip-song { font-size: 14px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.clip-song { font-size: 14px; line-height: 1.3; color: var(--muted); overflow-wrap: anywhere; }
 .clip-time { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .clip-soon { border-style: dashed; border-color: var(--steel); color: var(--muted); font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: .08em; text-transform: uppercase; }
 .clip-soon .theme-ico { fill: var(--steel); }
@@ -523,6 +524,7 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
         <p class="post-text">The last three builds gave Matchnight a long memory. Club records now name their holders and change hands when someone beats them, the greatest careers make the Hall of Fame, and a retiring legend gets a guard of honour in his last home game. Everything has a reputation too, from players to towns, so a famous name costs more and a hidden gem costs less. And every match now has a commentary line, with a text view if you&#x27;d rather read the match than watch it.</p>
         <h2 class="news-more">More news</h2>
         <ul class="news-list">
+          <li><a href="by-the-book.html">By the book</a><time datetime="2026-11-01">1 November 2026</time></li>
           <li><a href="every-match-on-the-pitch.html">Every match on the pitch</a><time datetime="2026-10-26">26 October 2026</time></li>
           <li><a href="the-floodlights-come-on.html">The floodlights come on</a><time datetime="2026-10-15">15 October 2026</time></li>
           <li><a href="where-the-game-stands.html">Where the game stands</a><time datetime="2026-10-14">14 October 2026</time></li>
