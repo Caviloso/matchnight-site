@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.4.2 -->
+<!-- matchnightgame.com, site 0.4.3 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -21,7 +21,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="The Matchnight logo: a bank of floodlights over the words Match Night.">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://matchnightgame.com/#website", "name": "Matchnight", "alternateName": ["Matchnight: Football Club Manager", "matchnightgame.com"], "url": "https://matchnightgame.com/", "inLanguage": "en"}, {"@type": "VideoGame", "@id": "https://matchnightgame.com/#game", "name": "Matchnight", "alternateName": "Matchnight: Football Club Manager", "url": "https://matchnightgame.com/", "description": "A football club manager where your own results write the story. Take any of 92 English clubs up the leagues and into big European nights. In development for PC and Android.", "genre": ["Sports", "Simulation", "Strategy"], "gamePlatform": ["PC", "Android"], "image": "https://matchnightgame.com/share.png", "screenshot": ["https://matchnightgame.com/shots/match.webp", "https://matchnightgame.com/shots/home.webp", "https://matchnightgame.com/shots/table.webp", "https://matchnightgame.com/shots/comic.webp", "https://matchnightgame.com/shots/whistle.webp", "https://matchnightgame.com/shots/team.webp", "https://matchnightgame.com/shots/history.webp"], "inLanguage": "en", "sameAs": ["https://www.instagram.com/matchnightgame/"]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://matchnightgame.com/#website", "name": "Matchnight", "alternateName": ["Matchnight: Football Club Manager", "matchnightgame.com"], "url": "https://matchnightgame.com/", "inLanguage": "en"}, {"@type": "VideoGame", "@id": "https://matchnightgame.com/#game", "name": "Matchnight", "alternateName": "Matchnight: Football Club Manager", "url": "https://matchnightgame.com/", "description": "A football club manager where your own results write the story. Take any of 92 English clubs up the leagues and into big European nights. In development for PC and Android.", "genre": ["Sports", "Simulation", "Strategy"], "gamePlatform": ["PC", "Android"], "image": "https://matchnightgame.com/share.png", "screenshot": ["https://matchnightgame.com/shots/match.webp", "https://matchnightgame.com/shots/home.webp", "https://matchnightgame.com/shots/table.webp", "https://matchnightgame.com/shots/comic.webp", "https://matchnightgame.com/shots/whistle.webp", "https://matchnightgame.com/shots/team.webp", "https://matchnightgame.com/shots/history.webp", "https://matchnightgame.com/shots/match-pc.webp", "https://matchnightgame.com/shots/home-pc.webp", "https://matchnightgame.com/shots/messages-pc.webp", "https://matchnightgame.com/shots/table-pc.webp"], "inLanguage": "en", "sameAs": ["https://www.instagram.com/matchnightgame/"]}]}</script>
 <style>
 /* Matchnight, redesigned for the doubtful first-time visitor. One floodlit night on purpose (a stadium after dark), so
    the page has one dark look whatever the device's setting. The brand stays: the Floodlight logo, Matchnight
@@ -65,7 +65,7 @@ body {
   font-family: var(--font-body); font-size: 17px; line-height: 1.55;
   -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
 }
-.page { overflow-x: hidden; overflow-x: clip; } /* the floodlight glow and the fanned phones are wider than a phone */
+.page { overflow-x: hidden; overflow-x: clip; } /* the floodlight glow and the pitch under the laptop are wider than a phone */
 a { color: inherit; }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
 img { max-width: 100%; }
@@ -120,22 +120,25 @@ img { max-width: 100%; }
 .claim { max-width: 22ch; margin: 22px auto 0; font-family: var(--font-display); font-weight: 800; font-size: clamp(27px, 7.4vw, 38px); line-height: 1.05; letter-spacing: .01em; color: var(--lamp); text-wrap: balance; }
 .lede { max-width: 36ch; margin: 14px auto 0; font-size: clamp(18px, 4.8vw, 21px); line-height: 1.45; text-wrap: balance; }
 
-/* the phones: three real screens fanned out, standing on the centre circle */
-.fan { position: relative; width: min(100%, 440px); aspect-ratio: 100 / 98; margin-inline: auto; }
-.fan::before { content: ''; position: absolute; z-index: 0; left: -16%; right: -16%; bottom: -10%; height: 40%; border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(31, 122, 62, .75), rgba(31, 122, 62, .32) 55%, transparent); }
-.fan::after { content: ''; position: absolute; z-index: 0; left: 8%; right: 8%; bottom: 0; height: 17%; border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, .2); border-top-color: rgba(255, 255, 255, .06); }
+/* the phone screens: a dark bezel, the bottom fading out (the match phone at the top, the four under Why Matchnight) */
 .phone { display: block; overflow: hidden; aspect-ratio: 600 / 1000; max-width: 100%; border-radius: clamp(14px, 4.4vw, 26px); border: 5px solid #23282e;
   background: var(--stand); box-shadow: 0 26px 60px rgba(0, 0, 0, .55);
   -webkit-mask-image: linear-gradient(#000 70%, transparent 99%); mask-image: linear-gradient(#000 70%, transparent 99%); }
 .phone img, .phone video { display: block; width: 100%; height: auto; }
-.fan .phone { position: absolute; z-index: 1; }
-.fan .front { z-index: 2; left: 22%; top: 0; width: 56%; }
-.fan .side { width: 44%; top: 8%; filter: brightness(.6) saturate(.85); transform-origin: 50% 100%; transition: filter .2s; }
-.fan .side:hover, .fan .side:focus-visible { filter: none; }
-.fan .l { left: 0; rotate: -7deg; }
-.fan .r { right: 0; rotate: 7deg; }
+/* since site 0.4.3 (Kevin's pick "Both"): a laptop with a PC screen from the game and the phone with the match clip standing
+   in front of it, on the same pitch; the laptop's screen in a dark bezel, its base a thin bar a little wider than it */
+.duo { position: relative; width: min(100%, 520px); aspect-ratio: 100 / 80; margin-inline: auto; }
+.duo::before { content: ''; position: absolute; z-index: 0; left: -14%; right: -14%; bottom: -8%; height: 42%; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(31, 122, 62, .75), rgba(31, 122, 62, .32) 55%, transparent); }
+.duo::after { content: ''; position: absolute; z-index: 0; left: 6%; right: 6%; bottom: 0; height: 17%; border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, .2); border-top-color: rgba(255, 255, 255, .06); }
+.laptop { position: absolute; z-index: 1; left: 2%; top: 7%; width: 84%; display: block; }
+.lid { display: block; overflow: hidden; border: clamp(5px, 1.5vw, 8px) solid #23282e; border-bottom-width: clamp(7px, 2vw, 11px);
+  border-radius: clamp(8px, 2vw, 12px) clamp(8px, 2vw, 12px) 3px 3px; background: var(--stand); box-shadow: 0 0 0 1px rgba(255, 255, 255, .06), 0 26px 60px rgba(0, 0, 0, .55); }
+.lid img { display: block; width: 100%; height: auto; }
+.laptop::after { content: ''; display: block; height: clamp(6px, 1.7vw, 10px); margin: 0 -7%; border-radius: 1px 1px 9px 9px;
+  background: linear-gradient(#444c57, #1d2126 70%); box-shadow: 0 12px 24px rgba(0, 0, 0, .5); }
+.duo .phone { position: absolute; z-index: 2; right: 0; bottom: 3%; width: 32%; border-width: 4px; border-radius: clamp(12px, 3.4vw, 20px); }
 .stage figcaption { margin-top: 16px; font-size: 14px; color: var(--muted); text-align: center; }
 
 /* the scoreboard: the game is playable now, and the latest version shows it moves */
@@ -157,7 +160,7 @@ img { max-width: 100%; }
 .btn svg { width: 18px; height: 18px; flex: none; }
 
 @media (min-width: 960px) {
-  .hero { grid-template-columns: minmax(0, 1fr) 440px; grid-template-areas: "top stage" "bottom stage"; column-gap: 64px; row-gap: 26px; text-align: left; align-items: start; }
+  .hero { grid-template-columns: minmax(0, 1fr) 520px; grid-template-areas: "top stage" "bottom stage"; column-gap: 64px; row-gap: 26px; text-align: left; align-items: start; }
   .lede { max-width: 40ch; }
   .hero::before { left: auto; right: -260px; transform: none; width: 1000px; }
   .hero-top { align-self: end; }
@@ -169,15 +172,14 @@ img { max-width: 100%; }
   .stage { align-self: center; }
 }
 
-/* the lamps switch on one by one when the page opens, and the phones settle onto the pitch */
+/* the lamps switch on one by one when the page opens, and the laptop and the phone settle onto the pitch */
 @media (prefers-reduced-motion: no-preference) {
   .logo .lamps rect { animation: lampOn .5s both; animation-delay: calc(.25s + var(--n) * 90ms); }
   .logo .halo { animation: housingGlow 1.4s .25s both; }
   .logo .bar { transform-box: fill-box; transform-origin: center; animation: barIn .7s 1.2s cubic-bezier(.2, .8, .25, 1) both; }
-  .fan .phone { animation: settle .9s cubic-bezier(.2, .8, .25, 1) both; }
-  .fan .front { animation-delay: .35s; }
-  .fan .l { animation-delay: .5s; }
-  .fan .r { animation-delay: .6s; }
+  .duo .laptop, .duo .phone { animation: settle .9s cubic-bezier(.2, .8, .25, 1) both; }
+  .duo .laptop { animation-delay: .35s; }
+  .duo .phone { animation-delay: .55s; }
 }
 @keyframes lampOn { 0% { opacity: .12; } 40% { opacity: 1; } 55% { opacity: .3; } 100% { opacity: 1; } }
 @keyframes housingGlow { from { opacity: 0; } }
@@ -229,6 +231,20 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .shots li:nth-child(even) figure { margin-top: 36px; }
 .shots figcaption { margin-top: 10px; font-size: 14px; line-height: 1.35; color: var(--muted); text-align: center; }
 @media (min-width: 760px) { .jobs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* On a PC (site 0.4.3): the game on a laptop in a section of its own, the match big across the page and three screens
+   under it, each in a thin dark frame like a monitor's; a swipe row on a phone (below) */
+.screens { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px 20px; margin-top: 34px; align-items: start; }
+.screens figure { margin: 0; min-width: 0; }
+.screen { display: block; overflow: hidden; aspect-ratio: 16 / 9; border: 4px solid #23282e; border-radius: 10px; background: var(--stand);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .06), 0 18px 44px rgba(0, 0, 0, .55); }
+.screen img { display: block; width: 100%; height: auto; }
+.screens figcaption { margin-top: 10px; font-size: 14px; line-height: 1.35; color: var(--muted); text-align: center; }
+@media (min-width: 760px) {
+  .screens { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .screens > li:first-child { grid-column: 1 / -1; }
+  .screens > li:first-child .screen { border-width: 6px; border-radius: 14px; box-shadow: 0 0 0 1px rgba(255, 255, 255, .07), 0 0 90px rgba(31, 122, 62, .22), 0 24px 60px rgba(0, 0, 0, .6); }
+  .screens > li:first-child figcaption { font-size: 15px; }
+}
 @media (min-width: 1080px) { .jobs { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
 /* Why Matchnight: three pillars with the game's icons, then the Built to last promises on a plate */
@@ -474,7 +490,7 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
 .foot-nav { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-bottom: 10px; }
 .foot-nav a { font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; color: var(--chalk); }
 .foot-nav a[aria-current] { color: var(--lamp); }
-@media (prefers-reduced-motion: reduce) { .upd summary::after, .qa summary::after, .fan .side { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .upd summary::after, .qa summary::after { transition: none; } }
 
 /* the swipe rows on a phone (see "swipe rows" above), last so they win over each list's own grid */
 @media (max-width: 759px) {
@@ -499,6 +515,8 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
   .row.shots { grid-auto-columns: calc(50% - 26px); gap: 14px; margin-top: 30px; }
   .row.shots > li { padding: 0; background: none; border: 0; }
   .row.shots li:nth-child(even) figure { margin-top: 0; }
+  .row.screens { grid-auto-columns: 88%; gap: 12px; margin-top: 26px; }
+  .row.screens > li { padding: 0; background: none; border: 0; }
   .row.sheet > li { border-top: 1px solid var(--line); grid-template-columns: 42px minmax(0, 1fr); column-gap: 12px; align-content: start; }
   .row.sheet .sheet-text { display: contents; }
   .row.sheet h3 { margin: 0; align-self: center; }
@@ -525,12 +543,11 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
         <p class="lede">Take any of 92 English clubs up the leagues, through the cups and into big European nights. Pick the team, do the deals, balance the books, and watch every season become part of your club&#x27;s history.</p>
       </div>
       <figure class="stage">
-        <div class="fan">
-          <a class="phone side l" href="shots/home.webp"><img src="shots/home.webp" width="600" height="1298" decoding="async" alt="The Home screen: a European night next, away at Øresund København in the league phase, with both sides compared in attack, midfield, defence and team gel."></a>
-          <a class="phone side r" href="shots/table.webp"><img src="shots/table.webp" width="600" height="1298" decoding="async" alt="The Premier Division table after six matches, with arrows for the clubs that moved and your club, Birmingham Wanderers, picked out in 7th."></a>
+        <div class="duo">
+          <a class="laptop" href="shots/stadium-pc.webp"><span class="lid"><img src="shots/stadium-pc.webp" srcset="shots/stadium-pc-800.webp 800w, shots/stadium-pc.webp 1600w" sizes="(min-width: 960px) 450px, 86vw" width="1600" height="900" decoding="async" alt="Club, Ground &amp; tickets on a laptop: the club&#x27;s ground drawn in 3D with its 43,000 seats, the ground plan beside it showing each stand&#x27;s size, and the ticket price under it."></span></a>
           <a class="phone front" href="shots/match-clip.mp4"><video id="clip" poster="shots/match.webp" width="600" height="1298" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-label="A ten-second clip of a live match on the 2D pitch: Øresund København win the ball, switch the play out to the wing, cross from the byline and score, and GOAL! comes up over the pitch."><source src="shots/match-clip.mp4" type="video/mp4"><source src="shots/match-clip.webm" type="video/webm"></video></a>
         </div>
-        <figcaption>Real screens from the game on a phone, with a match on the 2D pitch in the middle. Tap one to see it bigger.</figcaption>
+        <figcaption>Real screens from the game: your ground in 3D on a laptop, and a match on the 2D pitch on a phone. Tap either to see it bigger.</figcaption>
       </figure>
       <script>
           (() => { // the clip plays while it is on screen, unless the device asks for less motion; then the still stays
@@ -543,7 +560,7 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
           })();
           </script>
       <div class="hero-bottom">
-        <a class="board" href="updates.html"><span class="board-live"><i class="led" aria-hidden="true"></i>In testing now</span><span class="board-ver">Latest version <b>0.0.66.5</b> The Matchnight Theme and two fixes · 1 November 2026</span></a>
+        <a class="board" href="updates.html"><span class="board-live"><i class="led" aria-hidden="true"></i>In testing now</span><span class="board-ver">Latest version <b>0.0.66.6</b> Quicker Highlights · 1 November 2026</span></a>
         <p class="plans">Planned for PC on Steam and for Android first, with iOS and consoles after that.</p>
         <p class="when">First playable demo: expected Q2&nbsp;2027</p>
         <div class="cta">
@@ -640,6 +657,20 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
           <li class="promise"><img class="ico" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJpc2F2ZXMiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCIgeTE9IjIiIHgyPSIwIiB5Mj0iMzAiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIvPjxzdG9wIG9mZnNldD0iLjMiIHN0b3AtY29sb3I9IiNkZGUyZTgiLz48c3RvcCBvZmZzZXQ9Ii42NSIgc3RvcC1jb2xvcj0iI2E3YjBiYiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzZmNzg4MyIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJpc2F2ZWciIHgxPSIwIiB5MT0iMCIgeDI9IjAuMjUiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmY2YzQiLz48c3RvcCBvZmZzZXQ9Ii4zNSIgc3RvcC1jb2xvcj0iI2YwY2M2MiIvPjxzdG9wIG9mZnNldD0iLjciIHN0b3AtY29sb3I9IiNjOTlhMzUiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM5NDY5MWMiLz48L2xpbmVhckdyYWRpZW50PjxtYXNrIGlkPSJpc2F2ZW0iIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9Ii02IiB5PSItNiIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjQ0Ij48cmVjdCB4PSItNiIgeT0iLTYiIHdpZHRoPSI0NCIgaGVpZ2h0PSI0NCIgZmlsbD0iI2ZmZiIvPjxwYXRoIGQ9Ik0xNy4yIDUuMiBIMTkuMiBhMC40IDAuNCAwIDAgMSAwLjQgMC40IFY5LjggYTAuNCAwLjQgMCAwIDEgLTAuNCAwLjQgSDE3LjIgYTAuNCAwLjQgMCAwIDEgLTAuNCAtMC40IFY1LjYgYTAuNCAwLjQgMCAwIDEgMC40IC0wLjQgWiIgZmlsbD0iIzAwMCIvPjxwYXRoIGQ9Ik04LjYgMy42IFYxMS4yIFE4LjYgMTIgOS40IDEyIEgyMS4yIFEyMiAxMiAyMiAxMS4yIFYzLjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIwLjQ1IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNOC44IDE2IEgyMy4yIGExLjIgMS4yIDAgMCAxIDEuMiAxLjIgVjI0LjggYTEuMiAxLjIgMCAwIDEgLTEuMiAxLjIgSDguOCBhMS4yIDEuMiAwIDAgMSAtMS4yIC0xLjIgVjE3LjIgYTEuMiAxLjIgMCAwIDEgMS4yIC0xLjIgWiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjAuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTEwLjYgMjEuOSBIMjEuNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjAuNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTEwLjYgMjQgSDE4IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMC42IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L21hc2s+PGZpbHRlciBpZD0iaXNhdmVvIiB4PSItMzAlIiB5PSItMzAlIiB3aWR0aD0iMTYwJSIgaGVpZ2h0PSIxNjAlIj48ZmVNb3JwaG9sb2d5IGluPSJTb3VyY2VBbHBoYSIgb3BlcmF0b3I9ImRpbGF0ZSIgcmFkaXVzPSIwLjYiIHJlc3VsdD0iZCIvPjxmZUZsb29kIGZsb29kLWNvbG9yPSIjMDcwODBhIi8+PGZlQ29tcG9zaXRlIGluMj0iZCIgb3BlcmF0b3I9ImluIiByZXN1bHQ9Im8iLz48ZmVNZXJnZT48ZmVNZXJnZU5vZGUgaW49Im8iLz48ZmVNZXJnZU5vZGUgaW49IlNvdXJjZUdyYXBoaWMiLz48L2ZlTWVyZ2U+PC9maWx0ZXI+PC9kZWZzPjxnIGZpbHRlcj0idXJsKCNpc2F2ZW8pIj48ZyBtYXNrPSJ1cmwoI2lzYXZlbSkiPjxwYXRoIGQ9Ik01LjYgMy40IEgyMi42IEwyOC42IDkuNCBWMjYuNCBBMi4yIDIuMiAwIDAgMSAyNi40IDI4LjYgSDUuNiBBMi4yIDIuMiAwIDAgMSAzLjQgMjYuNCBWNS42IEEyLjIgMi4yIDAgMCAxIDUuNiAzLjQgWiIgZmlsbD0idXJsKCNpc2F2ZXMpIi8+PHBhdGggZD0iTTkuNCAzLjQgSDIxLjIgYTAuOCAwLjggMCAwIDEgMC44IDAuOCBWMTEuMiBhMC44IDAuOCAwIDAgMSAtMC44IDAuOCBIOS40IGEwLjggMC44IDAgMCAxIC0wLjggLTAuOCBWNC4yIGEwLjggMC44IDAgMCAxIDAuOCAtMC44IFoiIGZpbGw9InVybCgjaXNhdmVnKSIvPjxwYXRoIGQ9Ik04LjggMTYgSDIzLjIgQTEuMiAxLjIgMCAwIDEgMjQuNCAxNy4yIFYxOC4yIEg3LjYgVjE3LjIgQTEuMiAxLjIgMCAwIDEgOC44IDE2IFoiIGZpbGw9InVybCgjaXNhdmVnKSIvPjxwYXRoIGQ9Ik03LjYgMTguOSBIMjQuNCBWMTkuNSBINy42IFoiIGZpbGw9InVybCgjaXNhdmVnKSIvPjwvZz48L2c+PC9zdmc+Cg==" width="36" height="36" alt=""><div class="tile-text"><h3>Your career survives every update</h3><p>It saves itself every match week, old saves keep working through every new version, and you have three slots plus save to a file.</p></div></li>
           <li class="promise"><img class="ico" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJpY2hlY2tzIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAiIHkxPSIyIiB4Mj0iMCIgeTI9IjMwIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmZmZmYiLz48c3RvcCBvZmZzZXQ9Ii4zIiBzdG9wLWNvbG9yPSIjZGRlMmU4Ii8+PHN0b3Agb2Zmc2V0PSIuNjUiIHN0b3AtY29sb3I9IiNhN2IwYmIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM2Zjc4ODMiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iaWNoZWNrZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMC4yNSIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZjZjNCIvPjxzdG9wIG9mZnNldD0iLjM1IiBzdG9wLWNvbG9yPSIjZjBjYzYyIi8+PHN0b3Agb2Zmc2V0PSIuNyIgc3RvcC1jb2xvcj0iI2M5OWEzNSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzk0NjkxYyIvPjwvbGluZWFyR3JhZGllbnQ+PG1hc2sgaWQ9ImljaGVja20iIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9Ii02IiB5PSItNiIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjQ0Ij48cmVjdCB4PSItNiIgeT0iLTYiIHdpZHRoPSI0NCIgaGVpZ2h0PSI0NCIgZmlsbD0iI2ZmZiIvPjxwYXRoIGQ9Ik0zLjkgMTYgYTEyLjEgMTIuMSAwIDEgMCAyNC4yIDAgYTEyLjEgMTIuMSAwIDEgMCAtMjQuMiAwIFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxwYXRoIGQ9Ik02LjE3IDE5Ljk3IEExMC42IDEwLjYgMCAwIDEgNy4wMSAxMC4zOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjAuNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTkuNiAxNi40IEwxNC4yIDIxIEwyMi4yIDEyIiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iNS42IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L21hc2s+PGZpbHRlciBpZD0iaWNoZWNrbyIgeD0iLTMwJSIgeT0iLTMwJSIgd2lkdGg9IjE2MCUiIGhlaWdodD0iMTYwJSI+PGZlTW9ycGhvbG9neSBpbj0iU291cmNlQWxwaGEiIG9wZXJhdG9yPSJkaWxhdGUiIHJhZGl1cz0iMC42IiByZXN1bHQ9ImQiLz48ZmVGbG9vZCBmbG9vZC1jb2xvcj0iIzA3MDgwYSIvPjxmZUNvbXBvc2l0ZSBpbjI9ImQiIG9wZXJhdG9yPSJpbiIgcmVzdWx0PSJvIi8+PGZlTWVyZ2U+PGZlTWVyZ2VOb2RlIGluPSJvIi8+PGZlTWVyZ2VOb2RlIGluPSJTb3VyY2VHcmFwaGljIi8+PC9mZU1lcmdlPjwvZmlsdGVyPjwvZGVmcz48ZyBmaWx0ZXI9InVybCgjaWNoZWNrbykiPjxnIG1hc2s9InVybCgjaWNoZWNrbSkiPjxwYXRoIGQ9Ik0yLjYgMTYgYTEzLjQgMTMuNCAwIDEgMCAyNi44IDAgYTEzLjQgMTMuNCAwIDEgMCAtMjYuOCAwIFoiIGZpbGw9InVybCgjaWNoZWNrcykiLz48L2c+PHBhdGggZD0iTTguMzMgMTcuNjcgTDEyLjkzIDIyLjI3IEExLjggMS44IDAgMCAwIDE1LjQ3IDE5LjczIEwxMC44NyAxNS4xMyBBMS44IDEuOCAwIDAgMCA4LjMzIDE3LjY3IFogTTE1LjU1IDIyLjIgTDIzLjU1IDEzLjIgQTEuOCAxLjggMCAwIDAgMjAuODUgMTAuOCBMMTIuODUgMTkuOCBBMS44IDEuOCAwIDAgMCAxNS41NSAyMi4yIFoiIGZpbGw9InVybCgjaWNoZWNrZykiLz48L2c+PC9zdmc+Cg==" width="36" height="36" alt=""><div class="tile-text"><h3>Checked before it reaches you</h3><p>Dozens of automated checks on phone and desktop before every version, old saves included, and long careers played out before each new build.</p></div></li>
           <li class="promise"><img class="ico" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJpaGVhcnRzIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAiIHkxPSIyIiB4Mj0iMCIgeTI9IjMwIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmZmZmYiLz48c3RvcCBvZmZzZXQ9Ii4zIiBzdG9wLWNvbG9yPSIjZGRlMmU4Ii8+PHN0b3Agb2Zmc2V0PSIuNjUiIHN0b3AtY29sb3I9IiNhN2IwYmIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM2Zjc4ODMiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iaWhlYXJ0ZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMC4yNSIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZjZjNCIvPjxzdG9wIG9mZnNldD0iLjM1IiBzdG9wLWNvbG9yPSIjZjBjYzYyIi8+PHN0b3Agb2Zmc2V0PSIuNyIgc3RvcC1jb2xvcj0iI2M5OWEzNSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzk0NjkxYyIvPjwvbGluZWFyR3JhZGllbnQ+PG1hc2sgaWQ9ImloZWFydG0iIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9Ii02IiB5PSItNiIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjQ0Ij48cmVjdCB4PSItNiIgeT0iLTYiIHdpZHRoPSI0NCIgaGVpZ2h0PSI0NCIgZmlsbD0iI2ZmZiIvPjxwYXRoIGQ9Ik0xNiAyNi4xOSBDMTEuNTUgMjMuMDkgNC40MyAxOC4zMSA0LjQzIDEyLjEyIEM0LjQzIDguNTggNy4wMSA2LjEgMTAuMyA2LjEgQzEyLjggNi4xIDE0Ljg0IDcuNTIgMTYgOS42NCBDMTcuMTYgNy41MiAxOS4yIDYuMSAyMS43IDYuMSBDMjQuOTkgNi4xIDI3LjU3IDguNTggMjcuNTcgMTIuMTIgQzI3LjU3IDE4LjMxIDIwLjQ1IDIzLjA5IDE2IDI2LjE5IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xNiAyMy41NiBDMTIuNyAyMS4yNSA3LjQyIDE3LjY4IDcuNDIgMTMuMDYgQzcuNDIgMTAuNDIgOS4zMyA4LjU3IDExLjc4IDguNTcgQzEzLjYyIDguNTcgMTUuMTQgOS42MyAxNiAxMS4yMSBDMTYuODYgOS42MyAxOC4zOCA4LjU3IDIwLjIyIDguNTcgQzIyLjY3IDguNTcgMjQuNTggMTAuNDIgMjQuNTggMTMuMDYgQzI0LjU4IDE3LjY4IDE5LjMgMjEuMjUgMTYgMjMuNTYgWiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjAuNDUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xMCAxNC42IEM5LjcgMTIuNiAxMC43IDExIDEyLjUgMTAuNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjAuNzUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvbWFzaz48ZmlsdGVyIGlkPSJpaGVhcnRvIiB4PSItMzAlIiB5PSItMzAlIiB3aWR0aD0iMTYwJSIgaGVpZ2h0PSIxNjAlIj48ZmVNb3JwaG9sb2d5IGluPSJTb3VyY2VBbHBoYSIgb3BlcmF0b3I9ImRpbGF0ZSIgcmFkaXVzPSIwLjYiIHJlc3VsdD0iZCIvPjxmZUZsb29kIGZsb29kLWNvbG9yPSIjMDcwODBhIi8+PGZlQ29tcG9zaXRlIGluMj0iZCIgb3BlcmF0b3I9ImluIiByZXN1bHQ9Im8iLz48ZmVNZXJnZT48ZmVNZXJnZU5vZGUgaW49Im8iLz48ZmVNZXJnZU5vZGUgaW49IlNvdXJjZUdyYXBoaWMiLz48L2ZlTWVyZ2U+PC9maWx0ZXI+PC9kZWZzPjxnIGZpbHRlcj0idXJsKCNpaGVhcnRvKSI+PGcgbWFzaz0idXJsKCNpaGVhcnRtKSI+PHBhdGggZD0iTTE2IDI3LjUgQzExIDI0IDMgMTguNiAzIDExLjYgQzMgNy42IDUuOSA0LjggOS42IDQuOCBDMTIuNCA0LjggMTQuNyA2LjQgMTYgOC44IEMxNy4zIDYuNCAxOS42IDQuOCAyMi40IDQuOCBDMjYuMSA0LjggMjkgNy42IDI5IDExLjYgQzI5IDE4LjYgMjEgMjQgMTYgMjcuNSBaIiBmaWxsPSJ1cmwoI2loZWFydHMpIi8+PHBhdGggZD0iTTE2IDIzLjU2IEMxMi43IDIxLjI1IDcuNDIgMTcuNjggNy40MiAxMy4wNiBDNy40MiAxMC40MiA5LjMzIDguNTcgMTEuNzggOC41NyBDMTMuNjIgOC41NyAxNS4xNCA5LjYzIDE2IDExLjIxIEMxNi44NiA5LjYzIDE4LjM4IDguNTcgMjAuMjIgOC41NyBDMjIuNjcgOC41NyAyNC41OCAxMC40MiAyNC41OCAxMy4wNiBDMjQuNTggMTcuNjggMTkuMyAyMS4yNSAxNiAyMy41NiBaIiBmaWxsPSJ1cmwoI2loZWFydGcpIi8+PC9nPjwvZz48L3N2Zz4K" width="36" height="36" alt=""><div class="tile-text"><h3>For the love of the game</h3><p>Made by one football fan with AI tools, who plays every build and listens to the players testing it.</p></div></li>
+</ul>
+      </div>
+    </section>
+
+    <section class="sec pc" aria-labelledby="pc-h">
+      <div class="wrap">
+        <p class="label">On a PC</p>
+        <h2 id="pc-h">More room on a big screen</h2>
+        <p class="intro">The same game in a browser on a laptop, with room for more: the 2D pitch across the whole screen, your next match and the league side by side, and your office behind the club messages. A full PC layout comes with the Steam version.</p>
+        <ul class="row screens" aria-label="Screens from the game on a PC">
+          <li><figure><a class="screen" href="shots/match-pc.webp"><img src="shots/match-pc.webp" srcset="shots/match-pc-800.webp 800w, shots/match-pc.webp 1600w" sizes="(min-width: 1120px) 1088px, (min-width: 760px) calc(100vw - 32px), 88vw" width="1600" height="900" loading="lazy" decoding="async" alt="The live match at full screen on a laptop: GOAL! over the 2D pitch as Viktoria Frankfurt take the lead against Birmingham Wanderers after 20 minutes, the crowd in the stands and the scoreboard above."></a><figcaption>A goal on a European night, the pitch across the whole screen</figcaption></figure></li>
+          <li><figure><a class="screen" href="shots/home-pc.webp"><img src="shots/home-pc.webp" srcset="shots/home-pc-800.webp 800w, shots/home-pc.webp 1600w" sizes="(min-width: 1120px) 350px, (min-width: 760px) 31vw, 88vw" width="1600" height="900" loading="lazy" decoding="async" alt="The Home screen on a laptop: a European night next, away at Viktoria Frankfurt in the league phase, both sides compared in attack, midfield, defence and team gel, two pundits&#x27; predictions, and the Premier Division table beside it with Birmingham Wanderers picked out in 6th."></a><figcaption>Your next match beside the league table</figcaption></figure></li>
+          <li><figure><a class="screen" href="shots/messages-pc.webp"><img src="shots/messages-pc.webp" srcset="shots/messages-pc-800.webp 800w, shots/messages-pc.webp 1600w" sizes="(min-width: 1120px) 350px, (min-width: 760px) 31vw, 88vw" width="1600" height="900" loading="lazy" decoding="async" alt="Club messages on a laptop: the season ticket, kit and shirt deals and the board&#x27;s welcome, over the manager&#x27;s office with the floodlit pitch through the window and trophies in a cabinet."></a><figcaption>Your office behind the club messages</figcaption></figure></li>
+          <li><figure><a class="screen" href="shots/table-pc.webp"><img src="shots/table-pc.webp" srcset="shots/table-pc-800.webp 800w, shots/table-pc.webp 1600w" sizes="(min-width: 1120px) 350px, (min-width: 760px) 31vw, 88vw" width="1600" height="900" loading="lazy" decoding="async" alt="The Premier Division table on a laptop after six matches, each club&#x27;s last five results, Birmingham Wanderers picked out in 6th, and the weekend&#x27;s results beside it."></a><figcaption>The table beside the weekend&#x27;s results</figcaption></figure></li>
 </ul>
       </div>
     </section>
