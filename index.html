@@ -202,6 +202,8 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .tease-cover:nth-child(1) { rotate: -8deg; translate: 10px 6px; }
 .tease-cover:nth-child(2) { position: relative; z-index: 1; }
 .tease-cover:nth-child(3) { rotate: 8deg; translate: -10px 6px; }
+.tease-covers.cards .tease-cover { width: 70px; height: auto; aspect-ratio: 300 / 445; object-fit: cover; border-radius: 5px; }  /* the card game (card game v0.1.1.0) */
+.tease-covers.cards .tease-cover:nth-child(1) { rotate: -7deg; translate: 6px 4px; } .tease-covers.cards .tease-cover:nth-child(2) { rotate: 6deg; translate: -6px 0; }
 .tease-text { min-width: 0; display: flex; flex-direction: column; align-items: center; }
 .tease h2 { font-size: clamp(27px, 7vw, 38px); }
 .tease-text > p:not(.label) { max-width: 46ch; margin: 8px 0 14px; color: var(--muted); font-size: 16px; text-wrap: balance; }
@@ -210,6 +212,7 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
   .tease-text { align-items: flex-start; }
   .tease-cover { width: 104px; height: 104px; }
 }
+@media (min-width: 760px) { .tease-covers.cards .tease-cover { width: 100px; } }
 
 /* swipe rows (site 0.4.0): on a phone a long list is a row of cards you swipe through, one at a time with the next one
    peeking in and dots under it (the page's script adds them); the row runs to the screen's edges and the page itself
@@ -632,6 +635,20 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
             <h2 id="tease-h">Three bands. One soundtrack.</h2>
             <p>Three bands invented for Matchnight, each with an album for the game&#x27;s menu screens. Hear a clip from every band.</p>
             <a class="btn ghost" href="soundtrack.html">Meet the bands<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tease-sec" aria-labelledby="cardgame-h">
+      <div class="wrap">
+        <div class="tease">
+          <div class="tease-covers cards" aria-hidden="true"><img class="tease-cover" src="the-cardgame/card-thunder-300.webp" width="300" height="445" loading="lazy" decoding="async" alt=""><img class="tease-cover" src="the-cardgame/card-slide-300.webp" width="300" height="445" loading="lazy" decoding="async" alt=""></div>
+          <div class="tease-text">
+            <p class="label">New: play it now</p>
+            <h2 id="cardgame-h">Matchnight: The Card Game</h2>
+            <p>Can't wait for the real thing? Pick a nation, build a deck and take it from the qualifiers to the World Championship final. Free in your browser, with a new draw every day.</p>
+            <a class="btn" href="the-cardgame/">Play the card game<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           </div>
         </div>
       </div>
