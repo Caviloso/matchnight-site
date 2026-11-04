@@ -1,8 +1,17 @@
 <!doctype html>
-<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta charset="utf-8">
-<meta name="robots" content="noindex">
+<meta name="description" content="Matchnight: The Card Game. Pick a nation, build a deck and take it from the qualifiers to the World Championship final. Free in your browser, with a new draw every day.">
+<link rel="canonical" href="https://matchnightgame.com/the-cardgame/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Matchnight: The Card Game">
+<meta property="og:description" content="Matchnight: The Card Game. Pick a nation, build a deck and take it from the qualifiers to the World Championship final. Free in your browser, with a new draw every day.">
+<meta property="og:url" content="https://matchnightgame.com/the-cardgame/">
+<meta property="og:image" content="https://matchnightgame.com/the-cardgame/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://matchnightgame.com/the-cardgame/og.jpg">
 <title>Matchnight: The Card Game</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -841,6 +850,41 @@ html:not(.fx-star) .slap::before { clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 
 .share-img { width: min(78vw, 340px, calc((100dvh - 200px) * .8)); height: auto; border: 3px solid #000; border-radius: 6px; box-shadow: 4px 4px 0 #000; }
 .intro-code { margin: 0; font-size: 13px; color: var(--muted); } .intro-code b { font-family: var(--display); font-weight: 800; letter-spacing: .06em; color: var(--lamp); font-size: 15px; }
 @media (prefers-reduced-motion: reduce) { .codecard::after { animation: none; } }
+/* ===== v0.1.1.0: sound button, hold-to-zoom, first-match coach, hard mode ===== */
+.sndbtn { position: fixed; z-index: 66; right: 8px; bottom: calc(6px + env(safe-area-inset-bottom, 0px)); width: 36px; height: 36px; padding: 0; display: grid; place-items: center;
+  border: 2px solid #000; border-radius: 50%; background: var(--housing); color: var(--chalk); box-shadow: 2px 2px 0 #000; cursor: pointer; }
+.sndbtn svg { width: 20px; height: 20px; }
+.sndbtn.off { color: var(--muted); background: var(--stand); }
+.sndbtn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.hand .card, .picks .pk, .deckgrid .card { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+.zoomwrap { position: fixed; inset: 0; z-index: 70; pointer-events: none; background: rgba(5,6,8,.72); animation: zfade .15s ease-out both; }
+.cast.zoom { animation: zoomin .18s cubic-bezier(.2,1.3,.4,1) both; top: 38%; }
+.zcap { position: fixed; left: 50%; top: calc(38% + 196px); width: min(330px, calc(100vw - 32px)); translate: -50% 0; margin: 0; padding: 9px 12px; text-align: center;
+  background: var(--stand); border: 2px solid #000; border-radius: 8px; box-shadow: 3px 3px 0 #000; font-size: 15px; line-height: 1.3; animation: zfade .2s ease-out both; }
+.zcap b { font-family: var(--display); font-weight: 800; font-size: 18px; letter-spacing: .03em; text-transform: uppercase; color: var(--lamp); }
+.zcap .why { display: block; margin-top: 4px; color: var(--warn); font-size: 13.5px; }
+.zcap .hint { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; }
+@keyframes zoomin { from { transform: scale(.55) rotate(-4deg); opacity: 0; } to { transform: scale(1.3) rotate(-1.5deg); opacity: 1; } }
+@keyframes zfade { from { opacity: 0; } to { opacity: 1; } }
+@media (max-height: 700px) { .cast.zoom { top: 36%; } @keyframes zoomin { from { transform: scale(.55); opacity: 0; } to { transform: scale(1.12) rotate(-1.5deg); opacity: 1; } } .zcap { top: calc(36% + 168px); } }
+.coach { position: absolute; z-index: 30; left: 50%; top: 50%; width: min(300px, calc(100% - 24px)); translate: -50% -50%; rotate: -1deg; padding: 10px 12px 8px;
+  background: var(--chalk); color: var(--ink); border: 2.5px solid #000; border-radius: 8px; box-shadow: 4px 4px 0 #000; font-size: 14.5px; line-height: 1.3; animation: coachin .3s cubic-bezier(.2,1.3,.4,1) both; }
+.coach .co-tag { display: inline-block; margin: -20px 0 4px -4px; padding: 1px 8px 0; background: var(--lamp); border: 2px solid #000; font-family: var(--display); font-weight: 800; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; rotate: -2deg; }
+.coach p { margin: 0; }
+.coach b { font-weight: 700; }
+.coach .co-row { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+.coach .btn { min-height: 34px; padding: 4px 14px; font-size: 15px; }
+.coach .btn.link { color: #4a525d; font-size: 13px; min-height: 30px; padding: 0; }
+@keyframes coachin { from { opacity: 0; transform: translateY(10px) scale(.92); } to { opacity: 1; transform: none; } }
+.modesw { display: flex; justify-content: center; gap: 8px; margin: 10px 0 0; }
+.modesw .btn { min-height: 40px; font-size: 16px; }
+.modesw .btn small { display: block; font-family: var(--body); font-weight: 600; font-size: 11px; letter-spacing: 0; text-transform: none; }
+.modesw .btn[aria-pressed="true"] { background: var(--lamp); color: var(--lamp-ink); }
+.modesw .btn.hard[aria-pressed="true"] { background: var(--bad); color: #fff; }
+.modelock { margin: 8px 0 0; font-size: 13px; color: var(--muted); }
+.modelock b { color: var(--chalk); }
+.rhead .t span.hardtag, .hardtag { display: inline-block; margin-left: 6px; padding: 0 6px; border: 1.5px solid #000; border-radius: 3px; background: var(--bad); color: #fff !important; letter-spacing: .1em; }
+.unlockline { margin: 8px 0 0; text-align: center; font-size: 14px; color: var(--chalk); } .unlockline b { color: var(--lamp); }
 </style>
 
 <!-- the road between matches -->
@@ -925,7 +969,7 @@ html:not(.fx-star) .slap::before { clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 
 <script>
 (() => {
 'use strict';
-const BUILD = 'v0.1.0.0';
+const BUILD = 'v0.1.1.0';
 const NATIONS = [{"c":"ARG","n":"Argentina","s":0.96,"cf":"SAM","f":["h3","#74acdf","#f4f4f4","#74acdf"],"k":["#74acdf","#f4f4f4"],"fw":["Rodrigo Bianchi"],"mf":["Franco López"],"df":["Julián González"]},{"c":"ESP","n":"Spain","s":0.95,"cf":"EUR","f":["h3","#c60b1e","#ffc400","#c60b1e"],"k":["#c60b1e","#ffc400"],"fw":["Sergio Guerrero","Mikel Blanco","Aitor Cruz","Ander Pascual"],"mf":["Pau Cruz","Álvaro Hidalgo","Álvaro Cruz","Jon Morales"],"df":["Iván Carrasco","Jorge Gómez","Álvaro Martínez","Pau Navarro"],"play":1},{"c":"FRA","n":"France","s":0.93,"cf":"EUR","f":["v3","#002395","#f4f4f4","#ed2939"],"k":["#1f3a93","#f4f4f4"],"fw":["Youssef Robin","Loïc Lambert","Rayan Morin","Antoine Roux"],"mf":["Étienne Rousseau","Damien Duval","Adrien Fontaine","Thomas Henry"],"df":["Killian Lambert","Jérémy Barbier","Alexandre Traoré","Antoine Traoré"],"play":1},{"c":"BRA","n":"Brazil","s":0.93,"cf":"SAM","f":["disc","#009c3b","#ffdf00"],"k":["#009c3b","#ffdf00"],"fw":["Vinícius Rodrigues"],"mf":["Douglas da Mata"],"df":["Leandro Campos"]},{"c":"ENG","n":"England","s":0.91,"cf":"EUR","f":["plus","#f4f4f4","#ce1124"],"k":["#f4f4f4","#ce1124"],"fw":["Will Wilde","Louie Pickering","Reece Parr","Shaun Hutton"],"mf":["Nathan Lees","Jake Pilling","Aaron Heslop","Reece Hollis"],"df":["George Bolton","Scott Clayton","Morgan Tate","Shaun Aldridge"],"play":1},{"c":"POR","n":"Portugal","s":0.89,"cf":"EUR","f":["v2","#006600","#ff0000"],"k":["#b3122e","#0b7a3b"],"fw":["Nuno Teixeira","Rafael Tavares","Nuno Lourenço","Rui Ramos"],"mf":["Bernardo Gonçalves","Nuno Soares","Renato Araújo","Danilo Rodrigues"],"df":["Bernardo Castro","Miguel Machado","Hugo Matos","Gonçalo Almeida"],"play":1},{"c":"NED","n":"Netherlands","s":0.88,"cf":"EUR","f":["h3","#ae1c28","#f4f4f4","#21468b"],"k":["#f36c21","#1b1b1b"],"fw":["Sem de Groot","Joris de Haan","Stijn van der Veen","Thijs van der Linden"],"mf":["Quincy van Vliet","Ricardo van der Meer","Sem Hendriks","Stijn Smit"],"df":["Floris de Haan","Sem Postma","Tim Bakker","Jurgen van der Meer"],"play":1},{"c":"GER","n":"Germany","s":0.88,"cf":"EUR","f":["h3","#1b1b1b","#dd0000","#ffce00"],"k":["#f4f4f4","#1b1b1b"],"fw":["Florian Günther","Timo Kaiser","Nils Krause","Mats Schmitt"],"mf":["Finn Baumann","Robin König","Tim Krause","Florian Schmid"],"df":["Felix Schneider","Malte Herrmann","Finn Maier","Moritz Walter"],"play":1},{"c":"BEL","n":"Belgium","s":0.86,"cf":"EUR","f":["v3","#1b1b1b","#fdda24","#ef3340"],"k":["#d01c1f","#fdda24"],"fw":["Ruben Van Damme","Ruben Verhaegen","Jens Bastiaens","Mathias Cools"],"mf":["Pieter Claessens","Milan Pauwels","Louis Renard","Arnaud Vervoort"],"df":["Jarne Van Hecke","Youri Smets","Wout Maes","Youri Claes"],"play":1},{"c":"ITA","n":"Italy","s":0.86,"cf":"EUR","f":["v3","#009246","#f4f4f4","#ce2b37"],"k":["#1f5fbf","#f4f4f4"],"fw":["Michele Gatti","Davide Marini","Simone Grasso","Federico De Luca"],"mf":["Nicolò Russo","Leonardo Pellegrini","Edoardo Rizzo","Alberto Russo"],"df":["Luca Russo","Vincenzo Sala","Riccardo Caruso","Marco Valentini"],"play":1},{"c":"MAR","n":"Morocco","s":0.85,"cf":"AFR","f":["disc","#c1272d","#006233"],"k":["#c1272d","#006233"],"fw":["Oussama Chaouki"],"mf":["Oussama Bennani"],"df":["Youssef Khalil"]},{"c":"CRO","n":"Croatia","s":0.84,"cf":"EUR","f":["h3","#ff0000","#f4f4f4","#171796"],"k":["#ff0000","#f4f4f4"],"fw":["Filip Wójcik"],"mf":["Ivan Babić"],"df":["Kamil Jovanović"]},{"c":"COL","n":"Colombia","s":0.82,"cf":"SAM","f":["h3","#fcd116","#003893","#ce1126"],"k":["#fcd116","#003893"],"fw":["Diego Aguilar"],"mf":["Jesús Zamora"],"df":["Érick Martínez"]},{"c":"URU","n":"Uruguay","s":0.81,"cf":"SAM","f":["h3","#f4f4f4","#0038a8","#f4f4f4"],"k":["#0038a8","#f4f4f4"],"fw":["Joaquín González"],"mf":["Agustín Álvarez"],"df":["Julián Romero"]},{"c":"JPN","n":"Japan","s":0.8,"cf":"ASI","f":["disc","#f4f4f4","#bc002d"],"k":["#bc002d","#f4f4f4"],"fw":["Sota Kobayashi"],"mf":["Takumi Shimizu"],"df":["Kohei Kimura"]},{"c":"SEN","n":"Senegal","s":0.79,"cf":"AFR","f":["v3","#00853f","#fdef42","#e31b23"],"k":["#00853f","#fdef42"],"fw":["Ibrahim Balogun"],"mf":["Bakary Okeke"],"df":["Serge Boateng"]},{"c":"SUI","n":"Switzerland","s":0.78,"cf":"EUR","f":["plus","#d52b1e","#f4f4f4"],"k":["#d52b1e","#f4f4f4"],"fw":["Timo Klein"],"mf":["Kai Lang"],"df":["Timo Richter"]},{"c":"DEN","n":"Denmark","s":0.78,"cf":"EUR","f":["cross","#c8102e","#f4f4f4"],"k":["#c8102e","#f4f4f4"],"fw":["Gustav Andersen"],"mf":["Oliver Lund"],"df":["Oliver Østergaard"]},{"c":"USA","n":"United States","s":0.78,"cf":"NAM","f":["h3","#b22234","#f4f4f4","#3c3b6e"],"k":["#b22234","#f4f4f4"],"fw":["Tyler Scott"],"mf":["Gavin Wilson"],"df":["Logan Mitchell"]},{"c":"AUT","n":"Austria","s":0.77,"cf":"EUR","f":["h3","#ed2939","#f4f4f4","#ed2939"],"k":["#ed2939","#f4f4f4"],"fw":["Marvin Winkler"],"mf":["Christoph Bauer"],"df":["Sebastian Huber"]},{"c":"MEX","n":"Mexico","s":0.77,"cf":"NAM","f":["v3","#006847","#f4f4f4","#ce1126"],"k":["#006847","#f4f4f4"],"fw":["Rodrigo Ramos"],"mf":["Jorge Ramírez"],"df":["Rogelio Pérez"]},{"c":"ECU","n":"Ecuador","s":0.76,"cf":"SAM","f":["h3","#ffd100","#0072ce","#ef3340"],"k":["#ffd100","#0072ce"],"fw":["José Arreola"],"mf":["José Vázquez"],"df":["Miguel Ibarra"]},{"c":"TUR","n":"Turkey","s":0.75,"cf":"EUR","f":["disc","#e30a17","#f4f4f4"],"k":["#e30a17","#f4f4f4"],"fw":["Emre Arslan"],"mf":["Arda Yılmaz"],"df":["Kaan Doğan"]},{"c":"IRN","n":"Iran","s":0.74,"cf":"ASI","f":["h3","#239f40","#f4f4f4","#da0000"],"k":["#239f40","#f4f4f4"],"fw":["Omid Ghasemi"],"mf":["Amir Moradi"],"df":["Mohammad Tehrani"]},{"c":"KOR","n":"South Korea","s":0.74,"cf":"ASI","f":["disc","#f4f4f4","#0047a0"],"k":["#0047a0","#f4f4f4"],"fw":["Jae-won Lee"],"mf":["Ha-jun Jung"],"df":["Seung-ho Han"]},{"c":"UKR","n":"Ukraine","s":0.73,"cf":"EUR","f":["h2","#0057b7","#ffd700"],"k":["#0057b7","#ffd700"],"fw":["Luka Novotný"],"mf":["Lukáš Kamiński"],"df":["Ondřej Pavlović"]},{"c":"NOR","n":"Norway","s":0.73,"cf":"EUR","f":["cross","#ba0c2f","#f4f4f4"],"k":["#ba0c2f","#f4f4f4"],"fw":["Emil Andersen"],"mf":["Ole Johansen"],"df":["Anton Andersson"]},{"c":"CAN","n":"Canada","s":0.73,"cf":"NAM","f":["v3","#ff0000","#f4f4f4","#ff0000"],"k":["#ff0000","#f4f4f4"],"fw":["Tanner Taylor"],"mf":["Noah Clark"],"df":["Caleb Williams"]},{"c":"POL","n":"Poland","s":0.72,"cf":"EUR","f":["h2","#f4f4f4","#dc143c"],"k":["#dc143c","#f4f4f4"],"fw":["Tomáš Grabowski"],"mf":["Dušan Krawczyk"],"df":["Kamil Horvat"]},{"c":"WAL","n":"Wales","s":0.71,"cf":"EUR","f":["h2","#f4f4f4","#00b140"],"k":["#00b140","#f4f4f4"],"fw":["Dafydd Bowen"],"mf":["Cai Lewis"],"df":["Rhodri Llewellyn"]},{"c":"EGY","n":"Egypt","s":0.71,"cf":"AFR","f":["h3","#ce1126","#f4f4f4","#1b1b1b"],"k":["#ce1126","#f4f4f4"],"fw":["Youssef Saidi"],"mf":["Amine El Amrani"],"df":["Oussama Fassi"]},{"c":"SCO","n":"Scotland","s":0.7,"cf":"EUR","f":["diag","#005eb8","#f4f4f4"],"k":["#005eb8","#f4f4f4"],"fw":["Rory Galbraith"],"mf":["Jamie Hamilton"],"df":["Rory Galbraith"]},{"c":"SRB","n":"Serbia","s":0.7,"cf":"EUR","f":["h3","#c6363c","#0c4076","#f4f4f4"],"k":["#c6363c","#0c4076"],"fw":["Ondřej Vuković"],"mf":["Aleksandar Horvat"],"df":["Nikola Kowalski"]},{"c":"ALG","n":"Algeria","s":0.7,"cf":"AFR","f":["v2","#006633","#f4f4f4"],"k":["#006633","#f4f4f4"],"fw":["Walid Idrissi"],"mf":["Mehdi Bouzid"],"df":["Achraf Saidi"]},{"c":"CIV","n":"Ivory Coast","s":0.7,"cf":"AFR","f":["v3","#f77f00","#f4f4f4","#009e60"],"k":["#f77f00","#f4f4f4"],"fw":["Mamadou Traoré"],"mf":["Serge Sow"],"df":["Junior Coulibaly"]},{"c":"AUS","n":"Australia","s":0.7,"cf":"ASI","f":["disc","#012169","#f4f4f4"],"k":["#012169","#f4f4f4"],"fw":["Nathaniel Hughes"],"mf":["Bailey Wilson"],"df":["Lachlan Tonkin"]},{"c":"HUN","n":"Hungary","s":0.69,"cf":"EUR","f":["h3","#ce2939","#f4f4f4","#477050"],"k":["#ce2939","#f4f4f4"],"fw":["Péter Lakatos"],"mf":["Zalán Lakatos"],"df":["Barnabás Fekete"]},{"c":"NGA","n":"Nigeria","s":0.69,"cf":"AFR","f":["v3","#008751","#f4f4f4","#008751"],"k":["#008751","#f4f4f4"],"fw":["Femi Touré"],"mf":["Cheikh Nwosu"],"df":["Kofi Balogun"]},{"c":"CZE","n":"Czechia","s":0.68,"cf":"EUR","f":["tri","#f4f4f4","#d7141a","#11457e"],"k":["#d7141a","#f4f4f4"],"fw":["Goran Babić"],"mf":["Tomáš Petrović"],"df":["Bartosz Kovačević"]},{"c":"SWE","n":"Sweden","s":0.68,"cf":"EUR","f":["cross","#006aa7","#fecc00"],"k":["#006aa7","#fecc00"],"fw":["Anton Nyberg"],"mf":["Erik Olsen"],"df":["Frederik Lund"]},{"c":"PAR","n":"Paraguay","s":0.68,"cf":"SAM","f":["h3","#d52b1e","#f4f4f4","#0038a8"],"k":["#d52b1e","#f4f4f4"],"fw":["Julián Rojas"],"mf":["Ezequiel Cabral"],"df":["Santiago Ledesma"]},{"c":"SVK","n":"Slovakia","s":0.66,"cf":"EUR","f":["h3","#f4f4f4","#0b4ea2","#ee1c25"],"k":["#0b4ea2","#f4f4f4"],"fw":["Ivan Petrović"],"mf":["Mateusz Pavlović"],"df":["Aleksandar Wiśniewski"]},{"c":"GRE","n":"Greece","s":0.66,"cf":"EUR","f":["h3","#0d5eaf","#f4f4f4","#0d5eaf"],"k":["#0d5eaf","#f4f4f4"],"fw":["Petros Vlachos"],"mf":["Thanasis Alexiou"],"df":["Thanasis Pappas"]},{"c":"PAN","n":"Panama","s":0.66,"cf":"NAM","f":["h2","#f4f4f4","#da121a"],"k":["#da121a","#f4f4f4"],"fw":["Luis Martínez"],"mf":["Mauricio Padilla"],"df":["Rodrigo Villalobos"]},{"c":"TUN","n":"Tunisia","s":0.66,"cf":"AFR","f":["disc","#e70013","#f4f4f4"],"k":["#e70013","#f4f4f4"],"fw":["Walid Fassi"],"mf":["Bilal Lahlou"],"df":["Rachid Fassi"]},{"c":"ROU","n":"Romania","s":0.65,"cf":"EUR","f":["v3","#002b7f","#fcd116","#ce1126"],"k":["#002b7f","#fcd116"],"fw":["Valentin Rusu"],"mf":["Bogdan Munteanu"],"df":["Marius Ionescu"]},{"c":"PER","n":"Peru","s":0.64,"cf":"SAM","f":["v3","#d91023","#f4f4f4","#d91023"],"k":["#d91023","#f4f4f4"],"fw":["Mauricio Elizondo"],"mf":["Juan Elizondo"],"df":["Carlos Lozano"]},{"c":"CMR","n":"Cameroon","s":0.64,"cf":"AFR","f":["v3","#007a5e","#ce1126","#fcd116"],"k":["#007a5e","#ce1126"],"fw":["Tunde Nkemelu"],"mf":["Obinna Okafor"],"df":["Ibrahim Cissé"]},{"c":"SVN","n":"Slovenia","s":0.63,"cf":"EUR","f":["h3","#f4f4f4","#0000ff","#ff0000"],"k":["#ff0000","#f4f4f4"],"fw":["Bartosz Nikolić"],"mf":["Dominik Knežević"],"df":["Nikola Kovačević"]},{"c":"CHI","n":"Chile","s":0.63,"cf":"SAM","f":["tri","#f4f4f4","#d52b1e","#0039a6"],"k":["#d52b1e","#f4f4f4"],"fw":["Emiliano González"],"mf":["Agustín Giménez"],"df":["Ignacio Ortiz"]},{"c":"MLI","n":"Mali","s":0.63,"cf":"AFR","f":["v3","#14b53a","#fcd116","#ce1126"],"k":["#14b53a","#fcd116"],"fw":["Seydou Camara"],"mf":["Kwame Owusu"],"df":["Babajide Asante"]},{"c":"COD","n":"DR Congo","s":0.63,"cf":"AFR","f":["diag","#007fff","#ce1021"],"k":["#007fff","#ce1021"],"fw":["Kofi Camara"],"mf":["Ikechukwu Boateng"],"df":["Kwame Cissé"]},{"c":"UZB","n":"Uzbekistan","s":0.63,"cf":"ASI","f":["h3","#0099b5","#f4f4f4","#1eb53a"],"k":["#0099b5","#f4f4f4"],"fw":["Otabek Zhaksylykov"],"mf":["Ulugbek Sadykov"],"df":["Azamat Rakhimov"]},{"c":"IRL","n":"Republic of Ireland","s":0.62,"cf":"EUR","f":["v3","#169b62","#f4f4f4","#ff883e"],"k":["#169b62","#f4f4f4"],"fw":["Niall Kavanagh"],"mf":["Cian Kearney"],"df":["Ciaran Byrne"]},{"c":"VEN","n":"Venezuela","s":0.62,"cf":"SAM","f":["h3","#ffcc00","#00247d","#cf142b"],"k":["#ffcc00","#00247d"],"fw":["Érick Aguilar"],"mf":["José Huerta"],"df":["José Romo"]},{"c":"RSA","n":"South Africa","s":0.62,"cf":"AFR","f":["tri","#de3831","#002395","#007a4d"],"k":["#de3831","#002395"],"fw":["Chisomo Ncube"],"mf":["Lyle Masilela"],"df":["Neo Zulu"]}];
 const NAT = Object.fromEntries(NATIONS.map(n => [n.c, n]));
 const SHORTN = { 'Republic of Ireland': 'Ireland', 'United States': 'USA', 'South Africa': 'S. Africa' };
@@ -1937,7 +1981,7 @@ async function runImage() {
   g.restore();
   // logo
   try { const L = await loadImg($('logo').src); const lw = 250, lh = lw * L.height / L.width; g.drawImage(L, (W - lw) / 2, 54, lw, lh); } catch (e) { /* no logo then */ }
-  font(800, 40); g.textAlign = 'center'; g.fillStyle = '#ffcc1a'; g.fillText(R.daily ? `THE CARD GAME · TODAY’S DRAW ${dayLabel(R.daily).toUpperCase()}` : 'THE CARD GAME', W / 2, 342, W - 80);
+  font(800, 40); g.textAlign = 'center'; g.fillStyle = '#ffcc1a'; g.fillText(R.daily ? `THE CARD GAME · TODAY’S DRAW ${dayLabel(R.daily).toUpperCase()}` : R.hard ? 'THE CARD GAME · HARD MODE' : 'THE CARD GAME', W / 2, 342, W - 80);
   // the headline plate, tilted
   const champ = R.champ, head = champ ? 'CHAMPIONS!' : (R.outAt === STAGES.length - 1 ? 'RUNNERS-UP' : OUTWORDS[R.outAt].toUpperCase());
   g.save(); g.translate(W / 2, 450); g.rotate(-0.05);
@@ -2025,5 +2069,191 @@ introButtons(); intro();
 window.__mn = { get S() { return S; }, get R() { return R; }, get ALBUM() { return ALBUM; }, BUILD,
   T: { card: (k, plain) => ({ cls: cardClass(k), inner: cardInner(k, plain) }), kits: c => { const K = kitFor(NAT[c]); setKits(K, K); },
     render: () => render(), burst: (...a) => burst(...a), rare: (k, t) => { const el = document.getElementById('pc-us-' + k); if (el) { el.classList.remove('base', 'rare', 'legend'); el.classList.add(t); if (!el.querySelector('.pc-foil')) el.insertAdjacentHTML('beforeend', '<span class="pc-foil"></span>'); } }, actor: (side) => { lastActor = document.querySelector('.pc.' + side + ':not(.off)'); }, look: () => { applyLook(); if (S && !$('stage').hidden) render(); }, cast: k => cast({ key: k }), pick: ks => { const o = rewardOptions; rewardOptions = () => ks; rewardPick(); rewardOptions = o; } } };
+// ======================= v0.1.1.0: sound + buzz, hold to zoom, guided first match, hard mode =======================
+// Everything here hooks in by wrapping the game's own functions, so the match code above stays as it was.
+
+// ---- sound: made in the browser (Web Audio), no sound files to download. One button turns sound and buzz on or off. ----
+const SNDKEY = 'mn-cardgame-sound';
+let soundOn = store.get(SNDKEY) !== false;
+const SFX = (() => {
+  let ac = null, out = null, noiseBuf = null;
+  const ctx = () => {
+    if (!soundOn) return null;
+    if (!ac) {
+      const C = window.AudioContext || window.webkitAudioContext; if (!C) return null;
+      try { ac = new C(); } catch (e) { return null; }
+      out = ac.createGain(); out.gain.value = .5; out.connect(ac.destination);
+      const n = ac.sampleRate * 2; noiseBuf = ac.createBuffer(1, n, ac.sampleRate); const d = noiseBuf.getChannelData(0); for (let i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
+    }
+    if (ac.state === 'suspended') ac.resume();
+    return ac;
+  };
+  const env = (g, t, a, dur, v) => { g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(v, t + a); g.gain.exponentialRampToValueAtTime(0.0001, t + dur); };
+  const tone = (f, dur, o = {}) => {
+    const a = ctx(); if (!a) return; const t = a.currentTime + (o.at || 0);
+    const osc = a.createOscillator(), g = a.createGain(); osc.type = o.type || 'sine';
+    osc.frequency.setValueAtTime(f, t); if (o.to) osc.frequency.exponentialRampToValueAtTime(o.to, t + dur);
+    if (o.vib) { const l = a.createOscillator(), lg = a.createGain(); l.frequency.value = o.vib; lg.gain.value = o.vibD || 90; l.connect(lg).connect(osc.frequency); l.start(t); l.stop(t + dur); }
+    env(g, t, o.a || .005, dur, o.v || .3); osc.connect(g).connect(out); osc.start(t); osc.stop(t + dur + .02);
+  };
+  const noise = (dur, o = {}) => {
+    const a = ctx(); if (!a) return; const t = a.currentTime + (o.at || 0);
+    const src = a.createBufferSource(); src.buffer = noiseBuf; src.loop = true;
+    const f = a.createBiquadFilter(); f.type = o.type || 'bandpass'; f.Q.value = o.q || 1;
+    f.frequency.setValueAtTime(o.f || 1000, t); if (o.fTo) f.frequency.exponentialRampToValueAtTime(o.fTo, t + dur);
+    const g = a.createGain(); env(g, t, o.a || .01, dur, o.v || .3);
+    src.connect(f).connect(g).connect(out); src.start(t, Math.random()); src.stop(t + dur + .02);
+  };
+  const buzz = (p) => { if (soundOn && navigator.vibrate) try { navigator.vibrate(p); } catch (e) { /* not on this phone */ } };
+  const whistle = (len = .35, at = 0) => tone(2650, len, { type: 'sine', vib: 34, vibD: 110, v: .16, a: .02, at });
+  return {
+    unlock: () => ctx(),
+    whoosh: (low) => noise(.3, { f: low ? 300 : 500, fTo: low ? 1200 : 2600, q: 1.4, v: .22, a: .12 }),
+    tick: () => tone(1500, .035, { type: 'square', v: .035 }),
+    kick: (hard) => { tone(150, .12, { to: 48, v: hard ? .6 : .35 }); noise(.04, { type: 'highpass', f: 2200, v: hard ? .2 : .1 }); },
+    thud: () => { tone(95, .2, { to: 38, v: .7 }); noise(.1, { type: 'lowpass', f: 700, v: .35 }); buzz(30); },
+    chime: () => { tone(880, .16, { type: 'triangle', v: .12 }); tone(1320, .2, { type: 'triangle', v: .1, at: .06 }); },
+    whistle,
+    fullTime: () => { whistle(.18); whistle(.18, .3); whistle(.7, .6); },
+    roar: (big) => { const d = big ? 3.6 : 2.4; noise(d, { f: 950, fTo: 700, q: .6, v: big ? .55 : .45, a: .25 }); noise(d * .9, { type: 'lowpass', f: 500, v: .3, a: .3 }); noise(.9, { f: 2400, q: 2, v: .08, a: .05, at: .15 }); },
+    ooh: () => noise(.9, { f: 750, fTo: 420, q: 2.2, v: .3, a: .15 }),
+    groan: () => { noise(1.3, { f: 520, fTo: 240, q: 1.6, v: .3, a: .2 }); },
+    sparkle: () => [660, 880, 1100, 1320, 1760].forEach((f, i) => tone(f, .18, { type: 'triangle', v: .09, at: i * .06 })),
+    fanfare: () => [[523, 0], [659, .14], [784, .28], [1047, .42], [784, .7], [1047, .84]].forEach(([f, at], i) => tone(f, i > 3 ? .5 : .16, { type: 'sawtooth', v: .07, at })),
+    buzz
+  };
+})();
+addEventListener('pointerdown', () => SFX.unlock(), { once: true, capture: true });
+const SPK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h4l5-4v14l-5-4H3z" fill="currentColor"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="x" d="M16 9l6 6M22 9l-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+function soundButton() {
+  const b = document.createElement('button'); b.type = 'button'; b.id = 'sndBtn'; b.className = 'sndbtn'; b.innerHTML = SPK;
+  const paint = () => { b.classList.toggle('off', !soundOn); b.setAttribute('aria-pressed', String(soundOn)); b.setAttribute('aria-label', soundOn ? 'Sound and buzz on: tap to mute' : 'Sound and buzz off: tap to turn on'); b.title = soundOn ? 'Sound on' : 'Sound off';
+    b.querySelector('.w').style.display = soundOn ? '' : 'none'; b.querySelector('.x').style.display = soundOn ? 'none' : ''; };
+  b.addEventListener('click', (e) => { e.stopPropagation(); soundOn = !soundOn; store.set(SNDKEY, soundOn); paint(); if (soundOn) { SFX.unlock(); SFX.tick(); } });
+  paint(); document.body.appendChild(b);
+}
+soundButton();
+
+// which sound goes with which big moment (the shouts all go through burst())
+const _burst = burst;
+burst = function (text, tone = '', sub = '', small, shake) {
+  const t = String(text).replace(/<[^>]+>/g, '');
+  if (t === 'GOAL!') { SFX.roar(); SFX.buzz([70, 50, 160]); }
+  else if (t === 'Champions!') { SFX.roar(true); SFX.fanfare(); SFX.buzz([80, 60, 80, 60, 220]); }
+  else if (t === 'Full time') SFX.fullTime();
+  else if (t === 'Through!' || t === 'Overturned!') SFX.roar();
+  else if (tone === 'bad' || t === 'Decision stands') { SFX.groan(); if (tone === 'bad') SFX.buzz(220); }
+  else if (t === 'Saved!' || t === 'Wide!') SFX.ooh();
+  else if (t === 'Red card') { SFX.whistle(.7); SFX.buzz([90, 60, 90]); }
+  else if (t === 'Yellow card' || t === 'Penalty!' || t === 'Free kick!') SFX.whistle(.35);
+  else if (t === 'New card!' || t === 'Called up!' || t === 'Legend!' || t === 'Hard mode') SFX.sparkle();
+  else if (t === 'CRUNCH!' || t === 'WALL!') SFX.thud();
+  return _burst(text, tone, sub, small, shake);
+};
+const _cast = cast; cast = function (c) { SFX.whoosh(); return _cast(c); };
+const _castOpp = castOpp; castOpp = function (...a) { SFX.whoosh(true); return _castOpp(...a); };
+const _ballTo = ballTo; ballTo = function (pt, fast) { SFX.kick(fast); return _ballTo(pt, fast); };
+const _act = act; act = function (el, cls) { if (cls === 'hit') SFX.thud(); return _act(el, cls); };
+const _gain = gain; gain = function (n, quiet) { const b = S.mom; _gain(n, quiet); if (!quiet && S.mom > b) SFX.chime(); };
+const _tap = tap; tap = function (c, el) { if (!S.busy && !S.over && S.sel !== c.id) SFX.tick(); return _tap(c, el); };
+
+// ---- press and hold a card to see it big ----
+const ZSEL = '.hand .card, .picks .pk, .deckgrid .card';
+let zTimer = null, zStart = null, zOpen = false, zEatClick = false;
+function zoomKey(el) {
+  if (el.matches('.picks .pk')) return el.dataset.k;
+  if (el.matches('.hand .card')) { const c = S && S.hand.find(h => String(h.id) === el.dataset.id); return c && c.key; }
+  if (el.matches('.deckgrid .card') && R) { const ks = [...new Set(R.deck)]; return ks[[...el.parentNode.children].indexOf(el)]; }
+  return null;
+}
+function openZoom(el) {
+  const key = zoomKey(el); if (!key || !DEF[key]) return;
+  const d = DEF[key]; let note = '';
+  if (el.matches('.hand .card') && S && !S.over) { const c = S.hand.find(h => String(h.id) === el.dataset.id), tag = c && need(c); if (tag && !d.react) note = whyText(c, tag); }
+  const who = d.o === 'team' || d.o === 'set' ? '' : (US[d.o] ? esc(US[d.o].short) + ' ' : '');
+  const w = document.createElement('div'); w.className = 'zoomwrap'; w.id = 'zoomRoot'; w.setAttribute('aria-hidden', 'true');
+  w.innerHTML = `<div class="${cardClass(key)} cast zoom">${cardInner(key)}</div><p class="zcap"><b>${d.n}</b><br>${S && !S.over && !$('stage').hidden ? who : ''}${d.t}${note ? `<span class="why">${note}</span>` : ''}<span class="hint">Let go to close</span></p>`;
+  document.body.appendChild(w); zOpen = true; SFX.whoosh(); SFX.buzz(12);
+}
+function whyText(c, tag) { try { return tag === 'Wrong zone' || tag.startsWith('Need') || tag === 'Defend only' || tag === 'No plays' ? why(c, tag) : tag; } catch (e) { return tag; } }
+function closeZoom() { const z = $('zoomRoot'); if (z) z.remove(); if (zOpen) { zOpen = false; zEatClick = true; setTimeout(() => { zEatClick = false; }, 450); } }
+document.addEventListener('pointerdown', (e) => {
+  const el = e.target.closest && e.target.closest(ZSEL); if (!el) return;
+  zStart = { x: e.clientX, y: e.clientY }; clearTimeout(zTimer); zTimer = setTimeout(() => { zStart = null; openZoom(el); }, 380);
+}, true);
+document.addEventListener('pointermove', (e) => { if (zStart && Math.hypot(e.clientX - zStart.x, e.clientY - zStart.y) > 10) { clearTimeout(zTimer); zStart = null; } }, true);
+for (const ev of ['pointerup', 'pointercancel', 'blur']) (ev === 'blur' ? window : document).addEventListener(ev, () => { clearTimeout(zTimer); zStart = null; closeZoom(); }, true);
+document.addEventListener('click', (e) => { if (zEatClick) { zEatClick = false; e.stopPropagation(); e.preventDefault(); } }, true);
+document.addEventListener('contextmenu', (e) => { if (e.target.closest && e.target.closest(ZSEL)) e.preventDefault(); }, true);
+
+// ---- guided first match: one short tip per phase, only in someone's very first match ----
+let coachOn = false;
+const COACH = [
+  () => 'You have the ball. You get <b>3 plays</b> each phase: move it up into their box, then shoot.',
+  () => 'The floodlights under the pitch are your <b>Momentum</b>. Basic cards switch them on, big cards spend them.',
+  () => `The bar at the top shows what <b>${esc(sn(OPPN))}</b> will do when you tap End phase, and their odds.`,
+  () => 'Second half: they kick off. Without the ball, play a <b>defender card</b>: tackles win it back, blocks make their shot harder.',
+  () => 'Bad hand? <b>Redraw</b> swaps a card for a new one, twice per phase.',
+  () => 'Can’t read a card? <b>Press and hold it</b> to see it big. Last phase: go for it!'
+];
+function hideCoach() { const c = $('coach'); if (c) c.remove(); }
+function showCoach() {
+  hideCoach(); if (!coachOn || !S || S.over || S.phase > 6) return;
+  const el = document.createElement('div'); el.className = 'coach'; el.id = 'coach'; el.setAttribute('role', 'note');
+  el.innerHTML = `<span class="co-tag">Tip ${S.phase} of 6</span><p>${COACH[S.phase - 1]()}</p><div class="co-row"><button type="button" class="btn link" data-x="skip">Skip tips</button><button type="button" class="btn go" data-x="ok">Got it</button></div>`;
+  el.addEventListener('click', (e) => { e.stopPropagation(); const x = e.target.closest('button'); if (!x) return; if (x.dataset.x === 'skip') { coachOn = false; ALBUM.guided = true; saveAll(); } hideCoach(); });
+  $('mat').appendChild(el);
+}
+$('hand').addEventListener('click', hideCoach);
+const _startMatch = startMatch;
+startMatch = function () {
+  _startMatch();
+  if (R.hard) { D.shot = clamp(D.shot + 1, -1, 2); D.press = clamp(D.press + .08, .3, .55); D.direct = clamp(D.direct + .1, .35, .65); }
+  coachOn = !ALBUM.guided && R.stage === 0 && ALBUM.runs <= 1;
+  SFX.whistle(.5); showCoach();
+};
+const _endPhase = endPhase;
+endPhase = async function () {
+  const ph = S && S.phase; hideCoach();
+  await _endPhase();
+  if (S && !S.over && S.phase !== ph) showCoach();
+};
+$('endBtn').removeEventListener('click', _endPhase); $('endBtn').addEventListener('click', () => endPhase());
+const _fullTime = fullTime;
+fullTime = async function () {
+  hideCoach(); if (coachOn) { coachOn = false; ALBUM.guided = true; saveAll(); }
+  const firstTitle = ALBUM.titles === 0;
+  await _fullTime();
+  if (R && R.champ && firstTitle && ALBUM.titles > 0 && !R.hard) await burst('Hard mode', '', 'Unlocked for your next run', true);
+};
+
+// ---- hard mode: unlocked by winning the World Championship once ----
+let hardPick = !!ALBUM.hardPref;
+const _newRun = newRun;
+newRun = function (code) { _newRun(code); R.hard = ALBUM.titles > 0 && hardPick; saveAll(); };
+const _startDaily = startDaily;
+startDaily = function () { const h = hardPick; hardPick = false; try { _startDaily(); } finally { hardPick = h; } };
+const _recordResult = recordResult;
+recordResult = function (...a) { const out = _recordResult(...a); if (out === 'champ' && R.hard) { ALBUM.hardTitles = (ALBUM.hardTitles || 0) + 1; saveAll(); } return out; };
+const _renderPick = renderPick;
+renderPick = function () {
+  _renderPick();
+  const head = document.querySelector('#pick .pickhead'); const old = $('modeBox'); if (old) old.remove();
+  const box = document.createElement('div'); box.id = 'modeBox';
+  if (ALBUM.titles > 0) {
+    box.innerHTML = `<div class="modesw" role="group" aria-label="Difficulty"><button type="button" class="btn" data-m="0">Normal<small>The usual run</small></button><button type="button" class="btn hard" data-m="1">Hard<small>Stronger opponents</small></button></div>`;
+    const paint = () => box.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String((b.dataset.m === '1') === hardPick)));
+    box.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { hardPick = b.dataset.m === '1'; ALBUM.hardPref = hardPick; saveAll(); SFX.tick(); paint(); }));
+    paint();
+  } else box.innerHTML = `<p class="modelock">Win the World Championship once to unlock <b>Hard mode</b>.</p>`;
+  head.appendChild(box);
+};
+const _renderRoad = renderRoad;
+renderRoad = function () {
+  _renderRoad();
+  if (R && R.hard) { const t = document.querySelector('#road .rhead .t span'); if (t) t.insertAdjacentHTML('beforeend', '<span class="hardtag">Hard</span>'); }
+  if (R && R.over && R.champ && !R.hard && ALBUM.titles === 1) { const b = document.querySelector('#road .banner'); if (b) b.insertAdjacentHTML('afterend', '<p class="unlockline"><b>Hard mode unlocked.</b> Pick it when you start your next run.</p>'); }
+};
+Object.assign(window.__mn.T, { sfx: SFX, zoom: (sel) => { const el = document.querySelector(sel); if (el) openZoom(el); }, unzoom: () => closeZoom(), coach: () => showCoach(), hard: (on) => { ALBUM.titles = Math.max(ALBUM.titles, on ? 1 : 0); hardPick = !!on; } });
 })();
 </script>
