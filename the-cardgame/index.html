@@ -969,7 +969,7 @@ html:not(.fx-star) .slap::before { clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 
 <script>
 (() => {
 'use strict';
-const BUILD = 'v0.1.1.0';
+const BUILD = 'v0.1.2.0';
 const NATIONS = [{"c":"ARG","n":"Argentina","s":0.96,"cf":"SAM","f":["h3","#74acdf","#f4f4f4","#74acdf"],"k":["#74acdf","#f4f4f4"],"fw":["Rodrigo Bianchi"],"mf":["Franco López"],"df":["Julián González"]},{"c":"ESP","n":"Spain","s":0.95,"cf":"EUR","f":["h3","#c60b1e","#ffc400","#c60b1e"],"k":["#c60b1e","#ffc400"],"fw":["Sergio Guerrero","Mikel Blanco","Aitor Cruz","Ander Pascual"],"mf":["Pau Cruz","Álvaro Hidalgo","Álvaro Cruz","Jon Morales"],"df":["Iván Carrasco","Jorge Gómez","Álvaro Martínez","Pau Navarro"],"play":1},{"c":"FRA","n":"France","s":0.93,"cf":"EUR","f":["v3","#002395","#f4f4f4","#ed2939"],"k":["#1f3a93","#f4f4f4"],"fw":["Youssef Robin","Loïc Lambert","Rayan Morin","Antoine Roux"],"mf":["Étienne Rousseau","Damien Duval","Adrien Fontaine","Thomas Henry"],"df":["Killian Lambert","Jérémy Barbier","Alexandre Traoré","Antoine Traoré"],"play":1},{"c":"BRA","n":"Brazil","s":0.93,"cf":"SAM","f":["disc","#009c3b","#ffdf00"],"k":["#009c3b","#ffdf00"],"fw":["Vinícius Rodrigues"],"mf":["Douglas da Mata"],"df":["Leandro Campos"]},{"c":"ENG","n":"England","s":0.91,"cf":"EUR","f":["plus","#f4f4f4","#ce1124"],"k":["#f4f4f4","#ce1124"],"fw":["Will Wilde","Louie Pickering","Reece Parr","Shaun Hutton"],"mf":["Nathan Lees","Jake Pilling","Aaron Heslop","Reece Hollis"],"df":["George Bolton","Scott Clayton","Morgan Tate","Shaun Aldridge"],"play":1},{"c":"POR","n":"Portugal","s":0.89,"cf":"EUR","f":["v2","#006600","#ff0000"],"k":["#b3122e","#0b7a3b"],"fw":["Nuno Teixeira","Rafael Tavares","Nuno Lourenço","Rui Ramos"],"mf":["Bernardo Gonçalves","Nuno Soares","Renato Araújo","Danilo Rodrigues"],"df":["Bernardo Castro","Miguel Machado","Hugo Matos","Gonçalo Almeida"],"play":1},{"c":"NED","n":"Netherlands","s":0.88,"cf":"EUR","f":["h3","#ae1c28","#f4f4f4","#21468b"],"k":["#f36c21","#1b1b1b"],"fw":["Sem de Groot","Joris de Haan","Stijn van der Veen","Thijs van der Linden"],"mf":["Quincy van Vliet","Ricardo van der Meer","Sem Hendriks","Stijn Smit"],"df":["Floris de Haan","Sem Postma","Tim Bakker","Jurgen van der Meer"],"play":1},{"c":"GER","n":"Germany","s":0.88,"cf":"EUR","f":["h3","#1b1b1b","#dd0000","#ffce00"],"k":["#f4f4f4","#1b1b1b"],"fw":["Florian Günther","Timo Kaiser","Nils Krause","Mats Schmitt"],"mf":["Finn Baumann","Robin König","Tim Krause","Florian Schmid"],"df":["Felix Schneider","Malte Herrmann","Finn Maier","Moritz Walter"],"play":1},{"c":"BEL","n":"Belgium","s":0.86,"cf":"EUR","f":["v3","#1b1b1b","#fdda24","#ef3340"],"k":["#d01c1f","#fdda24"],"fw":["Ruben Van Damme","Ruben Verhaegen","Jens Bastiaens","Mathias Cools"],"mf":["Pieter Claessens","Milan Pauwels","Louis Renard","Arnaud Vervoort"],"df":["Jarne Van Hecke","Youri Smets","Wout Maes","Youri Claes"],"play":1},{"c":"ITA","n":"Italy","s":0.86,"cf":"EUR","f":["v3","#009246","#f4f4f4","#ce2b37"],"k":["#1f5fbf","#f4f4f4"],"fw":["Michele Gatti","Davide Marini","Simone Grasso","Federico De Luca"],"mf":["Nicolò Russo","Leonardo Pellegrini","Edoardo Rizzo","Alberto Russo"],"df":["Luca Russo","Vincenzo Sala","Riccardo Caruso","Marco Valentini"],"play":1},{"c":"MAR","n":"Morocco","s":0.85,"cf":"AFR","f":["disc","#c1272d","#006233"],"k":["#c1272d","#006233"],"fw":["Oussama Chaouki"],"mf":["Oussama Bennani"],"df":["Youssef Khalil"]},{"c":"CRO","n":"Croatia","s":0.84,"cf":"EUR","f":["h3","#ff0000","#f4f4f4","#171796"],"k":["#ff0000","#f4f4f4"],"fw":["Filip Wójcik"],"mf":["Ivan Babić"],"df":["Kamil Jovanović"]},{"c":"COL","n":"Colombia","s":0.82,"cf":"SAM","f":["h3","#fcd116","#003893","#ce1126"],"k":["#fcd116","#003893"],"fw":["Diego Aguilar"],"mf":["Jesús Zamora"],"df":["Érick Martínez"]},{"c":"URU","n":"Uruguay","s":0.81,"cf":"SAM","f":["h3","#f4f4f4","#0038a8","#f4f4f4"],"k":["#0038a8","#f4f4f4"],"fw":["Joaquín González"],"mf":["Agustín Álvarez"],"df":["Julián Romero"]},{"c":"JPN","n":"Japan","s":0.8,"cf":"ASI","f":["disc","#f4f4f4","#bc002d"],"k":["#bc002d","#f4f4f4"],"fw":["Sota Kobayashi"],"mf":["Takumi Shimizu"],"df":["Kohei Kimura"]},{"c":"SEN","n":"Senegal","s":0.79,"cf":"AFR","f":["v3","#00853f","#fdef42","#e31b23"],"k":["#00853f","#fdef42"],"fw":["Ibrahim Balogun"],"mf":["Bakary Okeke"],"df":["Serge Boateng"]},{"c":"SUI","n":"Switzerland","s":0.78,"cf":"EUR","f":["plus","#d52b1e","#f4f4f4"],"k":["#d52b1e","#f4f4f4"],"fw":["Timo Klein"],"mf":["Kai Lang"],"df":["Timo Richter"]},{"c":"DEN","n":"Denmark","s":0.78,"cf":"EUR","f":["cross","#c8102e","#f4f4f4"],"k":["#c8102e","#f4f4f4"],"fw":["Gustav Andersen"],"mf":["Oliver Lund"],"df":["Oliver Østergaard"]},{"c":"USA","n":"United States","s":0.78,"cf":"NAM","f":["h3","#b22234","#f4f4f4","#3c3b6e"],"k":["#b22234","#f4f4f4"],"fw":["Tyler Scott"],"mf":["Gavin Wilson"],"df":["Logan Mitchell"]},{"c":"AUT","n":"Austria","s":0.77,"cf":"EUR","f":["h3","#ed2939","#f4f4f4","#ed2939"],"k":["#ed2939","#f4f4f4"],"fw":["Marvin Winkler"],"mf":["Christoph Bauer"],"df":["Sebastian Huber"]},{"c":"MEX","n":"Mexico","s":0.77,"cf":"NAM","f":["v3","#006847","#f4f4f4","#ce1126"],"k":["#006847","#f4f4f4"],"fw":["Rodrigo Ramos"],"mf":["Jorge Ramírez"],"df":["Rogelio Pérez"]},{"c":"ECU","n":"Ecuador","s":0.76,"cf":"SAM","f":["h3","#ffd100","#0072ce","#ef3340"],"k":["#ffd100","#0072ce"],"fw":["José Arreola"],"mf":["José Vázquez"],"df":["Miguel Ibarra"]},{"c":"TUR","n":"Turkey","s":0.75,"cf":"EUR","f":["disc","#e30a17","#f4f4f4"],"k":["#e30a17","#f4f4f4"],"fw":["Emre Arslan"],"mf":["Arda Yılmaz"],"df":["Kaan Doğan"]},{"c":"IRN","n":"Iran","s":0.74,"cf":"ASI","f":["h3","#239f40","#f4f4f4","#da0000"],"k":["#239f40","#f4f4f4"],"fw":["Omid Ghasemi"],"mf":["Amir Moradi"],"df":["Mohammad Tehrani"]},{"c":"KOR","n":"South Korea","s":0.74,"cf":"ASI","f":["disc","#f4f4f4","#0047a0"],"k":["#0047a0","#f4f4f4"],"fw":["Jae-won Lee"],"mf":["Ha-jun Jung"],"df":["Seung-ho Han"]},{"c":"UKR","n":"Ukraine","s":0.73,"cf":"EUR","f":["h2","#0057b7","#ffd700"],"k":["#0057b7","#ffd700"],"fw":["Luka Novotný"],"mf":["Lukáš Kamiński"],"df":["Ondřej Pavlović"]},{"c":"NOR","n":"Norway","s":0.73,"cf":"EUR","f":["cross","#ba0c2f","#f4f4f4"],"k":["#ba0c2f","#f4f4f4"],"fw":["Emil Andersen"],"mf":["Ole Johansen"],"df":["Anton Andersson"]},{"c":"CAN","n":"Canada","s":0.73,"cf":"NAM","f":["v3","#ff0000","#f4f4f4","#ff0000"],"k":["#ff0000","#f4f4f4"],"fw":["Tanner Taylor"],"mf":["Noah Clark"],"df":["Caleb Williams"]},{"c":"POL","n":"Poland","s":0.72,"cf":"EUR","f":["h2","#f4f4f4","#dc143c"],"k":["#dc143c","#f4f4f4"],"fw":["Tomáš Grabowski"],"mf":["Dušan Krawczyk"],"df":["Kamil Horvat"]},{"c":"WAL","n":"Wales","s":0.71,"cf":"EUR","f":["h2","#f4f4f4","#00b140"],"k":["#00b140","#f4f4f4"],"fw":["Dafydd Bowen"],"mf":["Cai Lewis"],"df":["Rhodri Llewellyn"]},{"c":"EGY","n":"Egypt","s":0.71,"cf":"AFR","f":["h3","#ce1126","#f4f4f4","#1b1b1b"],"k":["#ce1126","#f4f4f4"],"fw":["Youssef Saidi"],"mf":["Amine El Amrani"],"df":["Oussama Fassi"]},{"c":"SCO","n":"Scotland","s":0.7,"cf":"EUR","f":["diag","#005eb8","#f4f4f4"],"k":["#005eb8","#f4f4f4"],"fw":["Rory Galbraith"],"mf":["Jamie Hamilton"],"df":["Rory Galbraith"]},{"c":"SRB","n":"Serbia","s":0.7,"cf":"EUR","f":["h3","#c6363c","#0c4076","#f4f4f4"],"k":["#c6363c","#0c4076"],"fw":["Ondřej Vuković"],"mf":["Aleksandar Horvat"],"df":["Nikola Kowalski"]},{"c":"ALG","n":"Algeria","s":0.7,"cf":"AFR","f":["v2","#006633","#f4f4f4"],"k":["#006633","#f4f4f4"],"fw":["Walid Idrissi"],"mf":["Mehdi Bouzid"],"df":["Achraf Saidi"]},{"c":"CIV","n":"Ivory Coast","s":0.7,"cf":"AFR","f":["v3","#f77f00","#f4f4f4","#009e60"],"k":["#f77f00","#f4f4f4"],"fw":["Mamadou Traoré"],"mf":["Serge Sow"],"df":["Junior Coulibaly"]},{"c":"AUS","n":"Australia","s":0.7,"cf":"ASI","f":["disc","#012169","#f4f4f4"],"k":["#012169","#f4f4f4"],"fw":["Nathaniel Hughes"],"mf":["Bailey Wilson"],"df":["Lachlan Tonkin"]},{"c":"HUN","n":"Hungary","s":0.69,"cf":"EUR","f":["h3","#ce2939","#f4f4f4","#477050"],"k":["#ce2939","#f4f4f4"],"fw":["Péter Lakatos"],"mf":["Zalán Lakatos"],"df":["Barnabás Fekete"]},{"c":"NGA","n":"Nigeria","s":0.69,"cf":"AFR","f":["v3","#008751","#f4f4f4","#008751"],"k":["#008751","#f4f4f4"],"fw":["Femi Touré"],"mf":["Cheikh Nwosu"],"df":["Kofi Balogun"]},{"c":"CZE","n":"Czechia","s":0.68,"cf":"EUR","f":["tri","#f4f4f4","#d7141a","#11457e"],"k":["#d7141a","#f4f4f4"],"fw":["Goran Babić"],"mf":["Tomáš Petrović"],"df":["Bartosz Kovačević"]},{"c":"SWE","n":"Sweden","s":0.68,"cf":"EUR","f":["cross","#006aa7","#fecc00"],"k":["#006aa7","#fecc00"],"fw":["Anton Nyberg"],"mf":["Erik Olsen"],"df":["Frederik Lund"]},{"c":"PAR","n":"Paraguay","s":0.68,"cf":"SAM","f":["h3","#d52b1e","#f4f4f4","#0038a8"],"k":["#d52b1e","#f4f4f4"],"fw":["Julián Rojas"],"mf":["Ezequiel Cabral"],"df":["Santiago Ledesma"]},{"c":"SVK","n":"Slovakia","s":0.66,"cf":"EUR","f":["h3","#f4f4f4","#0b4ea2","#ee1c25"],"k":["#0b4ea2","#f4f4f4"],"fw":["Ivan Petrović"],"mf":["Mateusz Pavlović"],"df":["Aleksandar Wiśniewski"]},{"c":"GRE","n":"Greece","s":0.66,"cf":"EUR","f":["h3","#0d5eaf","#f4f4f4","#0d5eaf"],"k":["#0d5eaf","#f4f4f4"],"fw":["Petros Vlachos"],"mf":["Thanasis Alexiou"],"df":["Thanasis Pappas"]},{"c":"PAN","n":"Panama","s":0.66,"cf":"NAM","f":["h2","#f4f4f4","#da121a"],"k":["#da121a","#f4f4f4"],"fw":["Luis Martínez"],"mf":["Mauricio Padilla"],"df":["Rodrigo Villalobos"]},{"c":"TUN","n":"Tunisia","s":0.66,"cf":"AFR","f":["disc","#e70013","#f4f4f4"],"k":["#e70013","#f4f4f4"],"fw":["Walid Fassi"],"mf":["Bilal Lahlou"],"df":["Rachid Fassi"]},{"c":"ROU","n":"Romania","s":0.65,"cf":"EUR","f":["v3","#002b7f","#fcd116","#ce1126"],"k":["#002b7f","#fcd116"],"fw":["Valentin Rusu"],"mf":["Bogdan Munteanu"],"df":["Marius Ionescu"]},{"c":"PER","n":"Peru","s":0.64,"cf":"SAM","f":["v3","#d91023","#f4f4f4","#d91023"],"k":["#d91023","#f4f4f4"],"fw":["Mauricio Elizondo"],"mf":["Juan Elizondo"],"df":["Carlos Lozano"]},{"c":"CMR","n":"Cameroon","s":0.64,"cf":"AFR","f":["v3","#007a5e","#ce1126","#fcd116"],"k":["#007a5e","#ce1126"],"fw":["Tunde Nkemelu"],"mf":["Obinna Okafor"],"df":["Ibrahim Cissé"]},{"c":"SVN","n":"Slovenia","s":0.63,"cf":"EUR","f":["h3","#f4f4f4","#0000ff","#ff0000"],"k":["#ff0000","#f4f4f4"],"fw":["Bartosz Nikolić"],"mf":["Dominik Knežević"],"df":["Nikola Kovačević"]},{"c":"CHI","n":"Chile","s":0.63,"cf":"SAM","f":["tri","#f4f4f4","#d52b1e","#0039a6"],"k":["#d52b1e","#f4f4f4"],"fw":["Emiliano González"],"mf":["Agustín Giménez"],"df":["Ignacio Ortiz"]},{"c":"MLI","n":"Mali","s":0.63,"cf":"AFR","f":["v3","#14b53a","#fcd116","#ce1126"],"k":["#14b53a","#fcd116"],"fw":["Seydou Camara"],"mf":["Kwame Owusu"],"df":["Babajide Asante"]},{"c":"COD","n":"DR Congo","s":0.63,"cf":"AFR","f":["diag","#007fff","#ce1021"],"k":["#007fff","#ce1021"],"fw":["Kofi Camara"],"mf":["Ikechukwu Boateng"],"df":["Kwame Cissé"]},{"c":"UZB","n":"Uzbekistan","s":0.63,"cf":"ASI","f":["h3","#0099b5","#f4f4f4","#1eb53a"],"k":["#0099b5","#f4f4f4"],"fw":["Otabek Zhaksylykov"],"mf":["Ulugbek Sadykov"],"df":["Azamat Rakhimov"]},{"c":"IRL","n":"Republic of Ireland","s":0.62,"cf":"EUR","f":["v3","#169b62","#f4f4f4","#ff883e"],"k":["#169b62","#f4f4f4"],"fw":["Niall Kavanagh"],"mf":["Cian Kearney"],"df":["Ciaran Byrne"]},{"c":"VEN","n":"Venezuela","s":0.62,"cf":"SAM","f":["h3","#ffcc00","#00247d","#cf142b"],"k":["#ffcc00","#00247d"],"fw":["Érick Aguilar"],"mf":["José Huerta"],"df":["José Romo"]},{"c":"RSA","n":"South Africa","s":0.62,"cf":"AFR","f":["tri","#de3831","#002395","#007a4d"],"k":["#de3831","#002395"],"fw":["Chisomo Ncube"],"mf":["Lyle Masilela"],"df":["Neo Zulu"]}];
 const NAT = Object.fromEntries(NATIONS.map(n => [n.c, n]));
 const SHORTN = { 'Republic of Ireland': 'Ireland', 'United States': 'USA', 'South Africa': 'S. Africa' };
@@ -2072,22 +2072,78 @@ window.__mn = { get S() { return S; }, get R() { return R; }, get ALBUM() { retu
 // ======================= v0.1.1.0: sound + buzz, hold to zoom, guided first match, hard mode =======================
 // Everything here hooks in by wrapping the game's own functions, so the match code above stays as it was.
 
-// ---- sound: made in the browser (Web Audio), no sound files to download. One button turns sound and buzz on or off. ----
+// ---- sound (v0.1.2.0: Matchnight's own sounds, Kevin: "Take sound from matchnight?") ----
+// The recorded sounds are Matchnight's (made by Kevin with ElevenLabs): whistles, kicks, the crowd, the floodlight, the
+// stings and the commentator. They are files next to the page (sound/<group>/<name>.mp3, from builds/ it's ../sound/),
+// fetched after the first tap. Where a file can't load (opened from disk, offline) the sound made in the browser plays
+// instead. One button turns sound and buzz on or off.
 const SNDKEY = 'mn-cardgame-sound';
 let soundOn = store.get(SNDKEY) !== false;
 const SFX = (() => {
-  let ac = null, out = null, noiseBuf = null;
+  let ac = null, out = null, fout = null, noiseBuf = null, pre = false, bed = null, wantBed = false, voice = null, saves = 0;
   const ctx = () => {
     if (!soundOn) return null;
     if (!ac) {
       const C = window.AudioContext || window.webkitAudioContext; if (!C) return null;
       try { ac = new C(); } catch (e) { return null; }
       out = ac.createGain(); out.gain.value = .5; out.connect(ac.destination);
+      fout = ac.createGain(); fout.gain.value = .9; fout.connect(ac.destination);
       const n = ac.sampleRate * 2; noiseBuf = ac.createBuffer(1, n, ac.sampleRate); const d = noiseBuf.getChannelData(0); for (let i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
     }
-    if (ac.state === 'suspended') ac.resume();
+    if (ac.state !== 'running' && ac.state !== 'closed' && !document.hidden) ac.resume().catch(() => {});
     return ac;
   };
+  // ---- Matchnight's recorded sounds ----
+  const SBASE = /\/builds\/[^/]*$/.test(location.pathname) ? '../sound/' : 'sound/';
+  const C = n => 'commentator/' + n + '.mp3';
+  const FILES = {
+    whistle_short: ['match/whistle_short.mp3', 'match/whistle_short_2.mp3'], whistle_foul: ['match/whistle_foul.mp3', 'match/whistle_foul_2.mp3'],
+    whistle_fulltime: ['match/whistle_fulltime.mp3'], kick_pass: ['match/kick_pass.mp3'], kick_shot: ['match/kick_shot.mp3'],
+    ball_net: ['match/ball_net.mp3'], woodwork: ['match/woodwork.mp3'], floodlight_one: ['moments/floodlight_one.mp3'],
+    sting_win: ['moments/sting_win.mp3'], sting_draw: ['moments/sting_draw.mp3'], sting_loss: ['moments/sting_loss.mp3'],
+    sting_signing: ['moments/sting_signing.mp3'], sting_trophy: ['moments/sting_trophy.mp3'],
+    crowd_bed: ['crowd/crowd_bed.mp3'], crowd_goal_roar: ['crowd/crowd_goal_roar.mp3'], crowd_ooh: ['crowd/crowd_ooh.mp3'],
+    crowd_groan: ['crowd/crowd_groan.mp3'], crowd_swell: ['crowd/crowd_swell.mp3'],
+    call_goal: [C('goal_1'), C('goal_2'), C('goal_3')], call_save: [C('save_1'), C('save_2'), C('save_3')],
+    call_red_card: [C('red_card_1'), C('red_card_3')], call_yellow_card: [C('yellow_card_1'), C('yellow_card_2')],
+    call_penalty: [C('penalty_1'), C('penalty_3')], call_full_time: [C('full_time_1'), C('full_time_3')], call_trophy: [C('trophy_1'), C('trophy_3')],
+    call_shootout: [C('shootout_1')], call_pen_scored: [C('shootout_2')], call_pen_missed: [C('shootout_3')], call_shootout_won: [C('shootout_4')],
+    call_woodwork: [C('woodwork_1')]
+  };
+  // each sound's level against the others (Matchnight's own gains, and the crowd bed low under the match)
+  const GAIN = { kick_pass: .55, kick_shot: .8, crowd_bed: .3, floodlight_one: .45, crowd_goal_roar: .85, crowd_ooh: .7, crowd_groan: .7, crowd_swell: .7 };
+  const bufs = new Map(), loading = new Set(), lastTake = {};
+  const load = f => {
+    if (bufs.has(f) || loading.has(f) || location.protocol === 'file:' || !window.fetch) return; loading.add(f);
+    fetch(SBASE + f).then(r => { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
+      .then(b => new Promise((res, rej) => { const q = ac.decodeAudioData(b, res, rej); if (q && q.catch) q.catch(rej); }))
+      .then(buf => { bufs.set(f, buf); if (f === FILES.crowd_bed[0] && wantBed) bedOn(); })
+      .catch(() => { /* no file here: the browser-made sound plays instead */ }).finally(() => loading.delete(f));
+  };
+  const take = id => {
+    const fs = (FILES[id] || []).filter(f => bufs.has(f)); if (!fs.length) return null;
+    let i = Math.floor(Math.random() * fs.length); if (fs.length > 1 && fs[i] === lastTake[id]) i = (i + 1) % fs.length;
+    lastTake[id] = fs[i]; return bufs.get(fs[i]);
+  };
+  // plays a recorded sound: true when it played (or sound is off), false when its file isn't here, so the caller falls back
+  const pf = (id, o = {}) => {
+    const a = ctx(); if (!a) return true;
+    const buf = take(id); if (!buf) return false;
+    const src = a.createBufferSource(), g = a.createGain(); src.buffer = buf; src.loop = !!o.loop;
+    g.gain.value = o.v != null ? o.v : (GAIN[id] != null ? GAIN[id] : 1); src.connect(g).connect(fout); src.start(a.currentTime + (o.at || 0));
+    if (id.startsWith('call_')) { if (voice) try { voice.stop(a.currentTime + (o.at || 0)); } catch (e) { /* already done */ } voice = src; }
+    if (o.handle) o.handle(src, g);
+    return true;
+  };
+  function bedOn() {
+    wantBed = true; if (bed || !soundOn) return;
+    pf('crowd_bed', { loop: true, v: .0001, handle: (src, g) => { bed = { src, g }; g.gain.exponentialRampToValueAtTime(GAIN.crowd_bed, ac.currentTime + 1.5); } });
+  }
+  function bedOff(fade = 1.5) {
+    wantBed = false; if (!bed) return; const b = bed; bed = null;
+    try { b.g.gain.setTargetAtTime(0.0001, ac.currentTime, fade / 4); b.src.stop(ac.currentTime + fade); } catch (e) { /* gone */ }
+  }
+  // ---- sounds made in the browser (the backup, and the small clicks that have no file) ----
   const env = (g, t, a, dur, v) => { g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(v, t + a); g.gain.exponentialRampToValueAtTime(0.0001, t + dur); };
   const tone = (f, dur, o = {}) => {
     const a = ctx(); if (!a) return; const t = a.currentTime + (o.at || 0);
@@ -2105,31 +2161,50 @@ const SFX = (() => {
     src.connect(f).connect(g).connect(out); src.start(t, Math.random()); src.stop(t + dur + .02);
   };
   const buzz = (p) => { if (soundOn && navigator.vibrate) try { navigator.vibrate(p); } catch (e) { /* not on this phone */ } };
-  const whistle = (len = .35, at = 0) => tone(2650, len, { type: 'sine', vib: 34, vibD: 110, v: .16, a: .02, at });
+  const synthWhistle = (len = .35, at = 0) => tone(2650, len, { type: 'sine', vib: 34, vibD: 110, v: .16, a: .02, at });
+  const synthRoar = (big) => { const d = big ? 3.6 : 2.4; noise(d, { f: 950, fTo: 700, q: .6, v: big ? .55 : .45, a: .25 }); noise(d * .9, { type: 'lowpass', f: 500, v: .3, a: .3 }); noise(.9, { f: 2400, q: 2, v: .08, a: .05, at: .15 }); };
+  const synthFanfare = () => [[523, 0], [659, .14], [784, .28], [1047, .42], [784, .7], [1047, .84]].forEach(([f, at], i) => tone(f, i > 3 ? .5 : .16, { type: 'sawtooth', v: .07, at }));
+  const synthSparkle = () => [660, 880, 1100, 1320, 1760].forEach((f, i) => tone(f, .18, { type: 'triangle', v: .09, at: i * .06 }));
+  const ooh = () => pf('crowd_ooh') || noise(.9, { f: 750, fTo: 420, q: 2.2, v: .3, a: .15 });
+  const groan = () => pf('crowd_groan') || noise(1.3, { f: 520, fTo: 240, q: 1.6, v: .3, a: .2 });
   return {
-    unlock: () => ctx(),
+    unlock: () => { const a = ctx(); if (a && !pre) { pre = true; for (const id in FILES) FILES[id].forEach(load); } },
+    play: pf, has: id => (FILES[id] || []).some(f => bufs.has(f)),
     whoosh: (low) => noise(.3, { f: low ? 300 : 500, fTo: low ? 1200 : 2600, q: 1.4, v: .22, a: .12 }),
     tick: () => tone(1500, .035, { type: 'square', v: .035 }),
-    kick: (hard) => { tone(150, .12, { to: 48, v: hard ? .6 : .35 }); noise(.04, { type: 'highpass', f: 2200, v: hard ? .2 : .1 }); },
+    kick: (hard) => pf(hard ? 'kick_shot' : 'kick_pass') || (tone(150, .12, { to: 48, v: hard ? .6 : .35 }), noise(.04, { type: 'highpass', f: 2200, v: hard ? .2 : .1 })),
     thud: () => { tone(95, .2, { to: 38, v: .7 }); noise(.1, { type: 'lowpass', f: 700, v: .35 }); buzz(30); },
-    chime: () => { tone(880, .16, { type: 'triangle', v: .12 }); tone(1320, .2, { type: 'triangle', v: .1, at: .06 }); },
-    whistle,
-    fullTime: () => { whistle(.18); whistle(.18, .3); whistle(.7, .6); },
-    roar: (big) => { const d = big ? 3.6 : 2.4; noise(d, { f: 950, fTo: 700, q: .6, v: big ? .55 : .45, a: .25 }); noise(d * .9, { type: 'lowpass', f: 500, v: .3, a: .3 }); noise(.9, { f: 2400, q: 2, v: .08, a: .05, at: .15 }); },
-    ooh: () => noise(.9, { f: 750, fTo: 420, q: 2.2, v: .3, a: .15 }),
-    groan: () => { noise(1.3, { f: 520, fTo: 240, q: 1.6, v: .3, a: .2 }); },
-    sparkle: () => [660, 880, 1100, 1320, 1760].forEach((f, i) => tone(f, .18, { type: 'triangle', v: .09, at: i * .06 })),
-    fanfare: () => [[523, 0], [659, .14], [784, .28], [1047, .42], [784, .7], [1047, .84]].forEach(([f, at], i) => tone(f, i > 3 ? .5 : .16, { type: 'sawtooth', v: .07, at })),
+    chime: () => pf('floodlight_one') || (tone(880, .16, { type: 'triangle', v: .12 }), tone(1320, .2, { type: 'triangle', v: .1, at: .06 })),
+    whistle: (len = .35, at = 0) => pf(len >= .6 ? 'whistle_foul' : 'whistle_short', { at }) || synthWhistle(len, at),
+    fullTime: () => pf('whistle_fulltime') || (synthWhistle(.18), synthWhistle(.18, .3), synthWhistle(.7, .6)),
+    goal: () => { const net = pf('ball_net'); if (!(pf('crowd_goal_roar', { at: .05 }) && net)) synthRoar(); pf('call_goal', { at: .3 }); },
+    roar: (big) => pf('crowd_goal_roar') || synthRoar(big),
+    swell: () => pf('crowd_swell') || synthRoar(),
+    ooh, groan,
+    save: () => { ooh(); if (saves++ % 2 === 0) pf('call_save', { at: .25 }); },
+    card: (red) => { pf('whistle_foul') || synthWhistle(red ? .7 : .35); pf(red ? 'call_red_card' : 'call_yellow_card', { at: .45 }); },
+    penalty: () => { pf('whistle_foul') || synthWhistle(.35); pf('call_penalty', { at: .45 }); },
+    woodwork: () => { pf('woodwork') || tone(520, .4, { type: 'triangle', v: .2 }); ooh(); pf('call_woodwork', { at: .3 }); },
+    sparkle: () => pf('sting_signing') || synthSparkle(),
+    trophy: () => { if (!pf('sting_trophy')) synthFanfare(); pf('crowd_goal_roar', { v: .6 }) || synthRoar(true); pf('call_trophy', { at: 1 }); },
+    fanfare: () => pf('sting_trophy') || synthFanfare(),
+    sting: (kind) => pf('sting_' + kind) || (kind === 'win' ? synthSparkle() : kind === 'loss' ? groan() : null),
+    shootout: () => pf('call_shootout'), penScored: () => pf('call_pen_scored'), penMissed: () => pf('call_pen_missed'), shootoutWon: () => pf('call_shootout_won'),
+    bed: (on) => on ? bedOn() : bedOff(),
+    vis: () => { if (!ac) return; if (document.hidden) ac.suspend().catch(() => {}); else if (soundOn) ac.resume().catch(() => {}); },
+    mute: () => { const w = wantBed; bedOff(.3); wantBed = w; },
+    resume: () => { if (wantBed) { wantBed = false; bedOn(); } },
     buzz
   };
 })();
+document.addEventListener('visibilitychange', () => SFX.vis());
 addEventListener('pointerdown', () => SFX.unlock(), { once: true, capture: true });
 const SPK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h4l5-4v14l-5-4H3z" fill="currentColor"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="x" d="M16 9l6 6M22 9l-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 function soundButton() {
   const b = document.createElement('button'); b.type = 'button'; b.id = 'sndBtn'; b.className = 'sndbtn'; b.innerHTML = SPK;
   const paint = () => { b.classList.toggle('off', !soundOn); b.setAttribute('aria-pressed', String(soundOn)); b.setAttribute('aria-label', soundOn ? 'Sound and buzz on: tap to mute' : 'Sound and buzz off: tap to turn on'); b.title = soundOn ? 'Sound on' : 'Sound off';
     b.querySelector('.w').style.display = soundOn ? '' : 'none'; b.querySelector('.x').style.display = soundOn ? 'none' : ''; };
-  b.addEventListener('click', (e) => { e.stopPropagation(); soundOn = !soundOn; store.set(SNDKEY, soundOn); paint(); if (soundOn) { SFX.unlock(); SFX.tick(); } });
+  b.addEventListener('click', (e) => { e.stopPropagation(); if (soundOn) SFX.mute(); soundOn = !soundOn; store.set(SNDKEY, soundOn); paint(); if (soundOn) { SFX.unlock(); SFX.tick(); SFX.resume(); } });
   paint(); document.body.appendChild(b);
 }
 soundButton();
@@ -2138,18 +2213,25 @@ soundButton();
 const _burst = burst;
 burst = function (text, tone = '', sub = '', small, shake) {
   const t = String(text).replace(/<[^>]+>/g, '');
-  if (t === 'GOAL!') { SFX.roar(); SFX.buzz([70, 50, 160]); }
-  else if (t === 'Champions!') { SFX.roar(true); SFX.fanfare(); SFX.buzz([80, 60, 80, 60, 220]); }
-  else if (t === 'Full time') SFX.fullTime();
-  else if (t === 'Through!' || t === 'Overturned!') SFX.roar();
+  if (t === 'GOAL!') { SFX.goal(); SFX.buzz([70, 50, 160]); }
+  else if (t === 'Champions!') { SFX.trophy(); SFX.buzz([80, 60, 80, 60, 220]); }
+  else if (t === 'Full time') { SFX.bed(false); SFX.fullTime(); }
+  else if (t === 'Through!') { SFX.roar(); SFX.shootoutWon(); }
+  else if (t === 'Overturned!') SFX.swell();
   else if (tone === 'bad' || t === 'Decision stands') { SFX.groan(); if (tone === 'bad') SFX.buzz(220); }
-  else if (t === 'Saved!' || t === 'Wide!') SFX.ooh();
-  else if (t === 'Red card') { SFX.whistle(.7); SFX.buzz([90, 60, 90]); }
-  else if (t === 'Yellow card' || t === 'Penalty!' || t === 'Free kick!') SFX.whistle(.35);
+  else if (t === 'Saved!' || t === 'Wide!') SFX.save();
+  else if (t === 'Red card') { SFX.card(true); SFX.buzz([90, 60, 90]); }
+  else if (t === 'Yellow card') SFX.card(false);
+  else if (t === 'Penalty!') SFX.penalty();
+  else if (t === 'Free kick!') SFX.whistle(.6);
   else if (t === 'New card!' || t === 'Called up!' || t === 'Legend!' || t === 'Hard mode') SFX.sparkle();
   else if (t === 'CRUNCH!' || t === 'WALL!') SFX.thud();
   return _burst(text, tone, sub, small, shake);
 };
+// the result's sting (Matchnight's win, draw and loss stings) when the full-time result sheet opens
+const _modal = modal;
+modal = function (html, ...rest) { const m = /res-burst (win|draw|loss)/.exec(html); if (m) SFX.sting(m[1]); return _modal(html, ...rest); };
+const _shootout = shootout; shootout = function (...a) { SFX.shootout(); return _shootout(...a); };
 const _cast = cast; cast = function (c) { SFX.whoosh(); return _cast(c); };
 const _castOpp = castOpp; castOpp = function (...a) { SFX.whoosh(true); return _castOpp(...a); };
 const _ballTo = ballTo; ballTo = function (pt, fast) { SFX.kick(fast); return _ballTo(pt, fast); };
@@ -2210,7 +2292,7 @@ startMatch = function () {
   _startMatch();
   if (R.hard) { D.shot = clamp(D.shot + 1, -1, 2); D.press = clamp(D.press + .08, .3, .55); D.direct = clamp(D.direct + .1, .35, .65); }
   coachOn = !ALBUM.guided && R.stage === 0 && ALBUM.runs <= 1;
-  SFX.whistle(.5); showCoach();
+  SFX.whistle(.5); SFX.bed(true); showCoach();
 };
 const _endPhase = endPhase;
 endPhase = async function () {
