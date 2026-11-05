@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.4.7 -->
+<!-- matchnightgame.com, site 0.4.8 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -150,6 +150,14 @@ img { max-width: 100%; }
 .board-ver { color: var(--chalk); font-size: 15px; }
 .board-ver b { font-weight: 800; color: var(--lamp); font-variant-numeric: tabular-nums; }
 .plans { max-width: 38ch; margin: 0; font-size: 16px; color: var(--muted); text-wrap: balance; }
+/* site 0.4.8 (Kevin, 5 Nov 2026: crowded with buttons): at the top the play-date line is words, not a box that looks
+   like a button; one yellow button, then a quiet row of links in words (Instagram, the theme) */
+.hero .when { padding: 0; border: 0; background: none; font-size: 16px; text-wrap: balance; }
+.cta-more { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0 24px; margin-top: -8px; }
+.quiet { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--chalk); text-decoration: none;
+  font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: .08em; text-transform: uppercase; }
+.quiet:hover { color: var(--lamp); }
+.quiet svg { width: 14px; height: 14px; flex: none; color: var(--lamp); }
 .when { display: inline-block; margin: 0; padding: 8px 14px; border: 1px solid var(--steel); border-radius: 6px; background: var(--stand);
   font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: .1em; text-transform: uppercase; color: var(--chalk); }
 .cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; margin-top: 8px; }
@@ -168,7 +176,7 @@ img { max-width: 100%; }
   .kicker { padding-left: 0; }
   .lede, .claim { margin-left: 0; }
   .board { align-items: flex-start; }
-  .cta { justify-content: flex-start; }
+  .cta, .cta-more { justify-content: flex-start; }
   .stage { align-self: center; }
 }
 
@@ -192,27 +200,45 @@ img { max-width: 100%; }
 h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 7.4vw, 46px); line-height: 1; letter-spacing: .01em; text-transform: uppercase; text-wrap: balance; }
 .intro { max-width: 60ch; margin: 14px 0 0; color: var(--muted); }
 
-/* the soundtrack banner under the top (site 0.4.0, Kevin's pick: the front page only gets a banner and a menu link):
-   the bands' covers fanned like the phones, a line and a button to the soundtrack page */
-.tease-sec { padding-block: 8px clamp(36px, 6vw, 56px); }
-.tease { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 14px; padding: 18px 16px 20px; text-align: center;
-  background: radial-gradient(120% 90% at 50% 0%, rgba(255, 204, 26, .1), transparent 60%), var(--stand); border: 1px solid rgba(255, 204, 26, .35); border-radius: 12px; }
-.tease-covers { display: flex; justify-content: center; }
-.tease-cover { display: block; width: 76px; height: 76px; border-radius: 6px; box-shadow: 0 10px 24px rgba(0, 0, 0, .5); }
-.tease-cover:nth-child(1) { rotate: -8deg; translate: 10px 6px; }
+/* the banners under the top (site 0.4.0, Kevin's pick: the front page only gets a banner and a menu link). Since site
+   0.4.8 (Kevin, 5 Nov 2026: crowded with buttons, "especially on mobile") two quiet tiles, one under the other on a phone
+   and side by side from 960px: the pictures and the title on one row, the line and a link in words under them, and the
+   whole tile is the link's tap target. Hairline borders; yellow only for the label and the link words, since the one
+   yellow button is the waiting list at the top. The card game first, then the soundtrack */
+.tease-sec { padding-block: 0 clamp(36px, 6vw, 56px); }
+.teases { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.tease { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "pic label" "pic title" "line line" "go go";
+  align-content: start; column-gap: 16px; padding: 16px 18px 8px; text-align: left; border: 1px solid var(--steel); border-radius: 12px;
+  background: radial-gradient(110% 80% at 0% 0%, rgba(255, 204, 26, .08), transparent 60%), var(--stand); transition: border-color .15s; }
+.tease:hover, .tease:focus-within { border-color: rgba(255, 204, 26, .6); }
+.tease-covers { grid-area: pic; align-self: center; display: flex; align-items: center; padding: 2px 4px 2px 0; }
+.tease .label { grid-area: label; align-self: end; margin: 0 0 4px; font-size: 13px; }
+.tease h2 { grid-area: title; align-self: start; font-size: clamp(22px, 6.2vw, 28px); }
+.tease-line { grid-area: line; margin: 12px 0 0; color: var(--muted); font-size: 15px; line-height: 1.45; }
+.tease-go { grid-area: go; justify-self: start; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--lamp); text-decoration: none;
+  font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: .08em; text-transform: uppercase; }
+.tease-go::after { content: ''; position: absolute; inset: 0; border-radius: 12px; }  /* the whole tile */
+.tease-go svg { width: 16px; height: 16px; flex: none; }
+.tease-go:focus-visible { outline: none; }
+.tease-go:focus-visible::after { outline: 2px solid var(--lamp); outline-offset: 2px; }
+.tease-cover { display: block; width: 50px; height: 50px; border-radius: 4px; box-shadow: 0 6px 14px rgba(0, 0, 0, .5); }
+.tease-cover + .tease-cover { margin-left: -22px; }
+.tease-cover:nth-child(1) { rotate: -8deg; }
 .tease-cover:nth-child(2) { position: relative; z-index: 1; }
-.tease-cover:nth-child(3) { rotate: 8deg; translate: -10px 6px; }
-.tease-covers.cards .tease-cover { width: 70px; height: auto; aspect-ratio: 300 / 445; object-fit: cover; border-radius: 5px; }  /* the card game (card game v0.1.1.0) */
-.tease-covers.cards .tease-cover:nth-child(1) { rotate: -7deg; translate: 6px 4px; } .tease-covers.cards .tease-cover:nth-child(2) { rotate: 6deg; translate: -6px 0; }
-.tease-text { min-width: 0; display: flex; flex-direction: column; align-items: center; }
-.tease h2 { font-size: clamp(27px, 7vw, 38px); }
-.tease-text > p:not(.label) { max-width: 46ch; margin: 8px 0 14px; color: var(--muted); font-size: 16px; text-wrap: balance; }
+.tease-cover:nth-child(3) { rotate: 8deg; }
+.tease-card { display: block; width: 46px; height: auto; aspect-ratio: 300 / 445; object-fit: cover; border-radius: 4px; box-shadow: 0 6px 14px rgba(0, 0, 0, .5); }
+.tease-card:nth-child(1) { rotate: -7deg; }
+.tease-card + .tease-card { margin-left: -12px; rotate: 6deg; }
+@media (max-width: 359px) { .tease-cover + .tease-cover { margin-left: -30px; } .tease h2 { font-size: 20px; } }  /* more room for the words */
 @media (min-width: 760px) {
-  .tease { grid-template-columns: auto minmax(0, 1fr); justify-items: start; align-items: center; column-gap: 40px; padding: 26px 34px; text-align: left; }
-  .tease-text { align-items: flex-start; }
-  .tease-cover { width: 104px; height: 104px; }
+  .teases { gap: 16px; }
+  .tease { grid-template-rows: auto auto 1fr auto; column-gap: 20px; padding: 20px 22px 10px; }  /* the links line up at the bottom */
+  .tease-cover { width: 64px; height: 64px; }
+  .tease-cover + .tease-cover { margin-left: -28px; }
+  .tease-card { width: 58px; }
+  .tease-card + .tease-card { margin-left: -16px; }
 }
-@media (min-width: 760px) { .tease-covers.cards .tease-cover { width: 100px; } }
+@media (min-width: 960px) { .teases { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); } }
 
 /* swipe rows (site 0.4.0): on a phone a long list is a row of cards you swipe through, one at a time with the next one
    peeking in and dots under it (the page's script adds them); the row runs to the screen's edges and the page itself
@@ -322,7 +348,7 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .bench { padding-top: 18px; border-top: 1px dashed var(--steel); display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
 .more-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 4px; color: var(--lamp); text-decoration: none;
   font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: .1em; text-transform: uppercase; }
-.more-link svg, .tease .btn svg { width: 16px; height: 16px; }
+.more-link svg { width: 16px; height: 16px; }
 .row.sheet .more-link { grid-column: 1 / -1; justify-self: start; margin-bottom: -10px; }
 .bench p { margin: 0; color: var(--muted); max-width: 44ch; }
 .bench .bench-h { font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .2em; text-transform: uppercase; color: var(--chalk); }
@@ -438,6 +464,9 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
   border: 1px solid rgba(255, 204, 26, .45); border-radius: 6px; background: var(--stand); color: var(--chalk); cursor: pointer;
   font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: .08em; text-transform: uppercase; }
 .theme-btn:hover { border-color: var(--lamp); }
+.cta-more .theme-btn { min-height: 44px; padding: 0; gap: 8px; border: 0; background: none; font-size: 16px; }  /* site 0.4.8: in the quiet row */
+.cta-more .theme-btn:hover { color: var(--lamp); }
+.cta-more .theme-btn::after { bottom: 7px; }
 @media (max-width: 359px) { .theme-btn { gap: 8px; padding: 0 12px; font-size: 16px; letter-spacing: .05em; } }  /* the theme's name on one line */
 .theme-ico { flex: none; width: 15px; height: 15px; fill: var(--lamp); }
 .theme-ico .i-stop, .theme-btn[data-on] .i-play { display: none; }
@@ -569,7 +598,9 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
         <p class="when">First chance to play: expected summer&nbsp;2027</p>
         <div class="cta">
           <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeGWSPqr9cadAE7QBGCvEQuRB9fotn-5Uq1Q2dYi3CxvwSpsA/viewform?hl=en" target="_blank" rel="noopener">Join the waiting list<span class="sr"> (opens in a new tab)</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3h7v7M13 3 4 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <a class="btn ghost" href="https://www.instagram.com/matchnightgame/">Follow on Instagram</a>
+        </div>
+        <div class="cta-more">
+          <a class="quiet" href="https://www.instagram.com/matchnightgame/">Follow on Instagram<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           <button type="button" class="theme-btn" id="theme-btn"><svg class="theme-ico" viewBox="0 0 16 16" aria-hidden="true"><path class="i-play" d="M4.5 2.6v10.8L13.6 8z"/><rect class="i-stop" x="3.5" y="3.5" width="9" height="9" rx="1.2"/></svg><span class="theme-label">Hear the Matchnight Theme</span><span class="theme-time">4:12</span></button>
           <button type="button" class="theme-float" id="theme-float" hidden><svg class="theme-ico" viewBox="0 0 16 16" aria-hidden="true"><path class="i-play" d="M4.5 2.6v10.8L13.6 8z"/><rect class="i-stop" x="3.5" y="3.5" width="9" height="9" rx="1.2"/></svg><span class="theme-label">Stop the theme</span></button>
           <audio id="theme" src="audio/matchnight-theme.mp3" preload="none"></audio>
@@ -626,33 +657,24 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
       </div>
     </section>
 
-    <section class="tease-sec" aria-labelledby="tease-h">
-      <div class="wrap">
-        <div class="tease">
+    <div class="tease-sec">
+      <div class="wrap teases">
+        <section class="tease" aria-labelledby="cardgame-h">
+          <div class="tease-covers" aria-hidden="true"><img class="tease-card" src="the-cardgame/card-thunder-300.webp" width="300" height="445" loading="lazy" decoding="async" alt=""><img class="tease-card" src="the-cardgame/card-slide-300.webp" width="300" height="445" loading="lazy" decoding="async" alt=""></div>
+          <p class="label">New: play it now</p>
+          <h2 id="cardgame-h">Matchnight: The Card Game</h2>
+          <p class="tease-line">Can&#x27;t wait for the real thing? Pick a nation, build a deck and take it from the qualifiers to the World Championship final. Free in your browser, with a new draw every day.</p>
+          <a class="tease-go" href="the-cardgame/">Play the card game<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </section>
+        <section class="tease" aria-labelledby="tease-h">
           <div class="tease-covers" aria-hidden="true"><img class="tease-cover" src="bands/misfits-400.webp" width="400" height="400" loading="lazy" decoding="async" alt=""><img class="tease-cover" src="bands/azra-400.webp" width="400" height="400" loading="lazy" decoding="async" alt=""><img class="tease-cover" src="bands/elysee-400.webp" width="400" height="400" loading="lazy" decoding="async" alt=""></div>
-          <div class="tease-text">
-            <p class="label">Coming: the soundtrack</p>
-            <h2 id="tease-h">Three bands. One soundtrack.</h2>
-            <p>Three bands invented for Matchnight, each with an album for the game&#x27;s menu screens. Hear a clip from every band.</p>
-            <a class="btn ghost" href="soundtrack.html">Meet the bands<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
+          <p class="label">Coming: the soundtrack</p>
+          <h2 id="tease-h">Three bands. One soundtrack.</h2>
+          <p class="tease-line">Three bands invented for Matchnight, each with an album for the game&#x27;s menu screens. Hear a clip from every band.</p>
+          <a class="tease-go" href="soundtrack.html">Meet the bands<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </section>
       </div>
-    </section>
-
-    <section class="tease-sec" aria-labelledby="cardgame-h">
-      <div class="wrap">
-        <div class="tease">
-          <div class="tease-covers cards" aria-hidden="true"><img class="tease-cover" src="the-cardgame/card-thunder-300.webp" width="300" height="445" loading="lazy" decoding="async" alt=""><img class="tease-cover" src="the-cardgame/card-slide-300.webp" width="300" height="445" loading="lazy" decoding="async" alt=""></div>
-          <div class="tease-text">
-            <p class="label">New: play it now</p>
-            <h2 id="cardgame-h">Matchnight: The Card Game</h2>
-            <p>Can't wait for the real thing? Pick a nation, build a deck and take it from the qualifiers to the World Championship final. Free in your browser, with a new draw every day.</p>
-            <a class="btn" href="the-cardgame/">Play the card game<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
-      </div>
-    </section>
+    </div>
 
     <section class="sec why" aria-labelledby="why-h">
       <div class="wrap">
