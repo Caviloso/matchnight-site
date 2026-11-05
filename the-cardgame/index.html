@@ -898,6 +898,9 @@ html:not(.fx-star) .slap::before { clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 
 @keyframes zoomin { from { transform: scale(.55) rotate(-4deg); opacity: 0; } to { transform: scale(1.3) rotate(-1.5deg); opacity: 1; } }
 @keyframes zfade { from { opacity: 0; } to { opacity: 1; } }
 @media (max-height: 700px) { .cast.zoom { top: 36%; } @keyframes zoomin { from { transform: scale(.55); opacity: 0; } to { transform: scale(1.12) rotate(-1.5deg); opacity: 1; } } .zcap { top: calc(36% + 168px); } }
+/* v0.1.8.0: a tip pauses the match: a dim layer over the whole screen, the table only comes back after "Got it" */
+.coach-dim { position: fixed; inset: 0; z-index: 80; background: rgba(6,8,12,.55); animation: zfade .2s both; }
+.coach .btn.go[disabled] { opacity: .45; cursor: default; }
 .coach { position: absolute; z-index: 30; left: 50%; top: 50%; width: min(300px, calc(100% - 24px)); translate: -50% -50%; rotate: -1deg; padding: 10px 12px 8px;
   background: var(--chalk); color: var(--ink); border: 2.5px solid #000; border-radius: 8px; box-shadow: 4px 4px 0 #000; font-size: 14.5px; line-height: 1.3; animation: coachin .3s cubic-bezier(.2,1.3,.4,1) both; }
 .coach .co-tag { display: inline-block; margin: -20px 0 4px -4px; padding: 1px 8px 0; background: var(--lamp); border: 2px solid #000; font-family: var(--display); font-weight: 800; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; rotate: -2deg; }
@@ -1209,7 +1212,7 @@ body:has(.homebtn) .screen { padding-top: 34px; }
 <script>
 (() => {
 'use strict';
-const BUILD = 'v0.1.7.0';
+const BUILD = 'v0.1.8.0';
 const NATIONS = [{"c":"ARG","n":"Argentina","s":0.96,"cf":"SAM","f":["h3","#74acdf","#f4f4f4","#74acdf"],"k":["#74acdf","#f4f4f4"],"fw":["Rodrigo Bianchi"],"mf":["Franco López"],"df":["Julián González"]},{"c":"ESP","n":"Spain","s":0.95,"cf":"EUR","f":["h3","#c60b1e","#ffc400","#c60b1e"],"k":["#c60b1e","#ffc400"],"fw":["Sergio Guerrero","Mikel Blanco","Aitor Cruz","Ander Pascual"],"mf":["Pau Cruz","Álvaro Hidalgo","Álvaro Cruz","Jon Morales"],"df":["Iván Carrasco","Jorge Gómez","Álvaro Martínez","Pau Navarro"],"play":1},{"c":"FRA","n":"France","s":0.93,"cf":"EUR","f":["v3","#002395","#f4f4f4","#ed2939"],"k":["#1f3a93","#f4f4f4"],"fw":["Youssef Robin","Loïc Lambert","Rayan Morin","Antoine Roux"],"mf":["Étienne Rousseau","Damien Duval","Adrien Fontaine","Thomas Henry"],"df":["Killian Lambert","Jérémy Barbier","Alexandre Traoré","Antoine Traoré"],"play":1},{"c":"BRA","n":"Brazil","s":0.93,"cf":"SAM","f":["disc","#009c3b","#ffdf00"],"k":["#009c3b","#ffdf00"],"fw":["Vinícius Rodrigues"],"mf":["Douglas da Mata"],"df":["Leandro Campos"]},{"c":"ENG","n":"England","s":0.91,"cf":"EUR","f":["plus","#f4f4f4","#ce1124"],"k":["#f4f4f4","#ce1124"],"fw":["Will Wilde","Louie Pickering","Reece Parr","Shaun Hutton"],"mf":["Nathan Lees","Jake Pilling","Aaron Heslop","Reece Hollis"],"df":["George Bolton","Scott Clayton","Morgan Tate","Shaun Aldridge"],"play":1},{"c":"POR","n":"Portugal","s":0.89,"cf":"EUR","f":["v2","#006600","#ff0000"],"k":["#b3122e","#0b7a3b"],"fw":["Nuno Teixeira","Rafael Tavares","Nuno Lourenço","Rui Ramos"],"mf":["Bernardo Gonçalves","Nuno Soares","Renato Araújo","Danilo Rodrigues"],"df":["Bernardo Castro","Miguel Machado","Hugo Matos","Gonçalo Almeida"],"play":1},{"c":"NED","n":"Netherlands","s":0.88,"cf":"EUR","f":["h3","#ae1c28","#f4f4f4","#21468b"],"k":["#f36c21","#1b1b1b"],"fw":["Sem de Groot","Joris de Haan","Stijn van der Veen","Thijs van der Linden"],"mf":["Quincy van Vliet","Ricardo van der Meer","Sem Hendriks","Stijn Smit"],"df":["Floris de Haan","Sem Postma","Tim Bakker","Jurgen van der Meer"],"play":1},{"c":"GER","n":"Germany","s":0.88,"cf":"EUR","f":["h3","#1b1b1b","#dd0000","#ffce00"],"k":["#f4f4f4","#1b1b1b"],"fw":["Florian Günther","Timo Kaiser","Nils Krause","Mats Schmitt"],"mf":["Finn Baumann","Robin König","Tim Krause","Florian Schmid"],"df":["Felix Schneider","Malte Herrmann","Finn Maier","Moritz Walter"],"play":1},{"c":"BEL","n":"Belgium","s":0.86,"cf":"EUR","f":["v3","#1b1b1b","#fdda24","#ef3340"],"k":["#d01c1f","#fdda24"],"fw":["Ruben Van Damme","Ruben Verhaegen","Jens Bastiaens","Mathias Cools"],"mf":["Pieter Claessens","Milan Pauwels","Louis Renard","Arnaud Vervoort"],"df":["Jarne Van Hecke","Youri Smets","Wout Maes","Youri Claes"],"play":1},{"c":"ITA","n":"Italy","s":0.86,"cf":"EUR","f":["v3","#009246","#f4f4f4","#ce2b37"],"k":["#1f5fbf","#f4f4f4"],"fw":["Michele Gatti","Davide Marini","Simone Grasso","Federico De Luca"],"mf":["Nicolò Russo","Leonardo Pellegrini","Edoardo Rizzo","Alberto Russo"],"df":["Luca Russo","Vincenzo Sala","Riccardo Caruso","Marco Valentini"],"play":1},{"c":"MAR","n":"Morocco","s":0.85,"cf":"AFR","f":["disc","#c1272d","#006233"],"k":["#c1272d","#006233"],"fw":["Oussama Chaouki"],"mf":["Oussama Bennani"],"df":["Youssef Khalil"]},{"c":"CRO","n":"Croatia","s":0.84,"cf":"EUR","f":["h3","#ff0000","#f4f4f4","#171796"],"k":["#ff0000","#f4f4f4"],"fw":["Filip Wójcik"],"mf":["Ivan Babić"],"df":["Kamil Jovanović"]},{"c":"COL","n":"Colombia","s":0.82,"cf":"SAM","f":["h3","#fcd116","#003893","#ce1126"],"k":["#fcd116","#003893"],"fw":["Diego Aguilar"],"mf":["Jesús Zamora"],"df":["Érick Martínez"]},{"c":"URU","n":"Uruguay","s":0.81,"cf":"SAM","f":["h3","#f4f4f4","#0038a8","#f4f4f4"],"k":["#0038a8","#f4f4f4"],"fw":["Joaquín González"],"mf":["Agustín Álvarez"],"df":["Julián Romero"]},{"c":"JPN","n":"Japan","s":0.8,"cf":"ASI","f":["disc","#f4f4f4","#bc002d"],"k":["#bc002d","#f4f4f4"],"fw":["Sota Kobayashi"],"mf":["Takumi Shimizu"],"df":["Kohei Kimura"]},{"c":"SEN","n":"Senegal","s":0.79,"cf":"AFR","f":["v3","#00853f","#fdef42","#e31b23"],"k":["#00853f","#fdef42"],"fw":["Ibrahim Balogun"],"mf":["Bakary Okeke"],"df":["Serge Boateng"]},{"c":"SUI","n":"Switzerland","s":0.78,"cf":"EUR","f":["plus","#d52b1e","#f4f4f4"],"k":["#d52b1e","#f4f4f4"],"fw":["Timo Klein"],"mf":["Kai Lang"],"df":["Timo Richter"]},{"c":"DEN","n":"Denmark","s":0.78,"cf":"EUR","f":["cross","#c8102e","#f4f4f4"],"k":["#c8102e","#f4f4f4"],"fw":["Gustav Andersen"],"mf":["Oliver Lund"],"df":["Oliver Østergaard"]},{"c":"USA","n":"United States","s":0.78,"cf":"NAM","f":["h3","#b22234","#f4f4f4","#3c3b6e"],"k":["#b22234","#f4f4f4"],"fw":["Tyler Scott"],"mf":["Gavin Wilson"],"df":["Logan Mitchell"]},{"c":"AUT","n":"Austria","s":0.77,"cf":"EUR","f":["h3","#ed2939","#f4f4f4","#ed2939"],"k":["#ed2939","#f4f4f4"],"fw":["Marvin Winkler"],"mf":["Christoph Bauer"],"df":["Sebastian Huber"]},{"c":"MEX","n":"Mexico","s":0.77,"cf":"NAM","f":["v3","#006847","#f4f4f4","#ce1126"],"k":["#006847","#f4f4f4"],"fw":["Rodrigo Ramos"],"mf":["Jorge Ramírez"],"df":["Rogelio Pérez"]},{"c":"ECU","n":"Ecuador","s":0.76,"cf":"SAM","f":["h3","#ffd100","#0072ce","#ef3340"],"k":["#ffd100","#0072ce"],"fw":["José Arreola"],"mf":["José Vázquez"],"df":["Miguel Ibarra"]},{"c":"TUR","n":"Turkey","s":0.75,"cf":"EUR","f":["disc","#e30a17","#f4f4f4"],"k":["#e30a17","#f4f4f4"],"fw":["Emre Arslan"],"mf":["Arda Yılmaz"],"df":["Kaan Doğan"]},{"c":"IRN","n":"Iran","s":0.74,"cf":"ASI","f":["h3","#239f40","#f4f4f4","#da0000"],"k":["#239f40","#f4f4f4"],"fw":["Omid Ghasemi"],"mf":["Amir Moradi"],"df":["Mohammad Tehrani"]},{"c":"KOR","n":"South Korea","s":0.74,"cf":"ASI","f":["disc","#f4f4f4","#0047a0"],"k":["#0047a0","#f4f4f4"],"fw":["Jae-won Lee"],"mf":["Ha-jun Jung"],"df":["Seung-ho Han"]},{"c":"UKR","n":"Ukraine","s":0.73,"cf":"EUR","f":["h2","#0057b7","#ffd700"],"k":["#0057b7","#ffd700"],"fw":["Luka Novotný"],"mf":["Lukáš Kamiński"],"df":["Ondřej Pavlović"]},{"c":"NOR","n":"Norway","s":0.73,"cf":"EUR","f":["cross","#ba0c2f","#f4f4f4"],"k":["#ba0c2f","#f4f4f4"],"fw":["Emil Andersen"],"mf":["Ole Johansen"],"df":["Anton Andersson"]},{"c":"CAN","n":"Canada","s":0.73,"cf":"NAM","f":["v3","#ff0000","#f4f4f4","#ff0000"],"k":["#ff0000","#f4f4f4"],"fw":["Tanner Taylor"],"mf":["Noah Clark"],"df":["Caleb Williams"]},{"c":"POL","n":"Poland","s":0.72,"cf":"EUR","f":["h2","#f4f4f4","#dc143c"],"k":["#dc143c","#f4f4f4"],"fw":["Tomáš Grabowski"],"mf":["Dušan Krawczyk"],"df":["Kamil Horvat"]},{"c":"WAL","n":"Wales","s":0.71,"cf":"EUR","f":["h2","#f4f4f4","#00b140"],"k":["#00b140","#f4f4f4"],"fw":["Dafydd Bowen"],"mf":["Cai Lewis"],"df":["Rhodri Llewellyn"]},{"c":"EGY","n":"Egypt","s":0.71,"cf":"AFR","f":["h3","#ce1126","#f4f4f4","#1b1b1b"],"k":["#ce1126","#f4f4f4"],"fw":["Youssef Saidi"],"mf":["Amine El Amrani"],"df":["Oussama Fassi"]},{"c":"SCO","n":"Scotland","s":0.7,"cf":"EUR","f":["diag","#005eb8","#f4f4f4"],"k":["#005eb8","#f4f4f4"],"fw":["Rory Galbraith"],"mf":["Jamie Hamilton"],"df":["Rory Galbraith"]},{"c":"SRB","n":"Serbia","s":0.7,"cf":"EUR","f":["h3","#c6363c","#0c4076","#f4f4f4"],"k":["#c6363c","#0c4076"],"fw":["Ondřej Vuković"],"mf":["Aleksandar Horvat"],"df":["Nikola Kowalski"]},{"c":"ALG","n":"Algeria","s":0.7,"cf":"AFR","f":["v2","#006633","#f4f4f4"],"k":["#006633","#f4f4f4"],"fw":["Walid Idrissi"],"mf":["Mehdi Bouzid"],"df":["Achraf Saidi"]},{"c":"CIV","n":"Ivory Coast","s":0.7,"cf":"AFR","f":["v3","#f77f00","#f4f4f4","#009e60"],"k":["#f77f00","#f4f4f4"],"fw":["Mamadou Traoré"],"mf":["Serge Sow"],"df":["Junior Coulibaly"]},{"c":"AUS","n":"Australia","s":0.7,"cf":"ASI","f":["disc","#012169","#f4f4f4"],"k":["#012169","#f4f4f4"],"fw":["Nathaniel Hughes"],"mf":["Bailey Wilson"],"df":["Lachlan Tonkin"]},{"c":"HUN","n":"Hungary","s":0.69,"cf":"EUR","f":["h3","#ce2939","#f4f4f4","#477050"],"k":["#ce2939","#f4f4f4"],"fw":["Péter Lakatos"],"mf":["Zalán Lakatos"],"df":["Barnabás Fekete"]},{"c":"NGA","n":"Nigeria","s":0.69,"cf":"AFR","f":["v3","#008751","#f4f4f4","#008751"],"k":["#008751","#f4f4f4"],"fw":["Femi Touré"],"mf":["Cheikh Nwosu"],"df":["Kofi Balogun"]},{"c":"CZE","n":"Czechia","s":0.68,"cf":"EUR","f":["tri","#f4f4f4","#d7141a","#11457e"],"k":["#d7141a","#f4f4f4"],"fw":["Goran Babić"],"mf":["Tomáš Petrović"],"df":["Bartosz Kovačević"]},{"c":"SWE","n":"Sweden","s":0.68,"cf":"EUR","f":["cross","#006aa7","#fecc00"],"k":["#006aa7","#fecc00"],"fw":["Anton Nyberg"],"mf":["Erik Olsen"],"df":["Frederik Lund"]},{"c":"PAR","n":"Paraguay","s":0.68,"cf":"SAM","f":["h3","#d52b1e","#f4f4f4","#0038a8"],"k":["#d52b1e","#f4f4f4"],"fw":["Julián Rojas"],"mf":["Ezequiel Cabral"],"df":["Santiago Ledesma"]},{"c":"SVK","n":"Slovakia","s":0.66,"cf":"EUR","f":["h3","#f4f4f4","#0b4ea2","#ee1c25"],"k":["#0b4ea2","#f4f4f4"],"fw":["Ivan Petrović"],"mf":["Mateusz Pavlović"],"df":["Aleksandar Wiśniewski"]},{"c":"GRE","n":"Greece","s":0.66,"cf":"EUR","f":["h3","#0d5eaf","#f4f4f4","#0d5eaf"],"k":["#0d5eaf","#f4f4f4"],"fw":["Petros Vlachos"],"mf":["Thanasis Alexiou"],"df":["Thanasis Pappas"]},{"c":"PAN","n":"Panama","s":0.66,"cf":"NAM","f":["h2","#f4f4f4","#da121a"],"k":["#da121a","#f4f4f4"],"fw":["Luis Martínez"],"mf":["Mauricio Padilla"],"df":["Rodrigo Villalobos"]},{"c":"TUN","n":"Tunisia","s":0.66,"cf":"AFR","f":["disc","#e70013","#f4f4f4"],"k":["#e70013","#f4f4f4"],"fw":["Walid Fassi"],"mf":["Bilal Lahlou"],"df":["Rachid Fassi"]},{"c":"ROU","n":"Romania","s":0.65,"cf":"EUR","f":["v3","#002b7f","#fcd116","#ce1126"],"k":["#002b7f","#fcd116"],"fw":["Valentin Rusu"],"mf":["Bogdan Munteanu"],"df":["Marius Ionescu"]},{"c":"PER","n":"Peru","s":0.64,"cf":"SAM","f":["v3","#d91023","#f4f4f4","#d91023"],"k":["#d91023","#f4f4f4"],"fw":["Mauricio Elizondo"],"mf":["Juan Elizondo"],"df":["Carlos Lozano"]},{"c":"CMR","n":"Cameroon","s":0.64,"cf":"AFR","f":["v3","#007a5e","#ce1126","#fcd116"],"k":["#007a5e","#ce1126"],"fw":["Tunde Nkemelu"],"mf":["Obinna Okafor"],"df":["Ibrahim Cissé"]},{"c":"SVN","n":"Slovenia","s":0.63,"cf":"EUR","f":["h3","#f4f4f4","#0000ff","#ff0000"],"k":["#ff0000","#f4f4f4"],"fw":["Bartosz Nikolić"],"mf":["Dominik Knežević"],"df":["Nikola Kovačević"]},{"c":"CHI","n":"Chile","s":0.63,"cf":"SAM","f":["tri","#f4f4f4","#d52b1e","#0039a6"],"k":["#d52b1e","#f4f4f4"],"fw":["Emiliano González"],"mf":["Agustín Giménez"],"df":["Ignacio Ortiz"]},{"c":"MLI","n":"Mali","s":0.63,"cf":"AFR","f":["v3","#14b53a","#fcd116","#ce1126"],"k":["#14b53a","#fcd116"],"fw":["Seydou Camara"],"mf":["Kwame Owusu"],"df":["Babajide Asante"]},{"c":"COD","n":"DR Congo","s":0.63,"cf":"AFR","f":["diag","#007fff","#ce1021"],"k":["#007fff","#ce1021"],"fw":["Kofi Camara"],"mf":["Ikechukwu Boateng"],"df":["Kwame Cissé"]},{"c":"UZB","n":"Uzbekistan","s":0.63,"cf":"ASI","f":["h3","#0099b5","#f4f4f4","#1eb53a"],"k":["#0099b5","#f4f4f4"],"fw":["Otabek Zhaksylykov"],"mf":["Ulugbek Sadykov"],"df":["Azamat Rakhimov"]},{"c":"IRL","n":"Republic of Ireland","s":0.62,"cf":"EUR","f":["v3","#169b62","#f4f4f4","#ff883e"],"k":["#169b62","#f4f4f4"],"fw":["Niall Kavanagh"],"mf":["Cian Kearney"],"df":["Ciaran Byrne"]},{"c":"VEN","n":"Venezuela","s":0.62,"cf":"SAM","f":["h3","#ffcc00","#00247d","#cf142b"],"k":["#ffcc00","#00247d"],"fw":["Érick Aguilar"],"mf":["José Huerta"],"df":["José Romo"]},{"c":"RSA","n":"South Africa","s":0.62,"cf":"AFR","f":["tri","#de3831","#002395","#007a4d"],"k":["#de3831","#002395"],"fw":["Chisomo Ncube"],"mf":["Lyle Masilela"],"df":["Neo Zulu"]}];
 const NAT = Object.fromEntries(NATIONS.map(n => [n.c, n]));
 const SHORTN = { 'Republic of Ireland': 'Ireland', 'United States': 'USA', 'South Africa': 'S. Africa' };
@@ -2788,13 +2791,74 @@ const COACH = [
   () => 'Bad hand? <b>Redraw</b> swaps a card for a new one, twice per phase.',
   () => 'Can’t read a card? <b>Press and hold it</b> to see it big. Last phase: go for it!'
 ];
-function hideCoach() { const c = $('coach'); if (c) c.remove(); }
+// ---- v0.1.8.0: the guided first match deals hands you can play (Kevin: "Otherwise it's unfortunate to have to redraw
+// when learning the game"). At the start of every phase of that match the hand is checked and, where needed, cards that
+// can't go now are swapped for ones from the deck that can: something to move the ball up and a shot for their box when
+// you attack, a defender card when they have the ball, and at least two cards that can be played straight away.
+// A Redraw in that match also always brings a card you can play. It stays on for the whole first match, even after Skip tips.
+// Every other match (Kevin: "Odds of having a playable card after redraw are low", "Make it 70% chance"): a Redraw brings
+// a card you can play right now 7 times in 10 (when the deck has one), and a card for later the other 3 times.
+let guideOn = false;
+const MOVES = ['pass', 'onetwo', 'overlap', 'through', 'longball'];
+const canGo = (c) => !DEF[c.key].react && !need(c);
+const boxShot = (c) => { const d = DEF[c.key]; return !!d.ch && d.need === 'you' && d.z.includes(2) && d.c <= S.mom + 1; };
+function guideScore(c) { // how much a card helps right now: low ones get swapped out first
+  if (DEF[c.key].temp) return 9; if (canGo(c)) return 3;
+  return S.poss === 'you' && S.ball < 2 && boxShot(c) ? 1 : 0;
+}
+function guideTake(pred) {
+  for (const pool of [S.deck, S.discard]) {
+    const hits = pool.map((c, i) => (pred(c) ? i : -1)).filter(i => i >= 0);
+    if (hits.length) return pool.splice(hits[Math.floor(Math.random() * hits.length)], 1)[0];
+  }
+  return null;
+}
+function guideSwap(pred, keep) {
+  const out = S.hand.filter(c => !keep(c)).sort((a, b) => guideScore(a) - guideScore(b))[0];
+  if (!out || guideScore(out) >= 3) return false;
+  const inn = guideTake(pred); if (!inn) return false;
+  S.hand = S.hand.map(h => (h === out ? inn : h)); S.deck.unshift(out); S.newIds.delete(out.id); S.newIds.add(inn.id);
+  return true;
+}
+function guideHand() {
+  if (!guideOn || !S || S.over) return;
+  const has = (pred) => S.hand.some(pred), never = () => false;
+  if (S.poss === 'you') {
+    const move = (c) => MOVES.includes(c.key) && canGo(c), shot = (c) => canGo(c) && !!DEF[c.key].ch;
+    if (S.ball === 2) { if (!has(shot)) guideSwap(shot, never); }
+    else {
+      if (!has(move)) guideSwap(move, never);
+      if (!has(boxShot)) guideSwap(boxShot, move);
+    }
+  } else {
+    const def = (c) => canGo(c) && DEF[c.key].need === 'them';
+    if (!has(def)) guideSwap(def, never);
+  }
+  for (let i = 0; i < 5 && S.hand.filter(canGo).length < 2; i++) if (!guideSwap(canGo, (c) => guideScore(c) >= 1)) break;
+}
+const REDRAW_OK = .7;
+const _redraw = redraw;
+redraw = function (c) {
+  const before = new Set(S.hand.map(h => h.id)); _redraw(c);
+  const got = S.hand.find(h => !before.has(h.id));
+  if (!got || S.plays <= 0 || DEF[got.key].temp) return;
+  const want = guideOn || Math.random() < REDRAW_OK;
+  if (canGo(got) === want) return;
+  const inn = guideTake(want ? canGo : (x) => !canGo(x)); if (!inn) return;
+  S.hand = S.hand.map(h => (h === got ? inn : h)); S.deck.unshift(got); S.newIds.delete(got.id); S.newIds.add(inn.id); render();
+};
+function hideCoach() { const c = $('coach'); if (c) c.remove(); const d = $('coachDim'); if (d) d.remove(); }
 function showCoach() {
   hideCoach(); if (!coachOn || !S || S.over || S.phase > 6) return;
   const el = document.createElement('div'); el.className = 'coach'; el.id = 'coach'; el.setAttribute('role', 'note');
   el.innerHTML = `<span class="co-tag">Tip ${S.phase} of 6</span><p>${COACH[S.phase - 1]()}</p><div class="co-row"><button type="button" class="btn link" data-x="skip">Skip tips</button><button type="button" class="btn go" data-x="ok">Got it</button></div>`;
-  el.addEventListener('click', (e) => { e.stopPropagation(); const x = e.target.closest('button'); if (!x) return; if (x.dataset.x === 'skip') { coachOn = false; ALBUM.guided = true; saveAll(); } hideCoach(); });
-  $('mat').appendChild(el);
+  el.addEventListener('click', (e) => { e.stopPropagation(); const x = e.target.closest('button'); if (!x || x.disabled) return; if (x.dataset.x === 'skip') { coachOn = false; ALBUM.guided = true; saveAll(); } hideCoach(); });
+  // v0.1.8.0 (Kevin: "Force players to read the tips?"): the tip pauses the match. Nothing behind it can be tapped,
+  // and "Got it" only wakes up after a short moment to read. "Skip tips" stays for players who know the game.
+  const dim = document.createElement('div'); dim.className = 'coach-dim'; dim.id = 'coachDim';
+  dim.addEventListener('click', (e) => e.stopPropagation()); dim.appendChild(el); document.body.appendChild(dim);
+  el.style.position = 'fixed'; el.style.top = '42%';
+  const ok = el.querySelector('[data-x="ok"]'); ok.disabled = true; setTimeout(() => { ok.disabled = false; }, 1200);
 }
 $('hand').addEventListener('click', hideCoach);
 const _startMatch = startMatch;
@@ -2802,18 +2866,19 @@ startMatch = function () {
   _startMatch();
   if (R.hard) { D.shot = clamp(D.shot + 1, -1, 2); D.press = clamp(D.press + .08, .3, .55); D.direct = clamp(D.direct + .1, .35, .65); }
   coachOn = !ALBUM.guided && R.stage === 0 && ALBUM.runs <= 1;
+  guideOn = coachOn; guideHand(); render();
   SFX.whistle(.5); SFX.bed(true); showCoach();
 };
 const _endPhase = endPhase;
 endPhase = async function () {
   const ph = S && S.phase; hideCoach();
   await _endPhase();
-  if (S && !S.over && S.phase !== ph) showCoach();
+  if (S && !S.over && S.phase !== ph) { guideHand(); render(); showCoach(); }
 };
 $('endBtn').removeEventListener('click', _endPhase); $('endBtn').addEventListener('click', () => endPhase());
 const _fullTime = fullTime;
 fullTime = async function () {
-  hideCoach(); if (coachOn) { coachOn = false; ALBUM.guided = true; saveAll(); }
+  hideCoach(); guideOn = false; if (coachOn) { coachOn = false; ALBUM.guided = true; saveAll(); }
   const firstTitle = ALBUM.titles === 0;
   await _fullTime();
   if (R && R.champ && firstTitle && ALBUM.titles > 0 && !R.hard) await burst('Hard mode', '', 'Unlocked for your next run', true);
@@ -2846,6 +2911,6 @@ renderRoad = function () {
   if (R && R.hard) { const t = document.querySelector('#road .rhead .t span'); if (t) t.insertAdjacentHTML('beforeend', '<span class="hardtag">Hard</span>'); }
   if (R && R.over && R.champ && !R.hard && ALBUM.titles === 1) { const b = document.querySelector('#road .banner'); if (b) b.insertAdjacentHTML('afterend', '<p class="unlockline"><b>Hard mode unlocked.</b> Pick it when you start your next run.</p>'); }
 };
-Object.assign(window.__mn.T, { callup: (t) => playerPick(t), sfx: SFX, zoom: (sel) => { const el = document.querySelector(sel); if (el) openZoom(el); }, unzoom: () => closeZoom(), coach: () => showCoach(), hard: (on) => { ALBUM.titles = Math.max(ALBUM.titles, on ? 1 : 0); hardPick = !!on; } });
+Object.assign(window.__mn.T, { callup: (t) => playerPick(t), sfx: SFX, zoom: (sel) => { const el = document.querySelector(sel); if (el) openZoom(el); }, unzoom: () => closeZoom(), coach: () => showCoach(), playableLeft: () => [...S.deck, ...S.discard].filter(canGo).length, hard: (on) => { ALBUM.titles = Math.max(ALBUM.titles, on ? 1 : 0); hardPick = !!on; } });
 })();
 </script>
