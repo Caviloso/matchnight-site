@@ -1350,7 +1350,7 @@ body:has(.homebtn) .screen { padding-top: 34px; }
 <script>
 (() => {
 'use strict';
-const BUILD = 'v0.1.16.1';
+const BUILD = 'v0.1.17.0';
 const NATIONS = [{"c":"ARG","n":"Argentina","s":0.96,"cf":"SAM","f":["h3","#74acdf","#f4f4f4","#74acdf"],"k":["#74acdf","#f4f4f4"],"fw":["Rodrigo Bianchi"],"mf":["Franco López"],"df":["Julián González"]},{"c":"ESP","n":"Spain","s":0.95,"cf":"EUR","f":["h3","#c60b1e","#ffc400","#c60b1e"],"k":["#c60b1e","#ffc400"],"fw":["Sergio Guerrero","Mikel Blanco","Aitor Cruz","Ander Pascual"],"mf":["Pau Cruz","Álvaro Hidalgo","Álvaro Cruz","Jon Morales"],"df":["Iván Carrasco","Jorge Gómez","Álvaro Martínez","Pau Navarro"],"play":1},{"c":"FRA","n":"France","s":0.93,"cf":"EUR","f":["v3","#002395","#f4f4f4","#ed2939"],"k":["#1f3a93","#f4f4f4"],"fw":["Youssef Robin","Loïc Lambert","Rayan Morin","Antoine Roux"],"mf":["Étienne Rousseau","Damien Duval","Adrien Fontaine","Bastien Delorme"],"df":["Killian Lambert","Jérémy Barbier","Alexandre Traoré","Antoine Traoré"],"play":1},{"c":"BRA","n":"Brazil","s":0.93,"cf":"SAM","f":["disc","#009c3b","#ffdf00"],"k":["#009c3b","#ffdf00"],"fw":["Vinícius Rodrigues"],"mf":["Douglas da Mata"],"df":["Leandro Campos"]},{"c":"ENG","n":"England","s":0.91,"cf":"EUR","f":["plus","#f4f4f4","#ce1124"],"k":["#f4f4f4","#ce1124"],"fw":["Will Wilde","Louie Pickering","Reece Parr","Shaun Hutton"],"mf":["Nathan Lees","Jake Pilling","Aaron Heslop","Reece Hollis"],"df":["George Bolton","Scott Clayton","Morgan Tate","Shaun Aldridge"],"play":1},{"c":"POR","n":"Portugal","s":0.89,"cf":"EUR","f":["v2","#006600","#ff0000"],"k":["#b3122e","#0b7a3b"],"fw":["Nuno Teixeira","Rafael Tavares","Nuno Lourenço","Rui Ramos"],"mf":["Bernardo Gonçalves","Nuno Soares","Renato Araújo","Danilo Rodrigues"],"df":["Bernardo Castro","Miguel Machado","Hugo Matos","Gonçalo Almeida"],"play":1},{"c":"NED","n":"Netherlands","s":0.88,"cf":"EUR","f":["h3","#ae1c28","#f4f4f4","#21468b"],"k":["#f36c21","#1b1b1b"],"fw":["Sem de Groot","Joris de Haan","Stijn van der Veen","Thijs van der Linden"],"mf":["Quincy van Vliet","Ricardo van der Meer","Sem Hendriks","Stijn Smit"],"df":["Floris de Haan","Sem Postma","Tim Bakker","Jurgen van der Meer"],"play":1},{"c":"GER","n":"Germany","s":0.88,"cf":"EUR","f":["h3","#1b1b1b","#dd0000","#ffce00"],"k":["#f4f4f4","#1b1b1b"],"fw":["Florian Günther","Timo Kaiser","Nils Krause","Mats Schmitt"],"mf":["Finn Baumann","Robin König","Tim Krause","Florian Schmid"],"df":["Felix Schneider","Malte Herrmann","Finn Maier","Moritz Walter"],"play":1},{"c":"BEL","n":"Belgium","s":0.86,"cf":"EUR","f":["v3","#1b1b1b","#fdda24","#ef3340"],"k":["#d01c1f","#fdda24"],"fw":["Ruben Van Damme","Ruben Verhaegen","Jens Bastiaens","Mathias Cools"],"mf":["Pieter Claessens","Milan Pauwels","Louis Renard","Arnaud Vervoort"],"df":["Jarne Van Hecke","Youri Smets","Wout Maes","Youri Claes"],"play":1},{"c":"ITA","n":"Italy","s":0.86,"cf":"EUR","f":["v3","#009246","#f4f4f4","#ce2b37"],"k":["#1f5fbf","#f4f4f4"],"fw":["Michele Gatti","Davide Marini","Simone Grasso","Federico De Luca"],"mf":["Nicolò Russo","Leonardo Pellegrini","Edoardo Rizzo","Alberto Russo"],"df":["Luca Russo","Vincenzo Sala","Riccardo Caruso","Marco Valentini"],"play":1},{"c":"MAR","n":"Morocco","s":0.85,"cf":"AFR","f":["disc","#c1272d","#006233"],"k":["#c1272d","#006233"],"fw":["Oussama Chaouki"],"mf":["Oussama Bennani"],"df":["Youssef Khalil"]},{"c":"CRO","n":"Croatia","s":0.84,"cf":"EUR","f":["h3","#ff0000","#f4f4f4","#171796"],"k":["#ff0000","#f4f4f4"],"fw":["Filip Wójcik"],"mf":["Ivan Babić"],"df":["Kamil Jovanović"]},{"c":"COL","n":"Colombia","s":0.82,"cf":"SAM","f":["h3","#fcd116","#003893","#ce1126"],"k":["#fcd116","#003893"],"fw":["Diego Aguilar"],"mf":["Wilmer Cárdenas"],"df":["Érick Martínez"]},{"c":"URU","n":"Uruguay","s":0.81,"cf":"SAM","f":["h3","#f4f4f4","#0038a8","#f4f4f4"],"k":["#0038a8","#f4f4f4"],"fw":["Joaquín González"],"mf":["Agustín Álvarez"],"df":["Julián Romero"]},{"c":"JPN","n":"Japan","s":0.8,"cf":"ASI","f":["disc","#f4f4f4","#bc002d"],"k":["#bc002d","#f4f4f4"],"fw":["Sota Kobayashi"],"mf":["Takumi Shimizu"],"df":["Kohei Kimura"]},{"c":"SEN","n":"Senegal","s":0.79,"cf":"AFR","f":["v3","#00853f","#fdef42","#e31b23"],"k":["#00853f","#fdef42"],"fw":["Ibrahim Balogun"],"mf":["Bakary Okeke"],"df":["Serge Boateng"]},{"c":"SUI","n":"Switzerland","s":0.78,"cf":"EUR","f":["plus","#d52b1e","#f4f4f4"],"k":["#d52b1e","#f4f4f4"],"fw":["Timo Klein"],"mf":["Kai Lang"],"df":["Timo Richter"]},{"c":"DEN","n":"Denmark","s":0.78,"cf":"EUR","f":["cross","#c8102e","#f4f4f4"],"k":["#c8102e","#f4f4f4"],"fw":["Gustav Andersen"],"mf":["Oliver Lund"],"df":["Oliver Østergaard"]},{"c":"USA","n":"United States","s":0.78,"cf":"NAM","f":["h3","#b22234","#f4f4f4","#3c3b6e"],"k":["#b22234","#f4f4f4"],"fw":["Tyler Scott"],"mf":["Gavin Wilson"],"df":["Logan Mitchell"]},{"c":"AUT","n":"Austria","s":0.77,"cf":"EUR","f":["h3","#ed2939","#f4f4f4","#ed2939"],"k":["#ed2939","#f4f4f4"],"fw":["Marvin Winkler"],"mf":["Christoph Bauer"],"df":["Sebastian Huber"]},{"c":"MEX","n":"Mexico","s":0.77,"cf":"NAM","f":["v3","#006847","#f4f4f4","#ce1126"],"k":["#006847","#f4f4f4"],"fw":["Rodrigo Ramos"],"mf":["Jorge Ramírez"],"df":["Rogelio Pérez"]},{"c":"ECU","n":"Ecuador","s":0.76,"cf":"SAM","f":["h3","#ffd100","#0072ce","#ef3340"],"k":["#ffd100","#0072ce"],"fw":["José Arreola"],"mf":["José Vázquez"],"df":["Byron Cotacachi"]},{"c":"TUR","n":"Turkey","s":0.75,"cf":"EUR","f":["disc","#e30a17","#f4f4f4"],"k":["#e30a17","#f4f4f4"],"fw":["Emre Arslan"],"mf":["Arda Yılmaz"],"df":["Kaan Doğan"]},{"c":"IRN","n":"Iran","s":0.74,"cf":"ASI","f":["h3","#239f40","#f4f4f4","#da0000"],"k":["#239f40","#f4f4f4"],"fw":["Omid Ghasemi"],"mf":["Amir Moradi"],"df":["Mohammad Tehrani"]},{"c":"KOR","n":"South Korea","s":0.74,"cf":"ASI","f":["disc","#f4f4f4","#0047a0"],"k":["#0047a0","#f4f4f4"],"fw":["Jae-won Lee"],"mf":["Ha-jun Jung"],"df":["Seung-ho Han"]},{"c":"UKR","n":"Ukraine","s":0.73,"cf":"EUR","f":["h2","#0057b7","#ffd700"],"k":["#0057b7","#ffd700"],"fw":["Luka Novotný"],"mf":["Lukáš Kamiński"],"df":["Ondřej Pavlović"]},{"c":"NOR","n":"Norway","s":0.73,"cf":"EUR","f":["cross","#ba0c2f","#f4f4f4"],"k":["#ba0c2f","#f4f4f4"],"fw":["Emil Andersen"],"mf":["Ole Johansen"],"df":["Anton Andersson"]},{"c":"CAN","n":"Canada","s":0.73,"cf":"NAM","f":["v3","#ff0000","#f4f4f4","#ff0000"],"k":["#ff0000","#f4f4f4"],"fw":["Tanner Taylor"],"mf":["Noah Clark"],"df":["Owen Kowalchuk"]},{"c":"POL","n":"Poland","s":0.72,"cf":"EUR","f":["h2","#f4f4f4","#dc143c"],"k":["#dc143c","#f4f4f4"],"fw":["Tomáš Grabowski"],"mf":["Dušan Krawczyk"],"df":["Kamil Horvat"]},{"c":"WAL","n":"Wales","s":0.71,"cf":"EUR","f":["h2","#f4f4f4","#00b140"],"k":["#00b140","#f4f4f4"],"fw":["Dafydd Bowen"],"mf":["Cai Lewis"],"df":["Rhodri Llewellyn"]},{"c":"EGY","n":"Egypt","s":0.71,"cf":"AFR","f":["h3","#ce1126","#f4f4f4","#1b1b1b"],"k":["#ce1126","#f4f4f4"],"fw":["Youssef Saidi"],"mf":["Amine El Amrani"],"df":["Oussama Fassi"]},{"c":"SCO","n":"Scotland","s":0.7,"cf":"EUR","f":["diag","#005eb8","#f4f4f4"],"k":["#005eb8","#f4f4f4"],"fw":["Rory Galbraith"],"mf":["Jamie Hamilton"],"df":["Rory Galbraith"]},{"c":"SRB","n":"Serbia","s":0.7,"cf":"EUR","f":["h3","#c6363c","#0c4076","#f4f4f4"],"k":["#c6363c","#0c4076"],"fw":["Ondřej Vuković"],"mf":["Aleksandar Horvat"],"df":["Nikola Kowalski"]},{"c":"ALG","n":"Algeria","s":0.7,"cf":"AFR","f":["v2","#006633","#f4f4f4"],"k":["#006633","#f4f4f4"],"fw":["Walid Idrissi"],"mf":["Mehdi Bouzid"],"df":["Achraf Saidi"]},{"c":"CIV","n":"Ivory Coast","s":0.7,"cf":"AFR","f":["v3","#f77f00","#f4f4f4","#009e60"],"k":["#f77f00","#f4f4f4"],"fw":["Mamadou Traoré"],"mf":["Serge Sow"],"df":["Junior Coulibaly"]},{"c":"AUS","n":"Australia","s":0.7,"cf":"ASI","f":["disc","#012169","#f4f4f4"],"k":["#012169","#f4f4f4"],"fw":["Nathaniel Hughes"],"mf":["Bailey Wilson"],"df":["Lachlan Tonkin"]},{"c":"HUN","n":"Hungary","s":0.69,"cf":"EUR","f":["h3","#ce2939","#f4f4f4","#477050"],"k":["#ce2939","#f4f4f4"],"fw":["Péter Lakatos"],"mf":["Zalán Lakatos"],"df":["Barnabás Fekete"]},{"c":"NGA","n":"Nigeria","s":0.69,"cf":"AFR","f":["v3","#008751","#f4f4f4","#008751"],"k":["#008751","#f4f4f4"],"fw":["Femi Touré"],"mf":["Cheikh Nwosu"],"df":["Kofi Balogun"]},{"c":"CZE","n":"Czechia","s":0.68,"cf":"EUR","f":["tri","#f4f4f4","#d7141a","#11457e"],"k":["#d7141a","#f4f4f4"],"fw":["Goran Babić"],"mf":["Tomáš Petrović"],"df":["Bartosz Kovačević"]},{"c":"SWE","n":"Sweden","s":0.68,"cf":"EUR","f":["cross","#006aa7","#fecc00"],"k":["#006aa7","#fecc00"],"fw":["Anton Nyberg"],"mf":["Erik Olsen"],"df":["Frederik Lund"]},{"c":"PAR","n":"Paraguay","s":0.68,"cf":"SAM","f":["h3","#d52b1e","#f4f4f4","#0038a8"],"k":["#d52b1e","#f4f4f4"],"fw":["Julián Rojas"],"mf":["Ezequiel Cabral"],"df":["Santiago Ledesma"]},{"c":"SVK","n":"Slovakia","s":0.66,"cf":"EUR","f":["h3","#f4f4f4","#0b4ea2","#ee1c25"],"k":["#0b4ea2","#f4f4f4"],"fw":["Ivan Petrović"],"mf":["Mateusz Pavlović"],"df":["Aleksandar Wiśniewski"]},{"c":"GRE","n":"Greece","s":0.66,"cf":"EUR","f":["h3","#0d5eaf","#f4f4f4","#0d5eaf"],"k":["#0d5eaf","#f4f4f4"],"fw":["Petros Vlachos"],"mf":["Thanasis Alexiou"],"df":["Thanasis Pappas"]},{"c":"PAN","n":"Panama","s":0.66,"cf":"NAM","f":["h2","#f4f4f4","#da121a"],"k":["#da121a","#f4f4f4"],"fw":["Luis Martínez"],"mf":["Mauricio Padilla"],"df":["Rodrigo Villalobos"]},{"c":"TUN","n":"Tunisia","s":0.66,"cf":"AFR","f":["disc","#e70013","#f4f4f4"],"k":["#e70013","#f4f4f4"],"fw":["Walid Fassi"],"mf":["Bilal Lahlou"],"df":["Rachid Fassi"]},{"c":"ROU","n":"Romania","s":0.65,"cf":"EUR","f":["v3","#002b7f","#fcd116","#ce1126"],"k":["#002b7f","#fcd116"],"fw":["Valentin Rusu"],"mf":["Bogdan Munteanu"],"df":["Marius Ionescu"]},{"c":"PER","n":"Peru","s":0.64,"cf":"SAM","f":["v3","#d91023","#f4f4f4","#d91023"],"k":["#d91023","#f4f4f4"],"fw":["Mauricio Elizondo"],"mf":["Juan Elizondo"],"df":["Carlos Lozano"]},{"c":"CMR","n":"Cameroon","s":0.64,"cf":"AFR","f":["v3","#007a5e","#ce1126","#fcd116"],"k":["#007a5e","#ce1126"],"fw":["Tunde Nkemelu"],"mf":["Obinna Okafor"],"df":["Ibrahim Cissé"]},{"c":"SVN","n":"Slovenia","s":0.63,"cf":"EUR","f":["h3","#f4f4f4","#0000ff","#ff0000"],"k":["#ff0000","#f4f4f4"],"fw":["Bartosz Nikolić"],"mf":["Dominik Knežević"],"df":["Nikola Kovačević"]},{"c":"CHI","n":"Chile","s":0.63,"cf":"SAM","f":["tri","#f4f4f4","#d52b1e","#0039a6"],"k":["#d52b1e","#f4f4f4"],"fw":["Emiliano González"],"mf":["Agustín Giménez"],"df":["Ignacio Ortiz"]},{"c":"MLI","n":"Mali","s":0.63,"cf":"AFR","f":["v3","#14b53a","#fcd116","#ce1126"],"k":["#14b53a","#fcd116"],"fw":["Seydou Camara"],"mf":["Kwame Owusu"],"df":["Babajide Asante"]},{"c":"COD","n":"DR Congo","s":0.63,"cf":"AFR","f":["diag","#007fff","#ce1021"],"k":["#007fff","#ce1021"],"fw":["Kofi Camara"],"mf":["Ikechukwu Boateng"],"df":["Kwame Cissé"]},{"c":"UZB","n":"Uzbekistan","s":0.63,"cf":"ASI","f":["h3","#0099b5","#f4f4f4","#1eb53a"],"k":["#0099b5","#f4f4f4"],"fw":["Otabek Zhaksylykov"],"mf":["Ulugbek Sadykov"],"df":["Azamat Rakhimov"]},{"c":"IRL","n":"Republic of Ireland","s":0.62,"cf":"EUR","f":["v3","#169b62","#f4f4f4","#ff883e"],"k":["#169b62","#f4f4f4"],"fw":["Niall Kavanagh"],"mf":["Cian Kearney"],"df":["Ciaran Byrne"]},{"c":"VEN","n":"Venezuela","s":0.62,"cf":"SAM","f":["h3","#ffcc00","#00247d","#cf142b"],"k":["#ffcc00","#00247d"],"fw":["Érick Aguilar"],"mf":["Yorman Echenagucia"],"df":["José Romo"]},{"c":"RSA","n":"South Africa","s":0.62,"cf":"AFR","f":["tri","#de3831","#002395","#007a4d"],"k":["#de3831","#002395"],"fw":["Chisomo Ncube"],"mf":["Lyle Masilela"],"df":["Neo Zulu"]}];
 const NAT = Object.fromEntries(NATIONS.map(n => [n.c, n]));
 const SHORTN = { 'Republic of Ireland': 'Ireland', 'United States': 'USA', 'South Africa': 'S. Africa' };
@@ -1796,6 +1796,7 @@ function need(c) {
   const d = DEF[c.key];
   if (S.over) return 'Full time';
   if (d.react) return 'Automatic';
+  if (S.spWait) return d.temp ? null : 'Set piece first';
   if (S.plays <= 0) return 'No plays';
   if (d.need === 'you' && S.poss !== 'you') return 'Need ball';
   if (d.need === 'them' && S.poss !== 'them') return 'Defend only';
@@ -1977,19 +1978,20 @@ function render() {
     $('sayText').innerHTML = `<b>${d.n}</b> · ${US[d.o] ? esc(US[d.o].short) + ' ' : ''}${d.t}${tag && !d.react ? ` <span class="why">${why(c, tag)}</span>` : ''}`;
     pb.hidden = !!tag; pb.disabled = !!tag;
   } else { $('say').classList.remove('pick'); pb.hidden = true; }
-  $('endBtn').disabled = S.busy || S.over;
-  $('swapBtn').disabled = S.busy || S.over || S.redraws <= 0;
+  $('endBtn').disabled = S.busy || S.over || !!S.spWait;
+  $('swapBtn').disabled = S.busy || S.over || S.redraws <= 0 || !!S.spWait;
   $('swapBtn').textContent = S.swap ? 'Cancel' : `Redraw (${S.redraws})`;
   $('swapBtn').classList.toggle('on', S.swap);
   const anyOk = S.hand.some(h => !need(h));
-  $('endBtn').classList.toggle('pulse', !S.busy && !S.over && !anyOk);
-  $('endBtn').classList.toggle('go', !S.busy && !S.over && !anyOk);
+  $('endBtn').classList.toggle('pulse', !S.busy && !S.over && !anyOk && !S.spWait);
+  $('endBtn').classList.toggle('go', !S.busy && !S.over && !anyOk && !S.spWait);
   tip(anyOk);
 }
 function tip(anyOk) {
   const t = $('tip'); let txt = '';
   const selC = S.sel && S.hand.find(h => h.id === S.sel);
   if (S.over || S.busy) txt = '';
+  else if (S.spWait) txt = 'Take your set piece: tap Play';
   else if (S.swap) txt = 'Tap the card you want to swap';
   else if (!anyOk) txt = S.tips.ended < 3 ? (S.plays ? 'Nothing fits here: tap End phase' : 'Out of plays: tap End phase') : '';
   else if (!S.tips.sel) txt = 'Tap a card to see what it does';
@@ -2144,7 +2146,8 @@ async function winBall(chance, ownerShort, opp, foulChance = 0, skipChance = 2) 
 }
 async function play(c) {
   const d = DEF[c.key], g = geo();
-  S.busy = true; S.sel = null; S.plays--; S.tips.played++; if (d.need === 'them') S.tips.defend++;
+  const late = S.spWait && d.temp;
+  S.busy = true; S.sel = null; if (!late) S.plays--; S.tips.played++; if (d.need === 'them') S.tips.defend++;
   spend(d.c);
   S.hand = S.hand.filter(h => h.id !== c.id); if (!d.temp) S.discard.push(c);
   render(); await cast(c);
@@ -2175,6 +2178,7 @@ async function play(c) {
     case 'freekick': await shoot(d, 'The free kick'); break;
     case 'penalty': await shoot(d, 'The penalty'); break;
   }
+  if (late) { const go = S.spWait; S.spWait = null; go(); return; } // back to the whistle (endPhase carries on)
   S.busy = false; render();
 }
 function redraw(c) {
@@ -2183,7 +2187,7 @@ function redraw(c) {
   say(`You swap <b>${DEF[c.key].n}</b> for a new card.`); render();
 }
 async function endPhase() {
-  if (S.busy || S.over) return;
+  if (S.busy || S.over || S.spWait) return;
   const it = intent();
   S.busy = true; S.swap = false; S.sel = null; S.tips.ended++; render();
   const g = geo();
@@ -2208,8 +2212,12 @@ async function endPhase() {
       // v0.1.4.1: a set piece given in the last phase of a half is taken before the whistle.
       // Before, the card waited for "your next phase", which never came at full time (or was lost to the half-time kick-off).
       if (S.phase === 3 || S.phase === 6) {
-        say(key === 'penalty' ? 'They bring you down in the box. <b>Penalty!</b> It’s taken before the whistle.' : 'Fouled in midfield. The <b>free kick</b> is taken before the whistle.');
-        await sleep(900); await cast(c); await shoot(DEF[key], key === 'penalty' ? 'The penalty' : 'The free kick'); await sleep(500);
+        // v0.1.17.0 (Kevin: "sometimes I can play the card, sometimes the game plays it automatically"): you always take it yourself.
+        // The card goes into your hand and the whistle waits until you play it; nothing else can be played or redrawn meanwhile.
+        S.hand.push(c); S.newIds.add(c.id); S.sel = c.id;
+        say(key === 'penalty' ? 'They bring you down in the box. <b>Penalty!</b> Take it before the whistle: tap <b>Play</b>.' : 'Fouled in midfield. <b>Free kick!</b> Take it before the whistle: tap <b>Play</b>.');
+        await new Promise(res => { S.spWait = res; S.busy = false; render(); });
+        await sleep(500);
       } else {
         S.award.push(c);
         say(key === 'penalty' ? 'They bring you down in the box: a <b>Penalty</b> card for your next phase!' : 'Fouled in midfield: a <b>Free kick</b> card for your next phase.');
@@ -2835,7 +2843,7 @@ $('ver').textContent = `Matchnight: The Card Game ${BUILD}`;
 $('credit').innerHTML = `A free promo game set in the world of Matchnight. Version <b>${BUILD.replace(/^v/, '')}</b>. Small club. Big nights.`;
 $('endBtn').addEventListener('click', endPhase);
 $('playBtn').addEventListener('click', () => { const c = S.sel && S.hand.find(h => h.id === S.sel); if (c && !need(c) && !S.busy) play(c); });
-$('swapBtn').addEventListener('click', () => { if (S.busy || S.redraws <= 0) return; S.swap = !S.swap; S.sel = null; render(); });
+$('swapBtn').addEventListener('click', () => { if (S.busy || S.spWait || S.redraws <= 0) return; S.swap = !S.swap; S.sel = null; render(); });
 $('mat').addEventListener('click', () => { if (S && S.sel && !S.busy) { S.sel = null; render(); } });
 $('pickBack').addEventListener('click', () => { show(null); $('intro').hidden = false; });
 if (window.ResizeObserver) { let ro; new ResizeObserver(() => { clearTimeout(ro); ro = setTimeout(() => { if (S && !$('stage').hidden) placeTable(); }, 60); }).observe($('mat')); }
