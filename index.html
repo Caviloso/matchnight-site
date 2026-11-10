@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.4.18 -->
+<!-- matchnightgame.com, site 0.4.19 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -353,7 +353,8 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .bench p { margin: 0; color: var(--muted); max-width: 44ch; }
 .bench .bench-h { font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .2em; text-transform: uppercase; color: var(--chalk); }
 .bench .when { color: var(--chalk); font-size: 15px; letter-spacing: .08em; }
-.bench .later { color: var(--chalk); }  /* Kevin's tease of the match modes (site 0.4.1) */
+/* on the bench (site 0.4.18): play it yourself, then the PC and Android versions, each with a small heading */
+.bench-item h3 { margin: 4px 0 4px; font-family: var(--font-display); font-weight: 700; font-size: 19px; line-height: 1.1; letter-spacing: .05em; text-transform: uppercase; color: var(--chalk); }
 .sheet { list-style: none; margin: 0; padding: 0; min-width: 0; background: var(--stand); border: 1px solid var(--line); border-radius: 10px; }
 .sheet li { display: grid; grid-template-columns: 42px minmax(0, 1fr); column-gap: 16px; padding: 18px clamp(14px, 3vw, 22px); border-top: 1px solid var(--line); }
 .sheet li:first-child { border-top: 0; }
@@ -368,7 +369,7 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
   .coming-grid { grid-template-columns: 340px minmax(0, 1fr); grid-template-areas: "copy sheet" "bench sheet"; grid-template-rows: auto 1fr; gap: 26px 64px; align-items: start; }
   .coming-copy { grid-area: copy; }
   .sheet-wrap { grid-area: sheet; }
-  .bench { grid-area: bench; }
+  .bench { grid-area: bench; position: sticky; top: 24px; }  /* stays in view beside the long list (site 0.4.18) */
 }
 
 /* the art: crests, trophy plates and icons, drawn as they look in the game */
@@ -790,16 +791,21 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
         </div>
         <div class="sheet-wrap">
         <ol class="row sheet" aria-label="Next on the team sheet">
-          <li class="next"><span class="shirt" aria-hidden="true">1</span><div class="sheet-text"><h3>A look of its own<span class="next-tag">Next big step</span></h3><p>The new colours are in. Next come the screens themselves: a new menu, pages laid out afresh, and only what&#x27;s urgent pops up.</p></div></li>
-          <li><span class="shirt" aria-hidden="true">2</span><div class="sheet-text"><h3>A living pitch</h3><p>The 2D match view comes to life, with more natural running, passing and shooting, so every match looks and feels more like the real thing.</p></div></li>
-          <li><span class="shirt" aria-hidden="true">3</span><div class="sheet-text"><h3>The soundtrack</h3><p>Three bands invented for the game, each with an album, playing on every menu screen. Shuffle them, skip a song, or untick the ones you&#x27;d rather not hear.</p><a class="more-link" href="soundtrack.html">Meet the bands<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></li>
-          <li><span class="shirt" aria-hidden="true">4</span><div class="sheet-text"><h3>Story Mode</h3><p>Eight seasons at a small seaside club, a manager who vanished the night before you arrived, and a town that knows why. Your results write the story, and every choice is remembered. When it ends, play on as a normal career, in the world your story made.</p></div></li>
+          <li class="next"><span class="shirt" aria-hidden="true">1</span><div class="sheet-text"><h3>A look of its own<span class="next-tag">Next big step</span></h3><p>The new colours are in. Next come the screens themselves: a new menu, pages laid out afresh, match stats like on TV with a shot map, and only what&#x27;s urgent pops up.</p></div></li>
+          <li><span class="shirt" aria-hidden="true">2</span><div class="sheet-text"><h3>Your inbox and team screen</h3><p>Bids, contract talks and the board&#x27;s notes land in one inbox, with search and pins, and wait there for your answer. Then pick your XI as player cards on the pitch, each with a painted face.</p></div></li>
+          <li><span class="shirt" aria-hidden="true">3</span><div class="sheet-text"><h3>The commentator&#x27;s voice</h3><p>A new voice in the commentary box calls the big moments of your matches out loud, and names the scorer after every goal.</p></div></li>
+          <li><span class="shirt" aria-hidden="true">4</span><div class="sheet-text"><h3>Cup draw night</h3><p>One home for the Saturday show, the Goal of the Month vote and your best goals. And cup draws you pull yourself: wish for a home tie, though the bowl never listens.</p></div></li>
+          <li><span class="shirt" aria-hidden="true">5</span><div class="sheet-text"><h3>Challenges and hot seat</h3><p>A new challenge every day and every week, the same for everyone, plus achievements to chase. Then hot seat: up to four managers, one career, one device, passed round the sofa.</p></div></li>
+          <li><span class="shirt" aria-hidden="true">6</span><div class="sheet-text"><h3>Deadline day</h3><p>The window&#x27;s last two hours, live. Late bids, phones ringing, and the chance to snatch a player from under a rival&#x27;s nose before the clock stops.</p></div></li>
+          <li><span class="shirt" aria-hidden="true">7</span><div class="sheet-text"><h3>Kits and the kit builder</h3><p>Every club gets new home, away and third kits each season. Then design your own, collar to socks, and launch it to your fans before the big kick-off.</p></div></li>
+          <li><span class="shirt" aria-hidden="true">8</span><div class="sheet-text"><h3>The soundtrack</h3><p>Three bands invented for the game, each with an album, playing on every menu screen. Shuffle them, skip a song, or untick the ones you&#x27;d rather not hear.</p><a class="more-link" href="soundtrack.html">Meet the bands<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></li>
+          <li><span class="shirt" aria-hidden="true">9</span><div class="sheet-text"><h3>Story Mode</h3><p>Eight seasons at a small seaside club, a manager who vanished the night before you arrived, and a town that knows why. Your results write the story, and every choice is remembered. When it ends, play on as a normal career, in the world your story made.</p></div></li>
 </ol>
         </div>
         <div class="bench">
           <p class="bench-h">On the bench</p>
-          <p class="later">Coming later: call the shots from the touchline, take the big kicks yourself, and in time play whole matches.</p>
-          <p>After that: more depth, then getting Matchnight ready for PC and Android, with a full PC layout, plus Steam Deck, cloud saves and achievements on Steam.</p>
+          <div class="bench-item"><h3>Play it yourself</h3><p>Being built now in Unity, as a project of its own. It started with one player, a ball and a goal, and grows step by step towards whole matches with the squad you manage.</p></div>
+          <div class="bench-item"><h3>PC and Android</h3><p>After all that: more depth, then the whole game moves to Unity for PC and Android, with a full PC layout, plus Steam Deck, cloud saves and achievements on Steam.</p></div>
           <p class="when">First chance to play: expected summer&nbsp;2027</p>
         </div>
       </div>
@@ -812,7 +818,7 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
     <p>© 2026 Kevin Logist. All rights reserved. · <a href="https://www.instagram.com/matchnightgame/">Instagram</a></p>
     <p>This site uses no cookies. We count visits with Cloudflare Web Analytics, which doesn&#x27;t track you across sites.</p>
     <p class="credit">Matchnight Theme: made by Kevin with Suno</p>
-    <p class="tm">Steam is a trademark of Valve Corporation. Android is a trademark of Google LLC. iOS is a trademark or registered trademark of Cisco in the U.S. and other countries and is used under license by Apple Inc.</p>
+    <p class="tm">Steam is a trademark of Valve Corporation. Android is a trademark of Google LLC. iOS is a trademark or registered trademark of Cisco in the U.S. and other countries and is used under license by Apple Inc. Unity is a trademark or registered trademark of Unity Technologies or its affiliates in the U.S. and elsewhere.</p>
    </div>
   </footer>
 </div>
