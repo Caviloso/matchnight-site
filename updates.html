@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.4.18 -->
+<!-- matchnightgame.com, site 0.4.19 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -352,7 +352,8 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .bench p { margin: 0; color: var(--muted); max-width: 44ch; }
 .bench .bench-h { font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .2em; text-transform: uppercase; color: var(--chalk); }
 .bench .when { color: var(--chalk); font-size: 15px; letter-spacing: .08em; }
-.bench .later { color: var(--chalk); }  /* Kevin's tease of the match modes (site 0.4.1) */
+/* on the bench (site 0.4.18): play it yourself, then the PC and Android versions, each with a small heading */
+.bench-item h3 { margin: 4px 0 4px; font-family: var(--font-display); font-weight: 700; font-size: 19px; line-height: 1.1; letter-spacing: .05em; text-transform: uppercase; color: var(--chalk); }
 .sheet { list-style: none; margin: 0; padding: 0; min-width: 0; background: var(--stand); border: 1px solid var(--line); border-radius: 10px; }
 .sheet li { display: grid; grid-template-columns: 42px minmax(0, 1fr); column-gap: 16px; padding: 18px clamp(14px, 3vw, 22px); border-top: 1px solid var(--line); }
 .sheet li:first-child { border-top: 0; }
@@ -367,7 +368,7 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
   .coming-grid { grid-template-columns: 340px minmax(0, 1fr); grid-template-areas: "copy sheet" "bench sheet"; grid-template-rows: auto 1fr; gap: 26px 64px; align-items: start; }
   .coming-copy { grid-area: copy; }
   .sheet-wrap { grid-area: sheet; }
-  .bench { grid-area: bench; }
+  .bench { grid-area: bench; position: sticky; top: 24px; }  /* stays in view beside the long list (site 0.4.18) */
 }
 
 /* the art: crests, trophy plates and icons, drawn as they look in the game */
@@ -675,7 +676,7 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
     <nav class="foot-nav" aria-label="Pages"><a href="./">Home</a><a href="soundtrack.html">Soundtrack</a><a href="news.html">News</a><a href="updates.html" aria-current="page">Updates</a><a href="made.html">How it&#x27;s made</a><a href="faq.html">Questions</a></nav>
     <p>© 2026 Kevin Logist. All rights reserved. · <a href="https://www.instagram.com/matchnightgame/">Instagram</a></p>
     <p>This site uses no cookies. We count visits with Cloudflare Web Analytics, which doesn&#x27;t track you across sites.</p>
-    <p class="tm">Steam is a trademark of Valve Corporation. Android is a trademark of Google LLC. iOS is a trademark or registered trademark of Cisco in the U.S. and other countries and is used under license by Apple Inc.</p>
+    <p class="tm">Steam is a trademark of Valve Corporation. Android is a trademark of Google LLC. iOS is a trademark or registered trademark of Cisco in the U.S. and other countries and is used under license by Apple Inc. Unity is a trademark or registered trademark of Unity Technologies or its affiliates in the U.S. and elsewhere.</p>
    </div>
   </footer>
 </div>
