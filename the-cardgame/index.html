@@ -592,6 +592,22 @@ body::before { content: ''; position: fixed; inset: 0; z-index: 0; pointer-event
 .roadlegend { display: grid; grid-template-columns: 2fr 3fr 5fr; gap: 6px; margin-top: -6px; font-family: var(--display); font-weight: 700; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); text-align: center; }
 .roadlegend span { border-top: 2px solid var(--steel); padding-top: 3px; }
 .lastres { margin: 0; text-align: center; font-size: 13.5px; color: var(--muted); }
+/* v0.1.25.0: The Floodlight, a newspaper clipping after every match */
+.news { position: relative; width: min(100%, 420px); justify-self: center; margin: 8px auto 2px; padding: 12px 14px 11px; rotate: -1deg; color: #16191d; text-align: left;
+  background: linear-gradient(180deg, rgba(255,255,255,.35), transparent 40%), repeating-linear-gradient(0deg, rgba(0,0,0,.025) 0 1px, transparent 1px 3px), #ece4cf;
+  border: 2.5px solid #000; box-shadow: 4px 4px 0 #000; clip-path: polygon(0 2%, 3% 0, 22% 1.5%, 41% 0, 63% 1.2%, 84% 0, 100% 1.5%, 99.4% 50%, 100% 98%, 79% 100%, 55% 98.6%, 30% 100%, 8% 98.4%, 0 100%, .6% 48%); }
+.news .nw-tag { position: absolute; top: 6px; right: 10px; padding: 2px 8px 0; background: var(--lamp); color: var(--ink); border: 2px solid #000; rotate: 4deg;
+  font-family: var(--display); font-weight: 800; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+.news .nw-mast { display: grid; gap: 1px; padding-bottom: 5px; margin-bottom: 6px; border-bottom: 3px double #16191d; }
+.news .nw-mast b { font-family: var(--display); font-weight: 800; font-size: 24px; line-height: 1; letter-spacing: .02em; text-transform: uppercase; }
+.news .nw-mast span { font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: #4a4f57; }
+.news .nw-kick { margin: 0 0 2px; font-size: 12.5px; font-weight: 600; color: #4a4f57; }
+.news .nw-head { margin: 0 0 6px; font-family: var(--display); font-weight: 800; font-size: 27px; line-height: .98; text-transform: uppercase; text-wrap: balance; overflow-wrap: anywhere; }
+.news .nw-quote { margin: 0; font-size: 13.5px; line-height: 1.35; font-style: italic; } .news .nw-quote span { font-style: normal; color: #4a4f57; margin-left: 3px; }
+@media (prefers-reduced-motion: no-preference) { .news { animation: newsin .5s cubic-bezier(.2,1.4,.4,1) both .15s; } }
+@keyframes newsin { from { opacity: 0; transform: translateY(10px) rotate(-4deg) scale(.96); } }
+.intro-new { margin: 0; font-size: 13px; color: var(--chalk); } .intro-new span { display: inline-block; margin-right: 6px; padding: 1px 7px 0; background: var(--lamp); color: var(--ink);
+  border: 2px solid #000; font-family: var(--display); font-weight: 800; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; rotate: -2deg; } .intro-new b { color: var(--lamp); font-weight: 600; }
 .lastres b { color: var(--chalk); font-weight: 600; }
 .stars { color: var(--lamp); font-size: 11px; letter-spacing: 1px; white-space: nowrap; }
 .stars i { font-style: normal; color: #3a4048; }
@@ -1394,6 +1410,7 @@ button.alb:hover .cback, button.alb:focus-visible .cback { rotate: 0deg; }
     <div class="endrow" id="introBtns">
       <button class="btn go big" id="startBtn" type="button">Start a run</button>
     </div>
+    <p class="intro-new" id="introNew"></p>
     <p class="credit" id="credit"></p>
   </div>
 </div>
@@ -1401,7 +1418,7 @@ button.alb:hover .cback, button.alb:focus-visible .cback { rotate: 0deg; }
 <script>
 (() => {
 'use strict';
-const BUILD = 'v0.1.24.2';
+const BUILD = 'v0.1.25.0';
 const NATIONS = [{"c":"ARG","n":"Argentina","s":0.96,"cf":"SAM","f":["h3","#74acdf","#f4f4f4","#74acdf"],"k":["#74acdf","#f4f4f4"],"fw":["Rodrigo Bianchi"],"mf":["Franco López"],"df":["Julián González"]},{"c":"ESP","n":"Spain","s":0.95,"cf":"EUR","f":["h3","#c60b1e","#ffc400","#c60b1e"],"k":["#c60b1e","#ffc400"],"fw":["Sergio Guerrero","Mikel Blanco","Aitor Cruz","Ander Pascual"],"mf":["Pau Cruz","Álvaro Hidalgo","Álvaro Cruz","Jon Morales"],"df":["Iván Carrasco","Jorge Gómez","Álvaro Martínez","Pau Navarro"],"play":1},{"c":"FRA","n":"France","s":0.93,"cf":"EUR","f":["v3","#002395","#f4f4f4","#ed2939"],"k":["#1f3a93","#f4f4f4"],"fw":["Youssef Robin","Loïc Lambert","Rayan Morin","Antoine Roux"],"mf":["Étienne Rousseau","Damien Duval","Adrien Fontaine","Bastien Delorme"],"df":["Killian Lambert","Jérémy Barbier","Alexandre Traoré","Antoine Traoré"],"play":1},{"c":"BRA","n":"Brazil","s":0.93,"cf":"SAM","f":["disc","#009c3b","#ffdf00"],"k":["#009c3b","#ffdf00"],"fw":["Vinícius Rodrigues"],"mf":["Douglas da Mata"],"df":["Leandro Campos"]},{"c":"ENG","n":"England","s":0.91,"cf":"EUR","f":["plus","#f4f4f4","#ce1124"],"k":["#f4f4f4","#ce1124"],"fw":["Will Wilde","Louie Pickering","Reece Parr","Shaun Hutton"],"mf":["Nathan Lees","Jake Pilling","Aaron Heslop","Reece Hollis"],"df":["George Bolton","Scott Clayton","Morgan Tate","Shaun Aldridge"],"play":1},{"c":"POR","n":"Portugal","s":0.89,"cf":"EUR","f":["v2","#006600","#ff0000"],"k":["#b3122e","#0b7a3b"],"fw":["Nuno Teixeira","Rafael Tavares","Nuno Lourenço","Rui Ramos"],"mf":["Bernardo Gonçalves","Nuno Soares","Renato Araújo","Danilo Rodrigues"],"df":["Bernardo Castro","Miguel Machado","Hugo Matos","Gonçalo Almeida"],"play":1},{"c":"NED","n":"Netherlands","s":0.88,"cf":"EUR","f":["h3","#ae1c28","#f4f4f4","#21468b"],"k":["#f36c21","#1b1b1b"],"fw":["Sem de Groot","Joris de Haan","Stijn van der Veen","Thijs van der Linden"],"mf":["Quincy van Vliet","Ricardo van der Meer","Sem Hendriks","Stijn Smit"],"df":["Floris de Haan","Sem Postma","Tim Bakker","Jurgen van der Meer"],"play":1},{"c":"GER","n":"Germany","s":0.88,"cf":"EUR","f":["h3","#1b1b1b","#dd0000","#ffce00"],"k":["#f4f4f4","#1b1b1b"],"fw":["Florian Günther","Timo Kaiser","Nils Krause","Mats Schmitt"],"mf":["Finn Baumann","Robin König","Tim Krause","Florian Schmid"],"df":["Felix Schneider","Malte Herrmann","Finn Maier","Moritz Walter"],"play":1},{"c":"BEL","n":"Belgium","s":0.86,"cf":"EUR","f":["v3","#1b1b1b","#fdda24","#ef3340"],"k":["#d01c1f","#fdda24"],"fw":["Ruben Van Damme","Ruben Verhaegen","Jens Bastiaens","Mathias Cools"],"mf":["Pieter Claessens","Milan Pauwels","Louis Renard","Arnaud Vervoort"],"df":["Jarne Van Hecke","Youri Smets","Wout Maes","Youri Claes"],"play":1},{"c":"ITA","n":"Italy","s":0.86,"cf":"EUR","f":["v3","#009246","#f4f4f4","#ce2b37"],"k":["#1f5fbf","#f4f4f4"],"fw":["Michele Gatti","Davide Marini","Simone Grasso","Federico De Luca"],"mf":["Nicolò Russo","Leonardo Pellegrini","Edoardo Rizzo","Alberto Russo"],"df":["Luca Russo","Vincenzo Sala","Riccardo Caruso","Marco Valentini"],"play":1},{"c":"MAR","n":"Morocco","s":0.85,"cf":"AFR","f":["disc","#c1272d","#006233"],"k":["#c1272d","#006233"],"fw":["Oussama Chaouki"],"mf":["Oussama Bennani"],"df":["Youssef Khalil"]},{"c":"CRO","n":"Croatia","s":0.84,"cf":"EUR","f":["h3","#ff0000","#f4f4f4","#171796"],"k":["#ff0000","#f4f4f4"],"fw":["Filip Wójcik"],"mf":["Ivan Babić"],"df":["Kamil Jovanović"]},{"c":"COL","n":"Colombia","s":0.82,"cf":"SAM","f":["h3","#fcd116","#003893","#ce1126"],"k":["#fcd116","#003893"],"fw":["Diego Aguilar"],"mf":["Wilmer Cárdenas"],"df":["Érick Martínez"]},{"c":"URU","n":"Uruguay","s":0.81,"cf":"SAM","f":["h3","#f4f4f4","#0038a8","#f4f4f4"],"k":["#0038a8","#f4f4f4"],"fw":["Joaquín González"],"mf":["Agustín Álvarez"],"df":["Julián Romero"]},{"c":"JPN","n":"Japan","s":0.8,"cf":"ASI","f":["disc","#f4f4f4","#bc002d"],"k":["#bc002d","#f4f4f4"],"fw":["Sota Kobayashi"],"mf":["Takumi Shimizu"],"df":["Kohei Kimura"]},{"c":"SEN","n":"Senegal","s":0.79,"cf":"AFR","f":["v3","#00853f","#fdef42","#e31b23"],"k":["#00853f","#fdef42"],"fw":["Ibrahim Balogun"],"mf":["Bakary Okeke"],"df":["Serge Boateng"]},{"c":"SUI","n":"Switzerland","s":0.78,"cf":"EUR","f":["plus","#d52b1e","#f4f4f4"],"k":["#d52b1e","#f4f4f4"],"fw":["Timo Klein"],"mf":["Kai Lang"],"df":["Timo Richter"]},{"c":"DEN","n":"Denmark","s":0.78,"cf":"EUR","f":["cross","#c8102e","#f4f4f4"],"k":["#c8102e","#f4f4f4"],"fw":["Gustav Andersen"],"mf":["Oliver Lund"],"df":["Oliver Østergaard"]},{"c":"USA","n":"United States","s":0.78,"cf":"NAM","f":["h3","#b22234","#f4f4f4","#3c3b6e"],"k":["#b22234","#f4f4f4"],"fw":["Tyler Scott"],"mf":["Gavin Wilson"],"df":["Logan Mitchell"]},{"c":"AUT","n":"Austria","s":0.77,"cf":"EUR","f":["h3","#ed2939","#f4f4f4","#ed2939"],"k":["#ed2939","#f4f4f4"],"fw":["Marvin Winkler"],"mf":["Christoph Bauer"],"df":["Sebastian Huber"]},{"c":"MEX","n":"Mexico","s":0.77,"cf":"NAM","f":["v3","#006847","#f4f4f4","#ce1126"],"k":["#006847","#f4f4f4"],"fw":["Rodrigo Ramos"],"mf":["Jorge Ramírez"],"df":["Rogelio Pérez"]},{"c":"ECU","n":"Ecuador","s":0.76,"cf":"SAM","f":["h3","#ffd100","#0072ce","#ef3340"],"k":["#ffd100","#0072ce"],"fw":["José Arreola"],"mf":["José Vázquez"],"df":["Byron Cotacachi"]},{"c":"TUR","n":"Turkey","s":0.75,"cf":"EUR","f":["disc","#e30a17","#f4f4f4"],"k":["#e30a17","#f4f4f4"],"fw":["Emre Arslan"],"mf":["Arda Yılmaz"],"df":["Kaan Doğan"]},{"c":"IRN","n":"Iran","s":0.74,"cf":"ASI","f":["h3","#239f40","#f4f4f4","#da0000"],"k":["#239f40","#f4f4f4"],"fw":["Omid Ghasemi"],"mf":["Amir Moradi"],"df":["Mohammad Tehrani"]},{"c":"KOR","n":"South Korea","s":0.74,"cf":"ASI","f":["disc","#f4f4f4","#0047a0"],"k":["#0047a0","#f4f4f4"],"fw":["Jae-won Lee"],"mf":["Ha-jun Jung"],"df":["Seung-ho Han"]},{"c":"UKR","n":"Ukraine","s":0.73,"cf":"EUR","f":["h2","#0057b7","#ffd700"],"k":["#0057b7","#ffd700"],"fw":["Luka Novotný"],"mf":["Lukáš Kamiński"],"df":["Ondřej Pavlović"]},{"c":"NOR","n":"Norway","s":0.73,"cf":"EUR","f":["cross","#ba0c2f","#f4f4f4","#00205b"],"k":["#ba0c2f","#f4f4f4"],"fw":["Emil Andersen"],"mf":["Ole Johansen"],"df":["Anton Andersson"]},{"c":"CAN","n":"Canada","s":0.73,"cf":"NAM","f":["v3","#ff0000","#f4f4f4","#ff0000"],"k":["#ff0000","#f4f4f4"],"fw":["Tanner Taylor"],"mf":["Noah Clark"],"df":["Owen Kowalchuk"]},{"c":"POL","n":"Poland","s":0.72,"cf":"EUR","f":["h2","#f4f4f4","#dc143c"],"k":["#dc143c","#f4f4f4"],"fw":["Tomáš Grabowski"],"mf":["Dušan Krawczyk"],"df":["Kamil Horvat"]},{"c":"WAL","n":"Wales","s":0.71,"cf":"EUR","f":["h2","#f4f4f4","#00b140"],"k":["#00b140","#f4f4f4"],"fw":["Dafydd Bowen"],"mf":["Cai Lewis"],"df":["Rhodri Llewellyn"]},{"c":"EGY","n":"Egypt","s":0.71,"cf":"AFR","f":["h3","#ce1126","#f4f4f4","#1b1b1b"],"k":["#ce1126","#f4f4f4"],"fw":["Youssef Saidi"],"mf":["Amine El Amrani"],"df":["Oussama Fassi"]},{"c":"SCO","n":"Scotland","s":0.7,"cf":"EUR","f":["diag","#005eb8","#f4f4f4"],"k":["#005eb8","#f4f4f4"],"fw":["Rory Galbraith"],"mf":["Jamie Hamilton"],"df":["Rory Galbraith"]},{"c":"SRB","n":"Serbia","s":0.7,"cf":"EUR","f":["h3","#c6363c","#0c4076","#f4f4f4"],"k":["#c6363c","#0c4076"],"fw":["Ondřej Vuković"],"mf":["Aleksandar Horvat"],"df":["Nikola Kowalski"]},{"c":"ALG","n":"Algeria","s":0.7,"cf":"AFR","f":["v2","#006633","#f4f4f4"],"k":["#006633","#f4f4f4"],"fw":["Walid Idrissi"],"mf":["Mehdi Bouzid"],"df":["Achraf Saidi"]},{"c":"CIV","n":"Ivory Coast","s":0.7,"cf":"AFR","f":["v3","#f77f00","#f4f4f4","#009e60"],"k":["#f77f00","#f4f4f4"],"fw":["Mamadou Traoré"],"mf":["Serge Sow"],"df":["Junior Coulibaly"]},{"c":"AUS","n":"Australia","s":0.7,"cf":"ASI","f":["disc","#012169","#f4f4f4"],"k":["#012169","#f4f4f4"],"fw":["Nathaniel Hughes"],"mf":["Bailey Wilson"],"df":["Lachlan Tonkin"]},{"c":"HUN","n":"Hungary","s":0.69,"cf":"EUR","f":["h3","#ce2939","#f4f4f4","#477050"],"k":["#ce2939","#f4f4f4"],"fw":["Péter Lakatos"],"mf":["Zalán Lakatos"],"df":["Barnabás Fekete"]},{"c":"NGA","n":"Nigeria","s":0.69,"cf":"AFR","f":["v3","#008751","#f4f4f4","#008751"],"k":["#008751","#f4f4f4"],"fw":["Femi Touré"],"mf":["Cheikh Nwosu"],"df":["Kofi Balogun"]},{"c":"CZE","n":"Czechia","s":0.68,"cf":"EUR","f":["tri","#f4f4f4","#d7141a","#11457e"],"k":["#d7141a","#f4f4f4"],"fw":["Goran Babić"],"mf":["Tomáš Petrović"],"df":["Bartosz Kovačević"]},{"c":"SWE","n":"Sweden","s":0.68,"cf":"EUR","f":["cross","#006aa7","#fecc00"],"k":["#006aa7","#fecc00"],"fw":["Anton Nyberg"],"mf":["Erik Olsen"],"df":["Frederik Lund"]},{"c":"PAR","n":"Paraguay","s":0.68,"cf":"SAM","f":["h3","#d52b1e","#f4f4f4","#0038a8"],"k":["#d52b1e","#f4f4f4"],"fw":["Julián Rojas"],"mf":["Ezequiel Cabral"],"df":["Santiago Ledesma"]},{"c":"SVK","n":"Slovakia","s":0.66,"cf":"EUR","f":["h3","#f4f4f4","#0b4ea2","#ee1c25"],"k":["#0b4ea2","#f4f4f4"],"fw":["Ivan Petrović"],"mf":["Mateusz Pavlović"],"df":["Aleksandar Wiśniewski"]},{"c":"GRE","n":"Greece","s":0.66,"cf":"EUR","f":["h3","#0d5eaf","#f4f4f4","#0d5eaf"],"k":["#0d5eaf","#f4f4f4"],"fw":["Petros Vlachos"],"mf":["Thanasis Alexiou"],"df":["Thanasis Pappas"]},{"c":"PAN","n":"Panama","s":0.66,"cf":"NAM","f":["h2","#f4f4f4","#da121a"],"k":["#da121a","#f4f4f4"],"fw":["Luis Martínez"],"mf":["Mauricio Padilla"],"df":["Rodrigo Villalobos"]},{"c":"TUN","n":"Tunisia","s":0.66,"cf":"AFR","f":["disc","#e70013","#f4f4f4"],"k":["#e70013","#f4f4f4"],"fw":["Walid Fassi"],"mf":["Bilal Lahlou"],"df":["Rachid Fassi"]},{"c":"ROU","n":"Romania","s":0.65,"cf":"EUR","f":["v3","#002b7f","#fcd116","#ce1126"],"k":["#002b7f","#fcd116"],"fw":["Valentin Rusu"],"mf":["Bogdan Munteanu"],"df":["Marius Ionescu"]},{"c":"PER","n":"Peru","s":0.64,"cf":"SAM","f":["v3","#d91023","#f4f4f4","#d91023"],"k":["#d91023","#f4f4f4"],"fw":["Mauricio Elizondo"],"mf":["Juan Elizondo"],"df":["Carlos Lozano"]},{"c":"CMR","n":"Cameroon","s":0.64,"cf":"AFR","f":["v3","#007a5e","#ce1126","#fcd116"],"k":["#007a5e","#ce1126"],"fw":["Tunde Nkemelu"],"mf":["Obinna Okafor"],"df":["Ibrahim Cissé"]},{"c":"SVN","n":"Slovenia","s":0.63,"cf":"EUR","f":["h3","#f4f4f4","#0000ff","#ff0000"],"k":["#ff0000","#f4f4f4"],"fw":["Bartosz Nikolić"],"mf":["Dominik Knežević"],"df":["Nikola Kovačević"]},{"c":"CHI","n":"Chile","s":0.63,"cf":"SAM","f":["tri","#f4f4f4","#d52b1e","#0039a6"],"k":["#d52b1e","#f4f4f4"],"fw":["Emiliano González"],"mf":["Agustín Giménez"],"df":["Ignacio Ortiz"]},{"c":"MLI","n":"Mali","s":0.63,"cf":"AFR","f":["v3","#14b53a","#fcd116","#ce1126"],"k":["#14b53a","#fcd116"],"fw":["Seydou Camara"],"mf":["Kwame Owusu"],"df":["Babajide Asante"]},{"c":"COD","n":"DR Congo","s":0.63,"cf":"AFR","f":["diag","#007fff","#ce1021"],"k":["#007fff","#ce1021"],"fw":["Kofi Camara"],"mf":["Ikechukwu Boateng"],"df":["Kwame Cissé"]},{"c":"UZB","n":"Uzbekistan","s":0.63,"cf":"ASI","f":["h3","#0099b5","#f4f4f4","#1eb53a"],"k":["#0099b5","#f4f4f4"],"fw":["Otabek Zhaksylykov"],"mf":["Ulugbek Sadykov"],"df":["Azamat Rakhimov"]},{"c":"IRL","n":"Republic of Ireland","s":0.62,"cf":"EUR","f":["v3","#169b62","#f4f4f4","#ff883e"],"k":["#169b62","#f4f4f4"],"fw":["Niall Kavanagh"],"mf":["Cian Kearney"],"df":["Ciaran Byrne"]},{"c":"VEN","n":"Venezuela","s":0.62,"cf":"SAM","f":["h3","#ffcc00","#00247d","#cf142b"],"k":["#ffcc00","#00247d"],"fw":["Érick Aguilar"],"mf":["Yorman Echenagucia"],"df":["José Romo"]},{"c":"RSA","n":"South Africa","s":0.62,"cf":"AFR","f":["tri","#de3831","#002395","#007a4d"],"k":["#de3831","#002395"],"fw":["Chisomo Ncube"],"mf":["Lyle Masilela"],"df":["Neo Zulu"]}];
 const NAT = Object.fromEntries(NATIONS.map(n => [n.c, n]));
 const SHORTN = { 'Republic of Ireland': 'Ireland', 'United States': 'USA', 'South Africa': 'S. Africa' };
@@ -1677,7 +1694,7 @@ function addTable(a, b, ga, gb) {
 // returns 'next' | 'out' | 'champ'
 function recordResult(gf, ga, pens) {
   const st = STAGES[R.stage], i = R.stage;
-  R.res[i] = { gf, ga, pens: pens || null };
+  R.res[i] = { gf, ga, pens: pens || null, sc: S && S.scorers ? S.scorers.slice() : [] };
   if (st.type === 'group') {
     addTable(R.nat, R.opp[i], gf, ga);
     const g = [R.opp[2], R.opp[3], R.opp[4]], others = g.filter(c => c !== R.opp[i]);
@@ -1729,6 +1746,63 @@ function playerCard(p, K, opts = {}) {
 const kitVars = (K, p = 'k') => `--${p}-hi:${K.hi};--${p}-lo:${K.lo};--${p}-ink:${K.ink}`;
 const SHIELD = '<svg viewBox="0 0 64 72" aria-hidden="true"><path d="M32 3 L60 12 V34 Q60 58 32 69 Q4 58 4 34 V12 Z" fill="#eef1f4" stroke="#0b0d11" stroke-width="4" stroke-linejoin="round"/><path d="M32 11 L52 17 V34 Q52 52 32 61 Q12 52 12 34 V17 Z" fill="#0b0d11"/><polygon points="32,20 36,31 48,31 38.5,38 42,49 32,42 22,49 25.5,38 16,31 28,31" fill="#ffcc1a"/></svg>';
 function squadPlayer(role) { const s = R.squad[role]; return { role, name: s.name, short: shortName(s.name), num: ROLE[role].num, pos: ROLE[role].pos, zone: ROLE[role].zone, look: lookFor(s.name), pass: s.pass }; }
+// ---- v0.1.25.0: The Floodlight, the World Championship paper. A clipping on the road after every match ----
+const NEWS = {
+  thrash: ['{US} run riot', '{GF} goals, no mercy', '{THEM} left counting to {GF}', 'Fireworks under the floodlights', '{SC} and friends put on a show'],
+  win: ['{US} cruise past {THEM}', 'Job done, and done properly', '{SC} lights up the night', 'Two clear and never in doubt'],
+  edge: ['{US} edge it', 'Nails bitten, job done', 'One goal is plenty', '{SC} settles it', 'Ugly? Who cares'],
+  pens: ['Nerves of steel from the spot', '{US} hold their nerve', 'Shootout heroes', '{US} win it the hard way'],
+  draw: ['Honours even', 'Nothing to separate them', '{US} and {THEM} share the spoils', 'A point is a point, says everyone'],
+  nil: ['Goalless, but not pointless', 'Keepers win the night', 'Zero. Zilch. Nada.'],
+  loss: ['{THEM} spoil the party', 'Back to the drawing board', '{US} stung, but still standing', 'A bad night at the office'],
+  out: ['The dream is over', 'Heartbreak for {US}', 'Bags packed, heads high', '{THEM} end the ride'],
+  outpens: ['Spot-kick agony', 'Cruel, cruel penalties', 'So close, from twelve yards'],
+  silver: ['So close', 'Silver tonight', 'One step short of glory'],
+  champ: ['{US} rule the world', 'Champions of the world!', 'Nobody believed. Then {US} did it.', 'The trophy is coming home with {US}'],
+  first: ['The road starts here', '{US} set off for glory', 'Here we go: {US} v {THEM}', 'Qualifier 1: {US} v {THEM}'],
+};
+const QUOTES = {
+  up: [['I’ve lost my voice and I don’t want it back.', 'a fan in the away end'], ['We said one match at a time. Now we’d like the next one, please.', 'the manager'],
+    ['My nan called it at half time. My nan calls everything at half time.', 'a fan'], ['The kit man says the shirts have never been this sweaty.', 'the dressing room'],
+    ['Somebody tell the bus driver we’re staying longer.', 'the captain']],
+  meh: [['A point. I’ll take it, I’ll frame it, I’ll forget it.', 'a fan'], ['The pie was the highlight. It was a very good pie.', 'a fan on the way home'],
+    ['We move on. The table doesn’t care how pretty it was.', 'the manager']],
+  down: [['We go again. We always go again.', 'the manager'], ['I’m not angry. I’m just going to stare at a wall for a bit.', 'a fan'],
+    ['The referee had a stinker. The referee always has a stinker.', 'a fan on the bus home']],
+  out: [['We’ll be back. Bring a bigger trophy next time.', 'the manager'], ['Proud of the lads. Gutted, but proud.', 'the captain'],
+    ['Same time next tournament? Same time next tournament.', 'a fan']],
+  champ: [['I’m not taking this medal off. Not for the shower, not for anything.', 'the captain'], ['Tell the whole town. Tell the next town too.', 'a fan'],
+    ['Small squad. Big nights.', 'the manager']],
+  first: [['Pack light. We’re planning to stay a while.', 'the manager'], ['Qualifiers? I’ve already booked my holiday for the final.', 'an optimistic fan'],
+    ['One match at a time. Starting with this one.', 'the manager']],
+};
+function newsFlash() {
+  if (!R) return '';
+  const me = NAT[R.nat], lastI = R.res.map((r, i) => r ? i : -1).filter(i => i >= 0).pop();
+  let kind, mood, kicker;
+  const r = lastI === undefined ? null : R.res[lastI], O = NAT[R.opp[lastI === undefined ? 0 : lastI]];
+  if (!r) { kind = 'first'; mood = 'first'; kicker = `${STAGES[0].name} · ${esc(me.n)} v ${esc(O.n)}`; }
+  else {
+    const won = r.gf > r.ga || (r.pens && r.pens[0] > r.pens[1]), lost = r.gf < r.ga || (r.pens && r.pens[0] < r.pens[1]), m = r.gf - r.ga;
+    if (R.champ) { kind = 'champ'; mood = 'champ'; }
+    else if (R.over && lostI(lastI)) { kind = lastI === STAGES.length - 1 ? 'silver' : r.pens ? 'outpens' : 'out'; mood = 'out'; }
+    else if (won) { kind = r.pens ? 'pens' : m >= 3 ? 'thrash' : m === 2 ? 'win' : 'edge'; mood = 'up'; }
+    else if (lost) { kind = 'loss'; mood = 'down'; }
+    else { kind = r.gf === 0 ? 'nil' : 'draw'; mood = 'meh'; }
+    if (R.over && !R.champ && kind !== 'silver' && !/out/.test(kind)) { kind = 'out'; mood = 'out'; } // out on the group table after a draw or a win
+    kicker = `${STAGES[lastI].name} · ${esc(me.n)} ${r.gf}–${r.ga} ${esc(O.n)}${r.pens ? ` (${r.pens[0]}–${r.pens[1]} pens)` : ''}`;
+  }
+  const sc = r && r.sc && r.sc.length ? r.sc.slice().sort((a, b) => r.sc.filter(x => x === b).length - r.sc.filter(x => x === a).length)[0] : '';
+  const rnd = seeded(`news|${R.nat}|${R.opp.join('')}|${lastI}|${r ? r.gf + '-' + r.ga : ''}`);
+  const lines = NEWS[kind].filter(t => !t.includes('{SC}') || sc);
+  const fill = (t) => t.replace(/\{US\}/g, esc(sn(me))).replace(/\{THEM\}/g, esc(sn(O))).replace(/\{GF\}/g, r ? r.gf : '').replace(/\{SC\}/g, esc(shortName(sc)));
+  const head = fill(lines[Math.floor(rnd() * lines.length)]), q = QUOTES[mood][Math.floor(rnd() * QUOTES[mood].length)];
+  return `<article class="news" aria-label="The Floodlight: ${head}"><span class="nw-tag">Stop press</span>
+    <header class="nw-mast"><b>The Floodlight</b><span>World Championship edition</span></header>
+    <p class="nw-kick">${kicker}</p><h3 class="nw-head">${head}</h3>
+    <p class="nw-quote">“${esc(q[0])}” <span>says ${esc(q[1])}.</span></p></article>`;
+}
+function lostI(i) { const r = R.res[i]; return r && (r.gf < r.ga || (r.pens && r.pens[0] < r.pens[1])); }
 function renderRoad() {
   const me = NAT[R.nat], K = kitFor(me), cur = Math.min(R.stage, STAGES.length - 1), O = NAT[R.opp[cur]], KO = kitFor(O, K.kit);
   setKits(K, KO);
@@ -1770,7 +1844,7 @@ function renderRoad() {
   const albumN = ALBUM.cards.filter(k => POOL.includes(k)).length;
   $('road').innerHTML = `<header class="rhead"><span class="fl">${flagSVG(me, 48, 32)}</span><div class="t"><span>${R.daily ? `Today’s draw · ${esc(dayLabel(R.daily))}` : 'World Championship'}</span><b>${esc(me.n)}</b></div><button class="alb" id="albBtn" type="button" aria-label="Open your album" title="${albumLine()}"><span class="cback"></span>${albumN}/${POOL.length}<small>Album</small></button></header>
     ${hero}
-    <ol class="road" aria-label="Your road">${stops}</ol><div class="roadlegend" aria-hidden="true"><span>Qualifiers</span><span>Group</span><span>Knockouts</span></div>${last}
+    <ol class="road" aria-label="Your road">${stops}</ol><div class="roadlegend" aria-hidden="true"><span>Qualifiers</span><span>Group</span><span>Knockouts</span></div>${newsFlash() || last}
     ${table}
     <div class="sech"><span class="ttl chalk">Your squad</span><button class="deckbtn" id="deckBtn" type="button"><span class="stack"><span class="cback"></span><span class="cback"></span><span class="cback"></span></span>Deck ${R.deck.length}</button></div>
     <div class="squadrow">${squad}</div>
@@ -2153,8 +2227,12 @@ async function offerVAR(what) {
 async function shoot(d, name) {
   const c = shotChance(d); S.bonus = 0; S.shots[0]++;
   say(`${esc(name)} shoots… <b>${c} in 10</b>`);
+  // v0.1.25.0 fair luck: after two good chances (5 in 10 or better) missed in a row, the next shots quietly get +1 in 10
+  // (+2 after four), until you score. The odds shown never change, so the game only ever helps you here, never hurts.
+  const luck = (R.cold || 0) >= 4 ? 2 : (R.cold || 0) >= 2 ? 1 : 0;
   const g = geo(), r = Math.random() * 10, from = ballPt(S.ball, 'you', g);
-  if (r < c) {
+  if (r < Math.min(9.5, c + luck)) {
+    R.cold = 0; (S.scorers = S.scorers || []).push(name);
     const to = goalPt('top', g); trail(from, to, true); await ballTo(g.p({ x: g.TW / 2, y: 2 }), true); ripple('top');
     S.score[0]++; S.ball = 1; S.poss = 'them';
     $('s0').textContent = S.score[0]; $('s0').classList.remove('pop'); void $('s0').offsetWidth; $('s0').classList.add('pop');
@@ -2163,12 +2241,13 @@ async function shoot(d, name) {
     return true;
   } else if (roll(2.5)) {
     const to = g.p({ x: g.TW * .53, y: 10 }); trail(from, to); await ballTo(to, true); await ballTo(ballPt(2, 'you', g));
-    S.ball = 2; S.poss = 'you';
+    S.ball = 2; S.poss = 'you'; if (c >= 5) R.cold = (R.cold || 0) + 1;
     await burst('Saved!', 'miss', 'Rebound!', true);
     say(`${esc(KEEPER[0].toUpperCase() + KEEPER.slice(1))} parries it… and it falls to you! Still in their box.`);
   } else {
     const wide = roll(5), to = wide ? g.p({ x: g.TW * .2, y: 6 }) : g.p({ x: g.TW * .5, y: 12 }); trail(from, to); await ballTo(to, true);
     S.ball = 2; S.poss = 'them';
+    if (c >= 5) R.cold = (R.cold || 0) + 1;
     await burst(wide ? 'Wide!' : 'Saved!', 'miss', `${c} in 10, not this time`, true);
     say(wide ? 'It flies wide. Goal kick.' : `Good save by ${esc(KEEPER)}. Their ball.`);
   }
@@ -2855,6 +2934,9 @@ function introButtons() {
   $('startBtn').addEventListener('click', () => { $('intro').hidden = true; renderPick(); show('pick'); });
 }
 $('ver').textContent = `Matchnight: The Card Game ${BUILD}`;
+// v0.1.25.0: the latest update, by name (change it with every new feature update)
+const UPDATE = { name: 'The Hold the Front Page update', line: 'a match report after every game, and fairer luck' };
+$('introNew').innerHTML = `<span>Just updated</span><b>${UPDATE.name}</b>: ${UPDATE.line}.`;
 $('credit').innerHTML = `A free promo game set in the world of Matchnight. Version <b>${BUILD.replace(/^v/, '')}</b>. Small club. Big nights.`;
 $('endBtn').addEventListener('click', endPhase);
 $('playBtn').addEventListener('click', () => { const c = S.sel && S.hand.find(h => h.id === S.sel); if (c && !need(c) && !S.busy) play(c); });
@@ -3218,6 +3300,6 @@ renderRoad = function () {
   if (R && R.hard) { const t = document.querySelector('#road .rhead .t span'); if (t) t.insertAdjacentHTML('beforeend', '<span class="hardtag">Hard</span>'); }
   if (R && R.over && R.champ && !R.hard && ALBUM.titles === 1) { const b = document.querySelector('#road .banner'); if (b) b.insertAdjacentHTML('afterend', '<p class="unlockline"><b>Hard mode unlocked.</b> Pick it when you start your next run.</p>'); }
 };
-Object.assign(window.__mn.T, { callup: (t) => playerPick(t), sfx: SFX, zoom: (sel) => { const el = document.querySelector(sel); if (el) openZoom(el); }, unzoom: () => closeZoom(), coach: () => showCoach(), playableLeft: () => [...S.deck, ...S.discard].filter(canGo).length, hard: (on) => { ALBUM.titles = Math.max(ALBUM.titles, on ? 1 : 0); hardPick = !!on; } });
+Object.assign(window.__mn.T, { news: () => newsFlash(), newRun: (c) => newRun(c), road: () => { renderRoad(); show('road'); $('intro').hidden = true; }, callup: (t) => playerPick(t), sfx: SFX, zoom: (sel) => { const el = document.querySelector(sel); if (el) openZoom(el); }, unzoom: () => closeZoom(), coach: () => showCoach(), playableLeft: () => [...S.deck, ...S.discard].filter(canGo).length, hard: (on) => { ALBUM.titles = Math.max(ALBUM.titles, on ? 1 : 0); hardPick = !!on; } });
 })();
 </script>
