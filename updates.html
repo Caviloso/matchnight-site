@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.4.31 -->
+<!-- matchnightgame.com, site 0.4.32 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -364,6 +364,14 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .sheet h3 { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 8px 0 0; font-family: var(--font-display); font-weight: 700; font-size: 21px; line-height: 1.1; letter-spacing: .05em; text-transform: uppercase; }
 .next-tag { padding: 3px 8px 2px; border-radius: 4px; background: rgba(255, 204, 26, .14); border: 1px solid rgba(255, 204, 26, .5); color: var(--lamp); font-size: 14px; letter-spacing: .12em; }
 .sheet p { margin: 6px 0 0; color: var(--muted); font-size: 16px; max-width: 64ch; }
+/* a sneak peek under an item (site 0.4.32): six painted faces in the team screen's line, marked as a peek of that step */
+.peek { margin: 14px 0 2px; }
+.peek figcaption { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; color: var(--muted); font-size: 15px; line-height: 1.35; }
+.peek-tag { padding: 3px 8px 2px; border-radius: 4px; border: 1px solid var(--steel); color: var(--chalk); font-family: var(--font-display);
+  font-weight: 700; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
+.faces { display: grid; grid-template-columns: repeat(6, minmax(0, 88px)); gap: 10px; margin-top: 12px; }
+.faces img { display: block; width: 100%; height: auto; aspect-ratio: 1; border-radius: 8px; background: #dfe1e5;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .1), 0 6px 12px rgba(0, 0, 0, .4); }
 @media (min-width: 960px) {
   .coming-grid { grid-template-columns: 340px minmax(0, 1fr); grid-template-areas: "copy sheet" "bench sheet"; grid-template-rows: auto 1fr; gap: 26px 64px; align-items: start; }
   .coming-copy { grid-area: copy; }
@@ -375,7 +383,7 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .art-h { margin: 30px 0 0; font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
 .art-crests, .art-plates, .art-icons { display: grid; align-items: center; justify-items: center; margin-top: 12px; }
 .art-crests { grid-template-columns: repeat(4, 1fr); gap: 16px 10px; max-width: 760px; }
-.art-crests svg { width: 100%; max-width: 72px; height: auto; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .45)); }
+.art-crests svg { width: 100%; max-width: 80px; height: auto; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .45)); }  /* 80 (site 0.4.32): room for the engraving */
 .art-plates { grid-template-columns: repeat(4, 1fr); gap: 12px 8px; max-width: 1000px; }
 .art-plates svg { width: 100%; max-width: 116px; height: auto; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .4)); }
 .art-icons { grid-template-columns: repeat(8, 1fr); gap: 6px; max-width: 480px; }
@@ -554,6 +562,8 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
   .row.sheet .sheet-text { display: contents; }
   .row.sheet h3 { margin: 0; align-self: center; }
   .row.sheet .next { border-color: rgba(255, 204, 26, .45); }
+  .row.sheet .peek { grid-column: 1 / -1; }
+  .row.sheet .faces { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 </style>
 </head>
