@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.4.32 -->
+<!-- matchnightgame.com, site 0.4.33 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -391,6 +391,14 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .art-icons svg { width: 100%; max-width: 48px; height: auto; }
 @media (min-width: 560px) { .art-crests { grid-template-columns: repeat(8, 1fr); } }
 @media (min-width: 640px) { .art-plates { grid-template-columns: repeat(8, 1fr); } }
+/* the faces (site 0.4.33): six players as the game draws them, the same face painted under each; three pairs a row on a
+   phone, six from 560px. The radius covers the drawn faces' own rounded corners. */
+.art-note { margin: 8px 0 0; color: var(--muted); font-size: 15px; line-height: 1.4; max-width: 760px; }
+.art-faces { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px 12px; max-width: 760px; margin-top: 14px; }
+.face-pair { display: grid; gap: 8px; margin: 0; }
+.face-pair img { display: block; width: 100%; height: auto; aspect-ratio: 1; border-radius: 10%; background: #dfe1e5;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .1), 0 6px 12px rgba(0, 0, 0, .4); }
+@media (min-width: 560px) { .art-faces { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
 
 /* questions: each one opens on a tap */
 .qas { display: flex; flex-direction: column; gap: 6px; max-width: 760px; margin-top: 26px; }
@@ -604,7 +612,7 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
           })();
           </script>
       <div class="hero-bottom">
-        <a class="board" href="updates.html"><span class="board-live"><i class="led" aria-hidden="true"></i>In testing now</span><span class="board-ver">Latest version <b>0.0.73.0</b> A proper inbox · 16 November 2026</span></a>
+        <a class="board" href="updates.html"><span class="board-live"><i class="led" aria-hidden="true"></i>In testing now</span><span class="board-ver">Latest version <b>0.0.74.0</b> Your team on the stadium · 18 November 2026</span></a>
         <p class="plans">Planned for PC on Steam and for Android first, with iOS and consoles after that.</p>
         <p class="when">First chance to play: expected summer&nbsp;2027</p>
         <div class="cta">
@@ -801,14 +809,13 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
         </div>
         <div class="sheet-wrap">
         <ol class="row sheet" aria-label="Next on the team sheet">
-          <li class="next"><span class="shirt" aria-hidden="true">1</span><div class="sheet-text"><h3>Your team screen<span class="next-tag">Next big step</span></h3><p>Pick your XI as player cards on the pitch, each with a painted face.</p><figure class="peek"><figcaption><span class="peek-tag">Sneak peek</span><span>Six of the faces coming with it</span></figcaption><div class="faces"><img src="faces/peek-1.webp" width="256" height="256" loading="lazy" decoding="async" alt=""><img src="faces/peek-2.webp" width="256" height="256" loading="lazy" decoding="async" alt=""><img src="faces/peek-3.webp" width="256" height="256" loading="lazy" decoding="async" alt=""><img src="faces/peek-4.webp" width="256" height="256" loading="lazy" decoding="async" alt=""><img src="faces/peek-5.webp" width="256" height="256" loading="lazy" decoding="async" alt=""><img src="faces/peek-6.webp" width="256" height="256" loading="lazy" decoding="async" alt=""></div></figure></div></li>
-          <li><span class="shirt" aria-hidden="true">2</span><div class="sheet-text"><h3>The commentator&#x27;s voice</h3><p>A new voice in the commentary box calls the big moments of your matches out loud, and names the scorer after every goal.</p></div></li>
-          <li><span class="shirt" aria-hidden="true">3</span><div class="sheet-text"><h3>Cup draw night</h3><p>One home for the Saturday show, the Goal of the Month vote and your best goals. And cup draws you pull yourself: wish for a home tie, though the bowl never listens.</p></div></li>
-          <li><span class="shirt" aria-hidden="true">4</span><div class="sheet-text"><h3>Challenges and hot seat</h3><p>A new challenge every day and every week, the same for everyone, plus achievements to chase. Then hot seat: up to four managers, one career, one device, passed round the sofa.</p></div></li>
-          <li><span class="shirt" aria-hidden="true">5</span><div class="sheet-text"><h3>Deadline day</h3><p>The window&#x27;s last two hours, live. Late bids, phones ringing, and the chance to snatch a player from under a rival&#x27;s nose before the clock stops.</p></div></li>
-          <li><span class="shirt" aria-hidden="true">6</span><div class="sheet-text"><h3>Kits and the kit builder</h3><p>Every club gets new home, away and third kits each season. Then design your own, collar to socks, and launch it to your fans before the big kick-off.</p></div></li>
-          <li><span class="shirt" aria-hidden="true">7</span><div class="sheet-text"><h3>The soundtrack</h3><p>Three bands invented for the game, each with an album, playing on every menu screen. Shuffle them, skip a song, or untick the ones you&#x27;d rather not hear.</p><a class="more-link" href="soundtrack.html">Meet the bands<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></li>
-          <li><span class="shirt" aria-hidden="true">8</span><div class="sheet-text"><h3>Story Mode</h3><p>Eight seasons at a small seaside club, a manager who vanished the night before you arrived, and a town that knows why. Your results write the story, and every choice is remembered. When it ends, play on as a normal career, in the world your story made.</p></div></li>
+          <li class="next"><span class="shirt" aria-hidden="true">1</span><div class="sheet-text"><h3>The commentator&#x27;s voice<span class="next-tag">Next big step</span></h3><p>A new voice in the commentary box calls the big moments of your matches out loud, and names the scorer after every goal.</p></div></li>
+          <li><span class="shirt" aria-hidden="true">2</span><div class="sheet-text"><h3>Cup draw night</h3><p>One home for the Saturday show, the Goal of the Month vote and your best goals. And cup draws you pull yourself: wish for a home tie, though the bowl never listens.</p></div></li>
+          <li><span class="shirt" aria-hidden="true">3</span><div class="sheet-text"><h3>Challenges and hot seat</h3><p>A new challenge every day and every week, the same for everyone, plus achievements to chase. Then hot seat: up to four managers, one career, one device, passed round the sofa.</p></div></li>
+          <li><span class="shirt" aria-hidden="true">4</span><div class="sheet-text"><h3>Deadline day</h3><p>The window&#x27;s last two hours, live. Late bids, phones ringing, and the chance to snatch a player from under a rival&#x27;s nose before the clock stops.</p></div></li>
+          <li><span class="shirt" aria-hidden="true">5</span><div class="sheet-text"><h3>Kits and the kit builder</h3><p>Every club gets new home, away and third kits each season. Then design your own, collar to socks, and launch it to your fans before the big kick-off.</p></div></li>
+          <li><span class="shirt" aria-hidden="true">6</span><div class="sheet-text"><h3>The soundtrack</h3><p>Three bands invented for the game, each with an album, playing on every menu screen. Shuffle them, skip a song, or untick the ones you&#x27;d rather not hear.</p><a class="more-link" href="soundtrack.html">Meet the bands<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></li>
+          <li><span class="shirt" aria-hidden="true">7</span><div class="sheet-text"><h3>Story Mode</h3><p>Eight seasons at a small seaside club, a manager who vanished the night before you arrived, and a town that knows why. Your results write the story, and every choice is remembered. When it ends, play on as a normal career, in the world your story made.</p></div></li>
 </ol>
         </div>
         <div class="bench">
