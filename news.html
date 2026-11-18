@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.4.32 -->
+<!-- matchnightgame.com, site 0.4.33 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -390,6 +390,14 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .art-icons svg { width: 100%; max-width: 48px; height: auto; }
 @media (min-width: 560px) { .art-crests { grid-template-columns: repeat(8, 1fr); } }
 @media (min-width: 640px) { .art-plates { grid-template-columns: repeat(8, 1fr); } }
+/* the faces (site 0.4.33): six players as the game draws them, the same face painted under each; three pairs a row on a
+   phone, six from 560px. The radius covers the drawn faces' own rounded corners. */
+.art-note { margin: 8px 0 0; color: var(--muted); font-size: 15px; line-height: 1.4; max-width: 760px; }
+.art-faces { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px 12px; max-width: 760px; margin-top: 14px; }
+.face-pair { display: grid; gap: 8px; margin: 0; }
+.face-pair img { display: block; width: 100%; height: auto; aspect-ratio: 1; border-radius: 10%; background: #dfe1e5;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .1), 0 6px 12px rgba(0, 0, 0, .4); }
+@media (min-width: 560px) { .art-faces { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
 
 /* questions: each one opens on a tap */
 .qas { display: flex; flex-direction: column; gap: 6px; max-width: 760px; margin-top: 26px; }
