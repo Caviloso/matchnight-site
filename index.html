@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.4.37 -->
+<!-- matchnightgame.com, site 0.4.38 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -161,6 +161,7 @@ img { max-width: 100%; }
 .when { display: inline-block; margin: 0; padding: 8px 14px; border: 1px solid var(--steel); border-radius: 6px; background: var(--stand);
   font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: .1em; text-transform: uppercase; color: var(--chalk); }
 .cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; margin-top: 8px; }
+.hero-top .cta { margin-top: 22px; }  /* site 0.4.38: the main button sits straight under the intro, on the first screen */
 .btn { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: 6px; background: var(--lamp); color: var(--lamp-ink); text-decoration: none;
   font-family: var(--font-display); font-weight: 700; font-size: 19px; letter-spacing: .08em; text-transform: uppercase; }
 .btn:hover { filter: brightness(1.07); }
@@ -456,7 +457,7 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .sub .upds, .sub .posts { max-width: 760px; }
 .sub .post h2 { margin: 4px 0 0; font-size: 23px; letter-spacing: .05em; line-height: 1.15; }
 /* a post's title opens its own page (site 0.3.4) */
-.post h2 a, .post h3 a { color: inherit; text-decoration: underline; text-decoration-color: rgba(255, 204, 26, .35); text-decoration-thickness: 2px; text-underline-offset: .18em; }
+.post h2 a, .post h3 a { padding-block: 4px; color: inherit; text-decoration: underline; text-decoration-color: rgba(255, 204, 26, .35); text-decoration-thickness: 2px; text-underline-offset: .18em; }
 .post h2 a:hover, .post h2 a:focus-visible, .post h3 a:hover, .post h3 a:focus-visible { color: var(--lamp); text-decoration-color: currentColor; }
 /* a news post on its own page (site 0.3.4; with the menu since 0.4.0) */
 .news-page .post-date { margin: 14px 0 0; font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--lamp); font-variant-numeric: tabular-nums; }
@@ -465,7 +466,7 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .news-list { list-style: none; max-width: 62ch; margin: 12px 0 0; padding: 0; }
 .news-list li { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 16px; padding-block: 12px; border-top: 1px solid var(--line); }
 .news-list li:first-child { border-top: 0; }
-.news-list a { color: var(--chalk); font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: .05em; text-transform: uppercase; text-decoration: underline; text-decoration-color: rgba(255, 204, 26, .35); text-decoration-thickness: 2px; text-underline-offset: .18em; }
+.news-list a { padding-block: 7px; color: var(--chalk); font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: .05em; text-transform: uppercase; text-decoration: underline; text-decoration-color: rgba(255, 204, 26, .35); text-decoration-thickness: 2px; text-underline-offset: .18em; }
 .news-list a:hover, .news-list a:focus-visible { color: var(--lamp); text-decoration-color: currentColor; }
 .news-list time { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .sub .art { border-top: 0; }
@@ -538,7 +539,7 @@ footer p { margin: 0; }
 footer a { display: inline-block; padding-block: 14px; margin-block: -14px; }
 footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
 .foot-nav { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-bottom: 10px; }
-.foot-nav a { font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; color: var(--chalk); }
+.foot-nav a { display: inline-flex; justify-content: center; min-width: 44px; font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; color: var(--chalk); }
 .foot-nav a[aria-current] { color: var(--lamp); }
 @media (prefers-reduced-motion: reduce) { .upd summary::after, .qa summary::after { transition: none; } }
 
@@ -582,7 +583,7 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
     <span class="status"><i class="led" aria-hidden="true"></i>In development</span>
     <nav class="nav-wide" aria-label="Pages"><a href="./" aria-current="page">Home</a><a href="soundtrack.html">Soundtrack</a><a href="news.html">News</a><a href="updates.html">Updates</a><a href="made.html">How it&#x27;s made</a><a href="faq.html">Questions</a></nav>
     <details class="menu" id="menu"><summary>Menu<svg viewBox="0 0 20 20" aria-hidden="true"><path class="b-open" d="M3 5.5h14M3 10h14M3 14.5h14"/><path class="b-close" d="M5 5l10 10M15 5 5 15"/></svg></summary>
-      <nav class="menu-panel" aria-label="Pages"><a href="./" aria-current="page">Home</a><a href="soundtrack.html">Soundtrack</a><a href="news.html">News</a><a href="updates.html">Updates</a><a href="made.html">How it&#x27;s made</a><a href="faq.html">Questions</a><a class="menu-out" href="https://www.instagram.com/matchnightgame/">Instagram @matchnightgame</a></nav>
+      <nav class="menu-panel" aria-label="Menu"><a href="./" aria-current="page">Home</a><a href="soundtrack.html">Soundtrack</a><a href="news.html">News</a><a href="updates.html">Updates</a><a href="made.html">How it&#x27;s made</a><a href="faq.html">Questions</a><a class="menu-out" href="https://www.instagram.com/matchnightgame/">Instagram @matchnightgame</a></nav>
     </details>
   </header>
   <main>
@@ -593,6 +594,9 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
         <p class="kicker">Football Club Manager</p>
         <p class="claim">The football management game where your results write the story.</p>
         <p class="lede">Take any of 92 English clubs up the leagues, through the cups and into big European nights. Pick the team, do the deals, balance the books, and watch every season become part of your club&#x27;s history.</p>
+        <div class="cta">
+          <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeGWSPqr9cadAE7QBGCvEQuRB9fotn-5Uq1Q2dYi3CxvwSpsA/viewform?hl=en" target="_blank" rel="noopener">Join the waiting list<span class="sr"> (opens in a new tab)</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3h7v7M13 3 4 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
       </div>
       <figure class="stage">
         <div class="duo">
@@ -615,9 +619,6 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
         <a class="board" href="updates.html"><span class="board-live"><i class="led" aria-hidden="true"></i>In testing now</span><span class="board-ver">Latest version <b>0.0.74.1</b> No more twins in the squad · 18 November 2026</span></a>
         <p class="plans">Planned for PC on Steam and for Android first, with iOS and consoles after that.</p>
         <p class="when">First chance to play: expected summer&nbsp;2027</p>
-        <div class="cta">
-          <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeGWSPqr9cadAE7QBGCvEQuRB9fotn-5Uq1Q2dYi3CxvwSpsA/viewform?hl=en" target="_blank" rel="noopener">Join the waiting list<span class="sr"> (opens in a new tab)</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3h7v7M13 3 4 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        </div>
         <div class="cta-more">
           <a class="quiet" href="https://www.instagram.com/matchnightgame/">Follow on Instagram<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           <button type="button" class="theme-btn" id="theme-btn"><svg class="theme-ico" viewBox="0 0 16 16" aria-hidden="true"><path class="i-play" d="M4.5 2.6v10.8L13.6 8z"/><rect class="i-stop" x="3.5" y="3.5" width="9" height="9" rx="1.2"/></svg><span class="theme-label">Hear the Matchnight Theme</span><span class="theme-time">4:12</span></button>
@@ -830,7 +831,7 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
 
   <footer>
    <div class="wrap foot">
-    <nav class="foot-nav" aria-label="Pages"><a href="./" aria-current="page">Home</a><a href="soundtrack.html">Soundtrack</a><a href="news.html">News</a><a href="updates.html">Updates</a><a href="made.html">How it&#x27;s made</a><a href="faq.html">Questions</a></nav>
+    <nav class="foot-nav" aria-label="More pages"><a href="./" aria-current="page">Home</a><a href="soundtrack.html">Soundtrack</a><a href="news.html">News</a><a href="updates.html">Updates</a><a href="made.html">How it&#x27;s made</a><a href="faq.html">Questions</a></nav>
     <p>© 2026 Kevin Logist. All rights reserved. · <a href="https://www.instagram.com/matchnightgame/">Instagram</a></p>
     <p>This site uses no cookies. We count visits with Cloudflare Web Analytics, which doesn&#x27;t track you across sites.</p>
     <p class="credit">Matchnight Theme: made by Kevin with Suno</p>
