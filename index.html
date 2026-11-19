@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.4.38 -->
+<!-- matchnightgame.com, site 0.4.39 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -354,6 +354,12 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .bench p { margin: 0; color: var(--muted); max-width: 44ch; }
 .bench .bench-h { font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .2em; text-transform: uppercase; color: var(--chalk); }
 .bench .when { color: var(--chalk); font-size: 15px; letter-spacing: .08em; }
+/* the play-yourself still on the bench (site 0.4.39): a test shot from the game, with a "Something's coming" line */
+.bench-peek { margin: 10px 0 10px; max-width: 100%; }
+.bench-peek a { display: block; }
+.bench-peek img { display: block; width: 100%; height: auto; border: 1px solid var(--steel); border-radius: 6px; }
+.bench-peek figcaption { margin-top: 8px; font-size: 15px; line-height: 1.45; color: var(--muted); max-width: 44ch; }
+.bench-peek .peek-k { font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--chalk); }
 /* on the bench (site 0.4.18): play it yourself, then the PC and Android versions, each with a small heading */
 .bench-item h3 { margin: 4px 0 4px; font-family: var(--font-display); font-weight: 700; font-size: 19px; line-height: 1.1; letter-spacing: .05em; text-transform: uppercase; color: var(--chalk); }
 .sheet { list-style: none; margin: 0; padding: 0; min-width: 0; background: var(--stand); border: 1px solid var(--line); border-radius: 10px; }
@@ -821,7 +827,10 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
         </div>
         <div class="bench">
           <p class="bench-h">On the bench</p>
-          <div class="bench-item"><h3>Play it yourself</h3><p>Being built now in Unity, as a project of its own. It started with one player, a ball and a goal, and grows step by step towards whole matches with the squad you manage.</p></div>
+          <div class="bench-item"><h3>Play it yourself</h3>
+            <figure class="bench-peek"><a href="shots/play-yourself.webp"><img src="shots/play-yourself-960.webp" srcset="shots/play-yourself-480.webp 480w, shots/play-yourself-960.webp 960w, shots/play-yourself.webp 1920w" sizes="(min-width: 960px) 340px, calc(100vw - 32px)" width="960" height="540" loading="lazy" decoding="async" alt="Early test picture of Play it yourself: a floodlit stadium with a full stand, the keeper on his line and a player on the ball about 30 metres out."></a>
+            <figcaption><span class="peek-k">Something&#x27;s coming</span> An early test shot: floodlights on, keeper on his line, ball at your feet.</figcaption></figure>
+            <p>Being built now in Unity, as a project of its own. It started with one player, a ball and a goal, and grows step by step towards whole matches with the squad you manage.</p></div>
           <div class="bench-item"><h3>PC and Android</h3><p>After all that: more depth, then the whole game moves to Unity for PC and Android, with a full PC layout, plus Steam Deck, cloud saves and achievements on Steam.</p></div>
           <p class="when">First chance to play: expected summer&nbsp;2027</p>
         </div>
