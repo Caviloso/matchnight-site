@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.4.42 -->
+<!-- matchnightgame.com, site 0.4.43 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -16,12 +16,12 @@
 <meta property="og:title" content="One month in · Matchnight news">
 <meta property="og:description" content="Matchnight is one month old today. On 8 October it was a rough first prototype. A month and 74 versions later, it plays season after season: any of 92 English…">
 <meta property="og:url" content="https://matchnightgame.com/news/one-month-in.html">
-<meta property="og:image" content="https://matchnightgame.com/share.png">
+<meta property="og:image" content="https://matchnightgame.com/news/one-month-in.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The Matchnight logo: a bank of floodlights over the words Match Night.">
+<meta property="og:image:alt" content="The same league table screen a month apart: a plain dark-green table on 9 October, and the Matchnight look with club crests and form chips on 8 November.">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "One month in", "description": "Matchnight is one month old today. On 8 October it was a rough first prototype. A month and 74 versions later, it plays season after season: any of 92 English…", "datePublished": "2026-11-08", "dateModified": "2026-11-08", "image": "https://matchnightgame.com/share.png", "url": "https://matchnightgame.com/news/one-month-in.html", "mainEntityOfPage": "https://matchnightgame.com/news/one-month-in.html", "inLanguage": "en", "isPartOf": {"@type": "WebSite", "name": "Matchnight", "url": "https://matchnightgame.com/"}, "about": {"@type": "VideoGame", "name": "Matchnight", "url": "https://matchnightgame.com/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "One month in", "description": "Matchnight is one month old today. On 8 October it was a rough first prototype. A month and 74 versions later, it plays season after season: any of 92 English…", "datePublished": "2026-11-08", "dateModified": "2026-11-08", "image": "https://matchnightgame.com/news/one-month-in.jpg", "url": "https://matchnightgame.com/news/one-month-in.html", "mainEntityOfPage": "https://matchnightgame.com/news/one-month-in.html", "inLanguage": "en", "isPartOf": {"@type": "WebSite", "name": "Matchnight", "url": "https://matchnightgame.com/"}, "about": {"@type": "VideoGame", "name": "Matchnight", "url": "https://matchnightgame.com/"}}</script>
 <style>
 /* Matchnight, redesigned for the doubtful first-time visitor. One floodlit night on purpose (a stadium after dark), so
    the page has one dark look whatever the device's setting. The brand stays: the Floodlight logo, Matchnight
@@ -465,6 +465,12 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 /* a post's title opens its own page (site 0.3.4) */
 .post h2 a, .post h3 a { padding-block: 4px; color: inherit; text-decoration: underline; text-decoration-color: rgba(255, 204, 26, .35); text-decoration-thickness: 2px; text-underline-offset: .18em; }
 .post h2 a:hover, .post h2 a:focus-visible, .post h3 a:hover, .post h3 a:focus-visible { color: var(--lamp); text-decoration-color: currentColor; }
+/* the news posts' lead pictures (site 0.4.43): 1200 x 630, above each post on News and at the top of its own page */
+.post-pic { display: block; margin: 0 0 14px; aspect-ratio: 40 / 21; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: var(--stand); }
+.post-pic img { display: block; width: 100%; height: 100%; object-fit: cover; }
+a.post-pic { transition: border-color .15s; }
+a.post-pic:hover { border-color: rgba(255, 204, 26, .6); }
+.news-page .post-pic { max-width: 760px; margin: 18px 0 0; }
 /* a news post on its own page (site 0.3.4; with the menu since 0.4.0) */
 .news-page .post-date { margin: 14px 0 0; font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--lamp); font-variant-numeric: tabular-nums; }
 .news-page .post-text { max-width: 62ch; margin: 14px 0 0; font-size: 18px; }
@@ -661,12 +667,14 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
       <div class="wrap">
         <p class="label">News</p>
         <h1 id="sub-h">One month in</h1>
+        <figure class="post-pic"><img src="one-month-in-600.webp" srcset="one-month-in-600.webp 600w, one-month-in.webp 1200w" sizes="(min-width: 800px) 760px, calc(100vw - 32px)" width="1200" height="630" alt="The same league table screen a month apart: a plain dark-green table on 9 October, and the Matchnight look with club crests and form chips on 8 November." fetchpriority="high" decoding="async"></figure>
         <p class="post-date"><time datetime="2026-11-08">8 November 2026</time></p>
         <p class="post-text">Matchnight is one month old today. On 8 October it was a rough first prototype. A month and 74 versions later, it plays season after season: any of 92 English clubs, cup runs, European nights, transfers you actually negotiate, a board that can sack you, a Saturday night highlights show, and every match of yours acted out on a 2D pitch, with commentary.</p>
         <p class="post-text">Behind the screens sit more than 90,000 words of game text, about the length of a novel, and more than 130 automatic checks that test the game before a new version goes out. Kevin, the one fan behind Matchnight, plays every build and decides every feature. The code, the words and the checks are made with the help of Claude, an AI, and four test players report what they find. Kevin also made 30 songs with Suno for the three bands invented for the game.</p>
         <p class="post-text">Not bad for a month. But as any promoted side will tell you, the hard part starts now. Matchnight is still a prototype: only a handful of people have played it, its own look is designed but not built, and the step from a browser prototype to the full game on PC and Android is still ahead. Still to come: that new look, a living pitch, the soundtrack in the game and Story Mode. First chance to play: expected summer 2027.</p>
         <h2 class="news-more">More news</h2>
         <ul class="news-list">
+          <li><a href="a-tight-squeeze.html">A tight squeeze</a><time datetime="2026-11-21">21 November 2026</time></li>
           <li><a href="ready-for-its-close-up.html">Ready for its close-up</a><time datetime="2026-11-19">19 November 2026</time></li>
           <li><a href="straight-to-the-good-bit.html">Straight to the good bit</a><time datetime="2026-11-03">3 November 2026</time></li>
           <li><a href="by-the-book.html">By the book</a><time datetime="2026-11-01">1 November 2026</time></li>
