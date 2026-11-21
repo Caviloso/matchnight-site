@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.4.42 -->
+<!-- matchnightgame.com, site 0.4.43 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -16,12 +16,12 @@
 <meta property="og:title" content="The floodlights come on · Matchnight news">
 <meta property="og:description" content="Matchnight has found its voice. A floodlit intro switches the stadium on before the title screen, music plays on the start screens, and every match has its…">
 <meta property="og:url" content="https://matchnightgame.com/news/the-floodlights-come-on.html">
-<meta property="og:image" content="https://matchnightgame.com/share.png">
+<meta property="og:image" content="https://matchnightgame.com/news/the-floodlights-come-on.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The Matchnight logo: a bank of floodlights over the words Match Night.">
+<meta property="og:image:alt" content="Matchnight&#x27;s title screen: the yellow logo over New career, Load career, How to play, Settings and Credits.">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "The floodlights come on", "description": "Matchnight has found its voice. A floodlit intro switches the stadium on before the title screen, music plays on the start screens, and every match has its…", "datePublished": "2026-10-15", "dateModified": "2026-10-15", "image": "https://matchnightgame.com/share.png", "url": "https://matchnightgame.com/news/the-floodlights-come-on.html", "mainEntityOfPage": "https://matchnightgame.com/news/the-floodlights-come-on.html", "inLanguage": "en", "isPartOf": {"@type": "WebSite", "name": "Matchnight", "url": "https://matchnightgame.com/"}, "about": {"@type": "VideoGame", "name": "Matchnight", "url": "https://matchnightgame.com/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "The floodlights come on", "description": "Matchnight has found its voice. A floodlit intro switches the stadium on before the title screen, music plays on the start screens, and every match has its…", "datePublished": "2026-10-15", "dateModified": "2026-10-15", "image": "https://matchnightgame.com/news/the-floodlights-come-on.jpg", "url": "https://matchnightgame.com/news/the-floodlights-come-on.html", "mainEntityOfPage": "https://matchnightgame.com/news/the-floodlights-come-on.html", "inLanguage": "en", "isPartOf": {"@type": "WebSite", "name": "Matchnight", "url": "https://matchnightgame.com/"}, "about": {"@type": "VideoGame", "name": "Matchnight", "url": "https://matchnightgame.com/"}}</script>
 <style>
 /* Matchnight, redesigned for the doubtful first-time visitor. One floodlit night on purpose (a stadium after dark), so
    the page has one dark look whatever the device's setting. The brand stays: the Floodlight logo, Matchnight
@@ -465,6 +465,12 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 /* a post's title opens its own page (site 0.3.4) */
 .post h2 a, .post h3 a { padding-block: 4px; color: inherit; text-decoration: underline; text-decoration-color: rgba(255, 204, 26, .35); text-decoration-thickness: 2px; text-underline-offset: .18em; }
 .post h2 a:hover, .post h2 a:focus-visible, .post h3 a:hover, .post h3 a:focus-visible { color: var(--lamp); text-decoration-color: currentColor; }
+/* the news posts' lead pictures (site 0.4.43): 1200 x 630, above each post on News and at the top of its own page */
+.post-pic { display: block; margin: 0 0 14px; aspect-ratio: 40 / 21; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: var(--stand); }
+.post-pic img { display: block; width: 100%; height: 100%; object-fit: cover; }
+a.post-pic { transition: border-color .15s; }
+a.post-pic:hover { border-color: rgba(255, 204, 26, .6); }
+.news-page .post-pic { max-width: 760px; margin: 18px 0 0; }
 /* a news post on its own page (site 0.3.4; with the menu since 0.4.0) */
 .news-page .post-date { margin: 14px 0 0; font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--lamp); font-variant-numeric: tabular-nums; }
 .news-page .post-text { max-width: 62ch; margin: 14px 0 0; font-size: 18px; }
@@ -661,10 +667,12 @@ footer .credit, footer .tm, .foot-nav { flex-basis: 100%; }
       <div class="wrap">
         <p class="label">News</p>
         <h1 id="sub-h">The floodlights come on</h1>
+        <figure class="post-pic"><img src="the-floodlights-come-on-600.webp" srcset="the-floodlights-come-on-600.webp 600w, the-floodlights-come-on.webp 1200w" sizes="(min-width: 800px) 760px, calc(100vw - 32px)" width="1200" height="630" alt="Matchnight&#x27;s title screen: the yellow logo over New career, Load career, How to play, Settings and Credits." fetchpriority="high" decoding="async"></figure>
         <p class="post-date"><time datetime="2026-10-15">15 October 2026</time></p>
         <p class="post-text">Matchnight has found its voice. A floodlit intro switches the stadium on before the title screen, music plays on the start screens, and every match has its own sounds, with a crowd that reacts to every chance and a commentator for the big moments. You can also tap any player, club or score to open its card, with full career histories, match reports and a search that finds anyone as you type.</p>
         <h2 class="news-more">More news</h2>
         <ul class="news-list">
+          <li><a href="a-tight-squeeze.html">A tight squeeze</a><time datetime="2026-11-21">21 November 2026</time></li>
           <li><a href="ready-for-its-close-up.html">Ready for its close-up</a><time datetime="2026-11-19">19 November 2026</time></li>
           <li><a href="one-month-in.html">One month in</a><time datetime="2026-11-08">8 November 2026</time></li>
           <li><a href="straight-to-the-good-bit.html">Straight to the good bit</a><time datetime="2026-11-03">3 November 2026</time></li>

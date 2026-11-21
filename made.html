@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.4.42 -->
+<!-- matchnightgame.com, site 0.4.43 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -464,6 +464,12 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 /* a post's title opens its own page (site 0.3.4) */
 .post h2 a, .post h3 a { padding-block: 4px; color: inherit; text-decoration: underline; text-decoration-color: rgba(255, 204, 26, .35); text-decoration-thickness: 2px; text-underline-offset: .18em; }
 .post h2 a:hover, .post h2 a:focus-visible, .post h3 a:hover, .post h3 a:focus-visible { color: var(--lamp); text-decoration-color: currentColor; }
+/* the news posts' lead pictures (site 0.4.43): 1200 x 630, above each post on News and at the top of its own page */
+.post-pic { display: block; margin: 0 0 14px; aspect-ratio: 40 / 21; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: var(--stand); }
+.post-pic img { display: block; width: 100%; height: 100%; object-fit: cover; }
+a.post-pic { transition: border-color .15s; }
+a.post-pic:hover { border-color: rgba(255, 204, 26, .6); }
+.news-page .post-pic { max-width: 760px; margin: 18px 0 0; }
 /* a news post on its own page (site 0.3.4; with the menu since 0.4.0) */
 .news-page .post-date { margin: 14px 0 0; font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--lamp); font-variant-numeric: tabular-nums; }
 .news-page .post-text { max-width: 62ch; margin: 14px 0 0; font-size: 18px; }
