@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- matchnightgame.com, site 0.4.41 -->
+<!-- matchnightgame.com, site 0.4.42 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -504,21 +504,85 @@ h2 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: c
 .theme-float[hidden] { display: none; }
 body:has(#theme-float:not([hidden])) { padding-bottom: 76px; }  /* the page's end is never under the floating button */
 
-/* soundtrack.html: who the bands are, said plainly; the bands side by side (a swipe row on a phone), each with its cover,
-   country and style, bio, album and a 30-second clip; then how the music works in the game */
+/* soundtrack.html: who the bands are, said plainly; then the line-up (site 0.4.42, Kevin's picks of 21 Nov 2026): the ten
+   bands as a 4-4-2 team sheet of square album covers on a night pitch, strikers at the top and the label's compilation in
+   goal; a tap opens the band's card in a dialog, like the back of a record sleeve: cover, name, bio, the clip, then the songs
+   as Side A and Side B. Without the script the cards are listed under the pitch. Then how the music works in the game. */
 .honest { max-width: 60ch; margin: 18px 0 0; padding: 12px 16px; border-left: 3px solid var(--lamp); background: var(--stand); border-radius: 0 6px 6px 0; font-size: 16px; }
 .st-top { padding-bottom: 28px; }
-.bands-sec { border-top: 0; padding-top: 0; }
-.bands { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-.band { display: flex; flex-direction: column; min-width: 0; padding: 0 !important; overflow: hidden; background: var(--stand); border: 1px solid var(--line); border-radius: 10px; }
-.band-cover { display: block; width: 100%; height: auto; aspect-ratio: 1; }
-.band-text { flex: 1; padding: 16px 16px 0; }
-.band h3 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: 26px; line-height: 1.05; letter-spacing: .04em; text-transform: uppercase; }
-.band-meta { margin: 6px 0 0 !important; font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: .1em; text-transform: uppercase; color: var(--lamp); }
+.lineup-sec { border-top: 0; padding-top: 8px; }
+.lineup-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; margin-bottom: 20px; }
+.lineup-head h2 { margin: 0; }
+.lineup-head p { margin: 0; color: var(--muted); font-size: 16px; }
+.pitch { position: relative; max-width: 660px; margin: 0 auto; aspect-ratio: 68 / 88; border-radius: 14px; overflow: hidden;
+  background: repeating-linear-gradient(180deg, var(--turf) 0 8.333%, #17602f 8.333% 16.666%);
+  box-shadow: inset 0 0 90px rgba(0, 0, 0, .55), 0 0 0 1px var(--line); }
+.pitch::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 50% -10%, rgba(255, 236, 170, .16), transparent 60%), radial-gradient(ellipse at 50% 110%, rgba(255, 236, 170, .12), transparent 55%); }
+.lines { position: absolute; inset: 0; width: 100%; height: 100%; }
+.lines-100 { display: none; }
+.line { position: absolute; left: 2%; right: 2%; z-index: 1; display: flex; justify-content: space-evenly; transform: translateY(-50%); }
+.line-0 { top: 15%; justify-content: center; gap: 20%; }
+.line-1 { top: 39%; } .line-2 { top: 63%; } .line-3 { top: 86%; }
+@media (max-width: 479px) {  /* a phone: a taller pitch, so the rows and their names keep their room */
+  .pitch { aspect-ratio: 68 / 100; }
+  .lines-88 { display: none; } .lines-100 { display: block; }
+  .line-0 { top: 13%; } .line-1 { top: 37%; } .line-2 { top: 61.5%; } .line-3 { top: 87%; }
+}
+.pl { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 24%; color: var(--chalk); text-align: center; text-decoration: none; border-radius: 6px; -webkit-tap-highlight-color: transparent; }
+.pl:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
+.sq { display: block; width: clamp(56px, 17vw, 120px); aspect-ratio: 1; overflow: hidden; border-radius: 3px;
+  box-shadow: 0 0 0 2px var(--chalk), 0 8px 20px rgba(0, 0, 0, .6); transition: transform .18s ease, box-shadow .18s ease; }
+.pl-gk .sq { box-shadow: 0 0 0 3px var(--lamp), 0 8px 20px rgba(0, 0, 0, .6); }
+.sq-img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pl:hover .sq, .pl:focus-visible .sq { transform: translateY(-3px) scale(1.04); box-shadow: 0 0 0 2px var(--lamp), 0 12px 24px rgba(0, 0, 0, .6); }
+.pl-name { max-width: 100%; padding: 3px 7px 4px; border-radius: 4px; background: rgba(11, 13, 17, .82); hyphens: manual;
+  font-family: var(--font-display); font-weight: 700; font-size: clamp(11px, 2.4vw, 16px); line-height: 1.1; letter-spacing: .03em; text-transform: uppercase; }
+.pl-gk .pl-name { color: var(--lamp); }
+@media (prefers-reduced-motion: reduce) { .sq { transition: none; } .pl:hover .sq, .pl:focus-visible .sq { transform: none; } }
+.bands-sec { padding-top: 0; border-top: 0; }
+.bands-js .bands-sec { display: none; }  /* with the script, the cards open from the pitch */
+.bands { display: grid; gap: 20px; margin: 0; padding: 0; list-style: none; }
+.band { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; min-width: 0; padding: 18px; background: var(--stand); border: 1px solid var(--line); border-radius: 10px; }
+.band-art { max-width: 240px; }
+.band-cover { display: block; width: 100%; height: auto; aspect-ratio: 1; border-radius: 4px; box-shadow: 0 10px 24px rgba(0, 0, 0, .5); }
+.band-text { min-width: 0; }
+.band-pos { margin: 0 0 4px !important; font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.band h3 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: 28px; line-height: 1.05; letter-spacing: .04em; text-transform: uppercase; }
+.band-meta { margin: 6px 0 0 !important; font-family: var(--font-display); font-weight: 700; font-size: 15px; line-height: 1.35; letter-spacing: .1em; text-transform: uppercase; color: var(--lamp); }
 .band-bio { margin: 10px 0 0 !important; color: var(--muted); font-size: 16px; }
 .band-album { margin: 10px 0 0 !important; font-size: 15px; }
 .band-album span { margin-right: 6px; font-family: var(--font-display); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-.clip { padding: 16px; }
+.band .clip { margin-top: 14px; }
+.tracks { display: grid; gap: 14px 28px; padding-top: 14px; border-top: 1px solid var(--line); }
+.side-h { margin: 0 0 6px !important; font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .18em; text-transform: uppercase; color: var(--lamp); }
+.tracks ol { margin: 0; padding-left: 2.2em; list-style: decimal-leading-zero; }
+.tracks li { padding: 5px 0; border-bottom: 1px solid var(--line); font-size: 15px; line-height: 1.35; }
+.tracks li:last-child { border-bottom: 0; }
+.tracks li::marker { color: var(--muted); font-family: var(--font-display); font-weight: 700; font-variant-numeric: tabular-nums; }
+@media (min-width: 600px) {
+  .band { grid-template-columns: 220px minmax(0, 1fr); gap: 18px 22px; padding: 22px; }
+  .band-art { max-width: none; }
+  .tracks { grid-column: 1 / -1; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.band-dialog { width: min(720px, calc(100% - 32px)); max-width: none; max-height: min(88vh, 940px); max-height: min(88dvh, 940px); padding: 0;
+  overflow: auto; overscroll-behavior: contain; color: var(--chalk); background: var(--stand); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 24px 60px rgba(0, 0, 0, .6); }
+.band-dialog::backdrop { background: rgba(0, 0, 0, .72); }
+.band-dialog .band { border: 0; background: none; }
+.band-dialog .band h3 { padding-right: 76px; }
+.band-x { position: sticky; top: 10px; z-index: 1; float: right; min-height: 44px; margin: 10px 10px -54px 0; padding: 0 14px; cursor: pointer;
+  color: var(--chalk); background: var(--steel); border: 0; border-radius: 6px; font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; }
+.band-x:hover { background: #39414c; }
+html:has(.band-dialog[open]) { overflow: hidden; }
+@media (max-width: 599px) {  /* a phone: the card slides up from the bottom */
+  .band-dialog { width: 100%; max-height: 90vh; max-height: 90dvh; margin: auto 0 0; border-radius: 14px 14px 0 0; border-width: 1px 0 0;
+    padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .band-dialog .band h3 { padding-right: 0; }
+  .band-dialog .band-art { max-width: min(240px, calc(100% - 80px)); }
+  .band-dialog[open] { animation: sheet-up .22s ease-out; }
+}
+@keyframes sheet-up { from { transform: translateY(40px); opacity: .4; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .band-dialog[open] { animation: none; } }
 .clip-btn, .clip-soon { position: relative; overflow: hidden; display: flex; align-items: center; gap: 12px; width: 100%; min-height: 52px; margin: 0; padding: 6px 16px;
   border: 1px solid rgba(255, 204, 26, .45); border-radius: 6px; background: var(--night); color: var(--chalk); text-align: left; font: inherit; }
 .clip-btn { cursor: pointer; }
